@@ -1,0 +1,6 @@
+framework module Pods_XWSDK {
+  umbrella header "Pods-XWSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

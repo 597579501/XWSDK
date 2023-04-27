@@ -1,0 +1,38 @@
+//
+//  XWSDK.h
+//  XWSDK
+//
+//  Created by Seven on 2023/4/25.
+//
+
+#import <Foundation/Foundation.h>
+
+//! Project version number for XWSDK.
+FOUNDATION_EXPORT double XWSDKVersionNumber;
+
+//! Project version string for XWSDK.
+FOUNDATION_EXPORT const unsigned char XWSDKVersionString[];
+
+// In this header, you should import all the public headers of your framework using statements like #import <XWSDK/PublicHeader.h>
+
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface XWSDK : NSObject
+
+
+
++ (instancetype)sharedInstance;
+
+- (void)s;
+
+- (void)conf:(NSString *)appId appKey:(NSString *)appKey;
+
+- (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)password;
+
+- (NSString *)version;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
