@@ -18,13 +18,6 @@ static XWCommonModel *_instance = nil;
     };
 }
 
-+ (nullable NSArray<NSString *> *)modelPropertyBlacklist
-{
-    return @[@"appKey"];
-}
-
-
-
 
 /// 单利方法
 + (instancetype)sharedInstance
@@ -72,6 +65,7 @@ static XWCommonModel *_instance = nil;
 - (NSString *)time
 {
     NSInteger timeInterval = [[NSDate date] timeIntervalSince1970];
+//    NSInteger timeInterval = 1682605469;
     return [NSString stringWithFormat:@"%zd", timeInterval];
 }
 

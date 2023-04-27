@@ -65,12 +65,26 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0)
     {
-        [[XWSDK sharedInstance] conf:@"11105" appKey:@"45f6202f5365130f8a500c4b770b42b7"];
+        [[XWSDK sharedInstance] conf:@"11105" appKey:@"45f6202f5365130f8a500c4b770b42b7" completion:^(NSString * _Nonnull userId) {
+            
+        } failure:^(NSString * _Nonnull errorMessage) {
+            
+        }];
     }
     if (indexPath.row == 1)
     {
-        [[XWSDK sharedInstance] reg:@"xwtest2" password:@"xwtest1" code:@""];
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [[XWSDK sharedInstance] reg:@"xwtest5" password:@"xwtest1" code:@"" completion:^(NSString * _Nonnull userId) {
+            
+            cell.detailTextLabel.text = userId;
+            [tableView reloadData];
+        } failure:^(NSString * _Nonnull errorMessage) {
+            cell.detailTextLabel.text = errorMessage;
+            [tableView reloadData];
+        }];
+        
     }
+    
     
 }
 

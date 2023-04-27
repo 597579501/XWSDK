@@ -40,14 +40,21 @@ static XWSDK *_instance = nil;
     [XWNetManager s];
 }
 
-- (void)conf:(NSString *)appId appKey:(NSString *)appKey
+- (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure
 {
-    [self.sdkViewModel conf:appId appKey:appKey];
+    [self.sdkViewModel conf:appId appKey:appKey completion:completion failure:failure];
 }
 
-- (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code
+- (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure
 {
-    [self.sdkViewModel reg:name password:password code:code];
+    [self.sdkViewModel reg:name password:password code:code completion:^(NSString * _Nonnull userId) {
+        
+    } failure:^(NSString * _Nonnull errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
 }
 
 - (NSString *)version
