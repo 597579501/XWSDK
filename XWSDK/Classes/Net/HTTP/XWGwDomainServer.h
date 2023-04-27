@@ -30,6 +30,10 @@ typedef NS_ENUM(NSInteger, XWCodeType) {
                       success:(Success)success
                       failure:(Failure)failure;
 
++ (NSURLSessionDataTask *)login:(NSString *)name password:(NSString *)password 
+                        success:(Success)success
+                        failure:(Failure)failure;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -36,10 +36,10 @@ typedef enum : NSUInteger {
 } HttpContentType;
 
 
-typedef void(^Success)(id data);
-typedef void(^ResponseSuccess)(id data,NSString *msg);
+typedef void(^Success)(id _Nullable data);
+//typedef void(^ResponseSuccess)(id _Nullable data,NSString * _Nonnull msg);
 
-typedef void(^Failure)(NSString *errorMessage);
+typedef void(^Failure)(NSString * _Nullable errorMessage);
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface XWNetManager : NSObject
 
 + (XWNetManager *)sharedInstance;
-+ (void)s;
+
 
 - (NSURLSessionDataTask *)postWithUrl:(NSString *)url
                            parameters:(id)params

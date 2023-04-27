@@ -84,6 +84,19 @@
         }];
         
     }
+    if (indexPath.row == 2)
+    {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [[XWSDK sharedInstance] login:@"xwtest5" password:@"xwtest1" completion:^(XWUserModel * _Nonnull userModel) {
+            
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", userModel.userName , userModel.userId];
+            [tableView reloadData];
+        } failure:^(NSString * _Nonnull errorMessage) {
+            cell.detailTextLabel.text = errorMessage;
+            [tableView reloadData];
+        }];
+        
+    }
     
     
 }
@@ -102,7 +115,7 @@
 {
     if (!_dataArray)
     {
-        _dataArray = @[@"初始化", @"注册"];
+        _dataArray = @[@"初始化", @"注册", @"登录"];
     }
     return _dataArray;;
 }

@@ -8,8 +8,8 @@
 #import "XWSDKViewModel.h"
 #import "XWApiDomainServer.h"
 #import "XWGwDomainServer.h"
-#import "SWConfModel.h"
-
+#import "XWConfModel.h"
+#import <YYModel/YYModel.h>
 
 @implementation XWSDKViewModel
 
@@ -17,13 +17,8 @@
 {
     [XWCommonModel sharedInstance].appId = appId;
     [XWCommonModel sharedInstance].appKey = appKey;
-//    self.commonModel.appKey = appKey;
-    
-    
-    
-    
     [XWGwDomainServer conf:^(id data) {
-        SWConfModel *confModel = [SWConfModel yy_modelWithJSON:data];
+        XWConfModel *confModel = [XWConfModel yy_modelWithJSON:data];
         
     } failure:^(NSString *errorMessage) {
         if (failure)
@@ -35,6 +30,11 @@
 
 - (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure
 {
+    if (![self checkConf])
+    {
+        failure(@"未初始化SDK");
+        return;
+    }
     [XWGwDomainServer reg:name password:password code:code success:^(id data) {
         NSString *userId = data[@"user_id"];
         if (completion && userId)
@@ -50,14 +50,35 @@
 }
 
 
-- (void)login
+- (void)login:(NSString *)name password:(NSString *)password completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure
 {
-    
+    if (![self checkConf])
+    {
+        failure(@"未初始化SDK");
+        return;
+    }
+    [XWGwDomainServer login:name password:password success:^(id data) {
+        XWUserModel *userModel = [XWUserModel yy_modelWithJSON:data];
+        if (completion && userModel)
+        {
+            completion(userModel);
+        }
+    } failure:^(NSString *errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
 }
 
-- (void)p
+- (BOOL)checkConf
 {
-    
+    XWCommonModel *commonModel = [XWCommonModel sharedInstance];
+    if (commonModel.appId && commonModel.appKey)
+    {
+        return YES;
+    }
+    return NO;
 }
 
 

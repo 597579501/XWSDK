@@ -13,14 +13,16 @@
 		141FCF4C29FA1EA50075C50A /* XWLogDomainServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 141FCF4A29FA1EA50075C50A /* XWLogDomainServer.m */; };
 		141FCF4F29FA1EBE0075C50A /* XWApiDomainServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 141FCF4D29FA1EBE0075C50A /* XWApiDomainServer.h */; };
 		141FCF5029FA1EBE0075C50A /* XWApiDomainServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 141FCF4E29FA1EBE0075C50A /* XWApiDomainServer.m */; };
-		141FCF5429FA2B710075C50A /* SWConfModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 141FCF5229FA2B710075C50A /* SWConfModel.h */; };
-		141FCF5529FA2B710075C50A /* SWConfModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 141FCF5329FA2B710075C50A /* SWConfModel.m */; };
+		141FCF5429FA2B710075C50A /* XWConfModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 141FCF5229FA2B710075C50A /* XWConfModel.h */; };
+		141FCF5529FA2B710075C50A /* XWConfModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 141FCF5329FA2B710075C50A /* XWConfModel.m */; };
 		141FCF5D29FA2D5D0075C50A /* XWHttpResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 141FCF5B29FA2D5D0075C50A /* XWHttpResponse.h */; };
 		141FCF5E29FA2D5D0075C50A /* XWHttpResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 141FCF5C29FA2D5D0075C50A /* XWHttpResponse.m */; };
 		141FCF6129FA57440075C50A /* XWSDKViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 141FCF5F29FA57440075C50A /* XWSDKViewModel.h */; };
 		141FCF6229FA57440075C50A /* XWSDKViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 141FCF6029FA57440075C50A /* XWSDKViewModel.m */; };
 		141FCF6529FA66CF0075C50A /* XWCommonModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 141FCF6329FA66CF0075C50A /* XWCommonModel.h */; };
 		141FCF6629FA66CF0075C50A /* XWCommonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 141FCF6429FA66CF0075C50A /* XWCommonModel.m */; };
+		141FCF6929FAD98C0075C50A /* XWUserModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 141FCF6729FAD98C0075C50A /* XWUserModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		141FCF6A29FAD98C0075C50A /* XWUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 141FCF6829FAD98C0075C50A /* XWUserModel.m */; };
 		148725EE29F80DBA00C1ED33 /* XWBaseServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 148725EC29F80DBA00C1ED33 /* XWBaseServer.h */; };
 		148725EF29F80DBA00C1ED33 /* XWBaseServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 148725ED29F80DBA00C1ED33 /* XWBaseServer.m */; };
 		14DE9EBB29F7FD920093BF1C /* XWSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 14DE9EBA29F7FD920093BF1C /* XWSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,9 +35,7 @@
 		14DE9EDA29F7FDAC0093BF1C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9ED929F7FDAC0093BF1C /* main.m */; };
 		14DE9EDF29F7FDC00093BF1C /* XWSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14DE9EB729F7FD920093BF1C /* XWSDK.framework */; };
 		14DE9EE029F7FDC00093BF1C /* XWSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 14DE9EB729F7FD920093BF1C /* XWSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		14DE9F9829F7FFD00093BF1C /* SWViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9F8829F7FFD00093BF1C /* SWViewModel.m */; };
 		14DE9F9929F7FFD00093BF1C /* XWViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14DE9F8929F7FFD00093BF1C /* XWViewModel.h */; };
-		14DE9F9A29F7FFD00093BF1C /* SWViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14DE9F8A29F7FFD00093BF1C /* SWViewModel.h */; };
 		14DE9F9B29F7FFD00093BF1C /* XWViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9F8B29F7FFD00093BF1C /* XWViewModel.m */; };
 		14DE9F9C29F7FFD00093BF1C /* XWViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 14DE9F8D29F7FFD00093BF1C /* XWViewController.h */; };
 		14DE9F9D29F7FFD00093BF1C /* XWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9F8E29F7FFD00093BF1C /* XWViewController.m */; };
@@ -80,14 +80,16 @@
 		141FCF4A29FA1EA50075C50A /* XWLogDomainServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWLogDomainServer.m; sourceTree = "<group>"; };
 		141FCF4D29FA1EBE0075C50A /* XWApiDomainServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWApiDomainServer.h; sourceTree = "<group>"; };
 		141FCF4E29FA1EBE0075C50A /* XWApiDomainServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWApiDomainServer.m; sourceTree = "<group>"; };
-		141FCF5229FA2B710075C50A /* SWConfModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWConfModel.h; sourceTree = "<group>"; };
-		141FCF5329FA2B710075C50A /* SWConfModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWConfModel.m; sourceTree = "<group>"; };
+		141FCF5229FA2B710075C50A /* XWConfModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWConfModel.h; sourceTree = "<group>"; };
+		141FCF5329FA2B710075C50A /* XWConfModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWConfModel.m; sourceTree = "<group>"; };
 		141FCF5B29FA2D5D0075C50A /* XWHttpResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWHttpResponse.h; sourceTree = "<group>"; };
 		141FCF5C29FA2D5D0075C50A /* XWHttpResponse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWHttpResponse.m; sourceTree = "<group>"; };
 		141FCF5F29FA57440075C50A /* XWSDKViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWSDKViewModel.h; sourceTree = "<group>"; };
 		141FCF6029FA57440075C50A /* XWSDKViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWSDKViewModel.m; sourceTree = "<group>"; };
 		141FCF6329FA66CF0075C50A /* XWCommonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWCommonModel.h; sourceTree = "<group>"; };
 		141FCF6429FA66CF0075C50A /* XWCommonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWCommonModel.m; sourceTree = "<group>"; };
+		141FCF6729FAD98C0075C50A /* XWUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWUserModel.h; sourceTree = "<group>"; };
+		141FCF6829FAD98C0075C50A /* XWUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWUserModel.m; sourceTree = "<group>"; };
 		148725EC29F80DBA00C1ED33 /* XWBaseServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWBaseServer.h; sourceTree = "<group>"; };
 		148725ED29F80DBA00C1ED33 /* XWBaseServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWBaseServer.m; sourceTree = "<group>"; };
 		14DE9EB729F7FD920093BF1C /* XWSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XWSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,9 +106,7 @@
 		14DE9ED629F7FDAC0093BF1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14DE9ED829F7FDAC0093BF1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14DE9ED929F7FDAC0093BF1C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		14DE9F8829F7FFD00093BF1C /* SWViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWViewModel.m; sourceTree = "<group>"; };
 		14DE9F8929F7FFD00093BF1C /* XWViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWViewModel.h; sourceTree = "<group>"; };
-		14DE9F8A29F7FFD00093BF1C /* SWViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWViewModel.h; sourceTree = "<group>"; };
 		14DE9F8B29F7FFD00093BF1C /* XWViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWViewModel.m; sourceTree = "<group>"; };
 		14DE9F8D29F7FFD00093BF1C /* XWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWViewController.h; sourceTree = "<group>"; };
 		14DE9F8E29F7FFD00093BF1C /* XWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWViewController.m; sourceTree = "<group>"; };
@@ -145,8 +145,10 @@
 		141FCF5129FA2B1F0075C50A /* Respone */ = {
 			isa = PBXGroup;
 			children = (
-				141FCF5229FA2B710075C50A /* SWConfModel.h */,
-				141FCF5329FA2B710075C50A /* SWConfModel.m */,
+				141FCF5229FA2B710075C50A /* XWConfModel.h */,
+				141FCF5329FA2B710075C50A /* XWConfModel.m */,
+				141FCF6729FAD98C0075C50A /* XWUserModel.h */,
+				141FCF6829FAD98C0075C50A /* XWUserModel.m */,
 			);
 			path = Respone;
 			sourceTree = "<group>";
@@ -247,9 +249,7 @@
 		14DE9F8729F7FFD00093BF1C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				14DE9F8829F7FFD00093BF1C /* SWViewModel.m */,
 				14DE9F8929F7FFD00093BF1C /* XWViewModel.h */,
-				14DE9F8A29F7FFD00093BF1C /* SWViewModel.h */,
 				14DE9F8B29F7FFD00093BF1C /* XWViewModel.m */,
 				141FCF5F29FA57440075C50A /* XWSDKViewModel.h */,
 				141FCF6029FA57440075C50A /* XWSDKViewModel.m */,
@@ -346,15 +346,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				14DE9F9C29F7FFD00093BF1C /* XWViewController.h in Headers */,
+				141FCF6929FAD98C0075C50A /* XWUserModel.h in Headers */,
 				141FCF4F29FA1EBE0075C50A /* XWApiDomainServer.h in Headers */,
-				14DE9F9A29F7FFD00093BF1C /* SWViewModel.h in Headers */,
 				141FCF6129FA57440075C50A /* XWSDKViewModel.h in Headers */,
 				141FCF4729FA1E840075C50A /* XWGwDomainServer.h in Headers */,
 				141FCF6529FA66CF0075C50A /* XWCommonModel.h in Headers */,
 				148725EE29F80DBA00C1ED33 /* XWBaseServer.h in Headers */,
 				14DE9F9F29F7FFD00093BF1C /* XWModel.h in Headers */,
 				141FCF5D29FA2D5D0075C50A /* XWHttpResponse.h in Headers */,
-				141FCF5429FA2B710075C50A /* SWConfModel.h in Headers */,
+				141FCF5429FA2B710075C50A /* XWConfModel.h in Headers */,
 				14DE9FAB29F800FB0093BF1C /* XWNetManager.h in Headers */,
 				14DE9EBB29F7FD920093BF1C /* XWSDK.h in Headers */,
 				14DE9FA229F7FFD00093BF1C /* XWView.h in Headers */,
@@ -492,15 +492,15 @@
 			files = (
 				141FCF5E29FA2D5D0075C50A /* XWHttpResponse.m in Sources */,
 				148725EF29F80DBA00C1ED33 /* XWBaseServer.m in Sources */,
+				141FCF6A29FAD98C0075C50A /* XWUserModel.m in Sources */,
 				141FCF4C29FA1EA50075C50A /* XWLogDomainServer.m in Sources */,
 				14DE9FAC29F800FB0093BF1C /* XWNetManager.m in Sources */,
 				141FCF6229FA57440075C50A /* XWSDKViewModel.m in Sources */,
 				141FCF6629FA66CF0075C50A /* XWCommonModel.m in Sources */,
-				14DE9F9829F7FFD00093BF1C /* SWViewModel.m in Sources */,
 				14DE9F9B29F7FFD00093BF1C /* XWViewModel.m in Sources */,
 				14DE9FA529F7FFE60093BF1C /* XWSDK.m in Sources */,
 				14DE9FA329F7FFD00093BF1C /* XWView.m in Sources */,
-				141FCF5529FA2B710075C50A /* SWConfModel.m in Sources */,
+				141FCF5529FA2B710075C50A /* XWConfModel.m in Sources */,
 				141FCF4829FA1E840075C50A /* XWGwDomainServer.m in Sources */,
 				14DE9F9D29F7FFD00093BF1C /* XWViewController.m in Sources */,
 				141FCF5029FA1EBE0075C50A /* XWApiDomainServer.m in Sources */,

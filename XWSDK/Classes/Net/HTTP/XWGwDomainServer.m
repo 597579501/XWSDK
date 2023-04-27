@@ -8,6 +8,7 @@
 #import "XWGwDomainServer.h"
 #import "XWSDK.h"
 
+
 NSString *const XWConfUrl = @"sdk/conf.php";
 NSString *const XWRegisterUrl = @"user/register.php";
 NSString *const XWLoginUrl = @"user/login.php";
@@ -30,7 +31,7 @@ NSString *const XWSendCodeUrl = @"user/send_code.php";
     
     NSString *bundleId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
     NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    NSString *bundleShortVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+//    NSString *bundleShortVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
   
     
     NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWConfUrl];
@@ -54,9 +55,6 @@ NSString *const XWSendCodeUrl = @"user/send_code.php";
     
     NSString *bundleId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
     NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    NSString *bundleShortVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-  
-    
     
     NSDictionary *params = @{@"os" : @"iOS",
                              @"pkg_name" : bundleId,
@@ -71,11 +69,7 @@ NSString *const XWSendCodeUrl = @"user/send_code.php";
                       failure:(Failure)failure
 {
     NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWRegisterUrl];
-
-    
-  
-    NSString *signPassword = [NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", password];
-    
+    NSString *signPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", password]];
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
     NSMutableDictionary *commonDictionary = [commonModel yy_modelToJSONObject];
@@ -85,37 +79,29 @@ NSString *const XWSendCodeUrl = @"user/send_code.php";
                              @"code" : code
     };
     [commonDictionary addEntriesFromDictionary:params];
-   
     NSString *signString = [self signWithParams:commonDictionary];
     [commonDictionary setObject:signString forKey:@"sign"];
-    
     return [[XWNetManager sharedInstance] getWithUrl:url parameters:commonDictionary success:success failure:failure];
 }
 
 
-+ (NSURLSessionDataTask *)login:(NSString *)name password:(NSString *)password code:(NSString *)code
-                      success:(Success)success
-                      failure:(Failure)failure
++ (NSURLSessionDataTask *)login:(NSString *)name password:(NSString *)password 
+                        success:(Success)success
+                        failure:(Failure)failure
 {
     NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWLoginUrl];
-
-    
-  
-    NSString *signPassword = [NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", password];
-    
+    NSString *signPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", password]];
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
     NSMutableDictionary *commonDictionary = [commonModel yy_modelToJSONObject];
     
+    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
     NSDictionary *params = @{@"name" : name,
-                             @"passwd" : [self md5HexDigest:signPassword],
-                             @"code" : code
+                             @"token" : token
     };
     [commonDictionary addEntriesFromDictionary:params];
-   
     NSString *signString = [self signWithParams:commonDictionary];
     [commonDictionary setObject:signString forKey:@"sign"];
-    
     return [[XWNetManager sharedInstance] getWithUrl:url parameters:commonDictionary success:success failure:failure];
 }
 

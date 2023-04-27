@@ -35,10 +35,7 @@ static XWSDK *_instance = nil;
     return _instance;
 }
 
-- (void)s
-{
-    [XWNetManager s];
-}
+
 
 - (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure
 {
@@ -48,7 +45,10 @@ static XWSDK *_instance = nil;
 - (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure
 {
     [self.sdkViewModel reg:name password:password code:code completion:^(NSString * _Nonnull userId) {
-        
+        if(completion)
+        {
+            completion(userId);
+        }
     } failure:^(NSString * _Nonnull errorMessage) {
         if (failure)
         {
@@ -56,6 +56,24 @@ static XWSDK *_instance = nil;
         }
     }];
 }
+
+- (void)login:(NSString *)name password:(NSString *)password completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure
+{
+    [self.sdkViewModel login:name password:password completion:^(XWUserModel * _Nonnull userModel) {
+        if(completion)
+        {
+            completion(userModel);
+        }
+    } failure:^(NSString * _Nonnull errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
+
+
 
 - (NSString *)version
 {

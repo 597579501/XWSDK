@@ -1,15 +1,15 @@
 //
-//  SWConfModel.h
+//  XWConfModel.h
 //  XWSDK
 //
 //  Created by Seven on 2023/4/27.
 //
 
+
 #import <Foundation/Foundation.h>
-#import "XWModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SWConfModel : XWModel
+@interface XWConfModel : NSObject
 
 ///是否开启自动注册
 @property (nonatomic, assign) BOOL auto_register;
