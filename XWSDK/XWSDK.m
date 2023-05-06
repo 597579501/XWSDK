@@ -73,6 +73,57 @@ static XWSDK *_instance = nil;
 }
 
 
+- (void)start:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure
+{
+    [self.sdkViewModel start:^(XWUserModel * _Nonnull userModel) {
+        if(completion)
+        {
+            completion(userModel);
+        }
+    } failure:^(NSString * _Nonnull errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
+- (void)alive:(XWRoleModel *)roleModel
+   completion:(void(^)(XWUserModel *userModel))completion
+      failure:(void(^)(NSString *errorMessage))failure
+{
+    [self.sdkViewModel alive:roleModel completion:^(XWUserModel * _Nonnull userModel) {
+        if(completion)
+        {
+            completion(userModel);
+        }
+    } failure:^(NSString * _Nonnull errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+
+}
+
+
+- (void)open:(XWOrderModel *)order
+   completion:(void(^)(NSString *orderId, NSString *url))completion
+      failure:(void(^)(NSString *errorMessage))failure
+{
+    [self.sdkViewModel open:order completion:^(NSString *orderId, NSString *url) {
+        if(completion)
+        {
+            completion(orderId, url);
+        }
+    } failure:^(NSString * _Nonnull errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
 
 
 - (NSString *)version

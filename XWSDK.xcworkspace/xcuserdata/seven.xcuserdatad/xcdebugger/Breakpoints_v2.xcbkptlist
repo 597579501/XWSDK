@@ -14,9 +14,89 @@
             filePath = "XWSDK/Classes/Net/HTTP/XWGwDomainServer.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "+reg:password:code:success:failure:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FBF8EF2E-395D-446D-B4D5-2EB4BC809CA9 - c0107ff2c7a7e9d0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[XWGwDomainServer reg:password:code:success:failure:]"
+                  moduleName = "XWSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Documents/GitHub/XWSDK/XWSDK/Classes/Net/HTTP/XWGwDomainServer.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "391">
+               </Location>
+               <Location
+                  uuid = "FBF8EF2E-395D-446D-B4D5-2EB4BC809CA9 - c0107ff2c7a7eae9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[XWGwDomainServer reg:password:code:success:failure:]"
+                  moduleName = "XWSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Documents/GitHub/XWSDK/XWSDK/Classes/Net/HTTP/XWGwDomainServer.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "426">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "35714582-7F7D-45A5-B70D-3FB081679E2A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XWSDK/Classes/Net/HTTP/XWLogDomainServer.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "+sd:success:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E51FBCCC-82DB-4F7A-BDED-3183742DA77B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XWSDK/Classes/Net/HTTP/XWGwDomainServer.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
+            landmarkName = "+open:success:failure:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "93ABC8E3-C04D-47A9-8C4C-71398A34E4EF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XWSDK/Classes/Net/HTTP/XWGwDomainServer.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "+open:success:failure:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -7,6 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import <XWSDK/XWUserModel.h>
+#import <XWSDK/XWRoleModel.h>
+#import <XWSDK/XWOrderModel.h>
+
 //! Project version number for XWSDK.
 FOUNDATION_EXPORT double XWSDKVersionNumber;
 
@@ -31,6 +34,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (void)login:(NSString *)name password:(NSString *)password completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
+
+- (void)start:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
+
+- (void)alive:(XWRoleModel *)roleModel
+   completion:(void(^)(XWUserModel *userModel))completion
+      failure:(void(^)(NSString *errorMessage))failure;
+
+- (void)open:(XWOrderModel *)order
+   completion:(void(^)(NSString *orderId, NSString *url))completion
+     failure:(void(^)(NSString *errorMessage))failure;
+
 - (NSString *)version;
 
 @end

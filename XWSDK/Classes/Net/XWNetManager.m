@@ -232,20 +232,36 @@ NSInteger const XWHTTPServiceTimeoutInterval = 30;
 
 - (void)successBlockMethod:(Success)success failure:(Failure)failure task:(NSURLSessionDataTask *)task responseObject:(id)responseObject
 {
-    NSLog(@"successBlockMethod %@", [responseObject yy_modelToJSONString]);
+    
     XWHttpResponse *response = [XWHttpResponse response:responseObject];
     if (response.success)
     {
+        
         if (success)
         {
             id data = response.data;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                success(data);
-            });
+            if (data)
+            {
+                NSLog(@"successBlockMethod %@", [responseObject yy_modelToJSONString]);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(data);
+                });
+            }
+            else
+            {
+                if (failure)
+                {
+                    NSString *errorMessage = @"数据异常";
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        failure(errorMessage);
+                    });
+                }
+            }
         }
     }
     else
     {
+        NSLog(@"error   BlockMethod %@", [responseObject yy_modelToJSONString]);
         if (failure)
         {
             NSString *errorMessage = [self parsedSuccesWithError:response];

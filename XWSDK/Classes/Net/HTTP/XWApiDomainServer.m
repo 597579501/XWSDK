@@ -17,7 +17,7 @@
 
 + (NSString *)hostUrl
 {
-    return @"http://gw_gzdky.niiwe.com";
+    return @"http://api_gzdky.niiwe.com";
 }
 
 

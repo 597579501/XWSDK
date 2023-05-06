@@ -53,7 +53,7 @@ static XWCommonModel *_instance = nil;
 
 - (NSString *)tag4
 {
-    return @"";
+    return @" ";
 }
 
 

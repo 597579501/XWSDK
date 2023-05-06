@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSString *userId;
 @end
 
 @implementation ViewController
@@ -71,11 +72,11 @@
             
         }];
     }
-    if (indexPath.row == 1)
+    else if (indexPath.row == 1)
     {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [[XWSDK sharedInstance] reg:@"xwtest5" password:@"xwtest1" code:@"" completion:^(NSString * _Nonnull userId) {
-            
+            self.userId = userId;
             cell.detailTextLabel.text = userId;
             [tableView reloadData];
         } failure:^(NSString * _Nonnull errorMessage) {
@@ -84,11 +85,11 @@
         }];
         
     }
-    if (indexPath.row == 2)
+    else if (indexPath.row == 2)
     {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [[XWSDK sharedInstance] login:@"xwtest5" password:@"xwtest1" completion:^(XWUserModel * _Nonnull userModel) {
-            
+            self.userId = userModel.userId;
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", userModel.userName , userModel.userId];
             [tableView reloadData];
         } failure:^(NSString * _Nonnull errorMessage) {
@@ -96,6 +97,64 @@
             [tableView reloadData];
         }];
         
+    }
+    else if (indexPath.row == 3)
+    {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [[XWSDK sharedInstance] start:^(XWUserModel * _Nonnull userModel) {
+            
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", userModel.userName , userModel.userId];
+            [tableView reloadData];
+        } failure:^(NSString * _Nonnull errorMessage) {
+            cell.detailTextLabel.text = errorMessage;
+            [tableView reloadData];
+        }];
+    }
+    else if (indexPath.row == 4)
+    {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        XWRoleModel *roleModel = [[XWRoleModel alloc] init];
+        roleModel.roleId = @"1";
+        roleModel.roleName = @"测试";
+        roleModel.userId = self.userId;
+        roleModel.serverId = @"server1";
+        roleModel.serverName = @"serverName1";
+        roleModel.roleLevel = @"188";
+        
+        [[XWSDK sharedInstance] alive:roleModel completion:^(XWUserModel * _Nonnull userModel) {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", userModel.userName , userModel.userId];
+            [tableView reloadData];
+        } failure:^(NSString * _Nonnull errorMessage) {
+            cell.detailTextLabel.text = errorMessage;
+            [tableView reloadData];
+        }];
+    }
+    else
+    {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        XWOrderModel *order = [[XWOrderModel alloc] init];
+        order.roleId = @"1";
+        order.roleName = @"测试";
+        order.userId = self.userId;
+        order.serverId = @"server1";
+        order.serverName = @"serverName1";
+        order.roleLevel = @"188";
+        
+        order.money = @"1";
+        order.appData = @"appdata";
+        order.appOrderId = @"orderid101";
+        order.desc = @"desc";
+        order.payType = @"5";
+        
+        [[XWSDK sharedInstance] open:order completion:^(NSString * _Nonnull orderId, NSString * _Nonnull url) {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"orderId %@", orderId ];
+            [tableView reloadData];
+        } failure:^(NSString * _Nonnull errorMessage) {
+            cell.detailTextLabel.text = errorMessage;
+            [tableView reloadData];
+        }];
     }
     
     
@@ -115,7 +174,7 @@
 {
     if (!_dataArray)
     {
-        _dataArray = @[@"初始化", @"注册", @"登录"];
+        _dataArray = @[@"初始化", @"注册", @"登录", @"激活上报", @"角色上报", @"请求支付"];
     }
     return _dataArray;;
 }

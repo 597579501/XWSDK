@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "XWBaseServer.h"
-
+#import "XWOrderModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,6 +26,12 @@ typedef NS_ENUM(NSInteger, XWCodeType) {
                        failure:(Failure)failure;
 
 
++ (NSURLSessionDataTask *)XWSendCodeUrl:(NSString *)phone
+                                   name:(NSString *)name
+                               codeType:(XWCodeType)codeType
+                                success:(Success)success
+                                failure:(Failure)failure;
+
 + (NSURLSessionDataTask *)reg:(NSString *)name password:(NSString *)password code:(NSString *)code
                       success:(Success)success
                       failure:(Failure)failure;
@@ -34,6 +40,14 @@ typedef NS_ENUM(NSInteger, XWCodeType) {
                         success:(Success)success
                         failure:(Failure)failure;
 
++ (NSURLSessionDataTask *)idAuth:(NSString *)userId idNumber:(NSString *)idNumber realName:(NSString *)realName
+                        success:(Success)success
+                         failure:(Failure)failure;
+
+
++ (NSURLSessionDataTask *)open:(XWOrderModel *)order
+                        success:(Success)success
+                       failure:(Failure)failure;
 @end
 
 NS_ASSUME_NONNULL_END
