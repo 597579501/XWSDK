@@ -6,10 +6,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Masonry/Masonry.h>
+#import <YYKit/YYKit.h>
 
+#import "XWHUD.h"
+
+typedef void (^closeButtonClickBlock)(void);
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XWViewController : UIViewController
+
+@property (nonatomic, assign) BOOL                  isCanShowBack;
+@property (nonatomic, copy)   closeButtonClickBlock closeButtonClickBlock;
+- (void)bgClick;
+- (void)closeButtonClick;
+- (void)backButtonClick;
+- (void)closeView;
+- (void)setCloseButtonClickBlock:(closeButtonClickBlock)closeButtonClickBlock;
 
 @end
 

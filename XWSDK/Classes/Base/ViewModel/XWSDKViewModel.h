@@ -9,6 +9,8 @@
 #import "XWCommonModel.h"
 #import "XWUserModel.h"
 #import "XWOrderModel.h"
+#import "XWConfModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *appKey;
 
 
-- (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure;
+- (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(XWConfModel *confModel))completion failure:(void(^)(NSString *errorMessage))failure;
 
 
 - (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure;

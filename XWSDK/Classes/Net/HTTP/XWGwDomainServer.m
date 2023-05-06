@@ -76,7 +76,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
         typeString = @"unbind_phone";
     }
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
-    NSMutableDictionary *commonDictionary = [commonModel yy_modelToJSONObject];
+    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     NSDictionary *params = @{@"phone" : phone,
                              @"name" : name,
                              @"type" : typeString
@@ -96,7 +96,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
     NSString *signPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", password]];
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
-    NSMutableDictionary *commonDictionary = [commonModel yy_modelToJSONObject];
+    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     
     NSDictionary *params = @{@"name" : name,
                              @"passwd" : [self md5HexDigest:signPassword],
@@ -117,7 +117,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
     NSString *signPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", password]];
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
-    NSMutableDictionary *commonDictionary = [commonModel yy_modelToJSONObject];
+    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     
     NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
     NSDictionary *params = @{@"name" : name,
@@ -137,7 +137,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
     NSString *signNewPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", newPassword]];
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
-    NSMutableDictionary *commonDictionary = [commonModel yy_modelToJSONObject];
+    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     
 //    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
     NSDictionary *params = @{@"type" : @"reset_passwd",
@@ -161,7 +161,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
     NSString *signNewPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", newPassword]];
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
-    NSMutableDictionary *commonDictionary = [commonModel yy_modelToJSONObject];
+    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     
 //    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
     NSDictionary *params = @{@"type" : @"reset_passwd",
@@ -185,7 +185,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
     NSString *signNewPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", newPassword]];
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
-    NSMutableDictionary *commonDictionary = [commonModel yy_modelToJSONObject];
+    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     
 //    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
     NSDictionary *params = @{@"type" : @"reset_passwd",
@@ -207,7 +207,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
     NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWIdAuthUrl];
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
-    NSMutableDictionary *commonDictionary = [commonModel yy_modelToJSONObject];
+    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     NSDictionary *params = @{@"idNumber" : idNumber,
                              @"realName" : realName,
                              @"userId" : userId
@@ -225,7 +225,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
     NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWOpenUrl];
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
-    NSMutableDictionary *commonDictionary = [commonModel yy_modelToJSONObject];
+    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     NSDictionary *params = @{@"user_id" : order.userId,
                              @"server_id" : order.serverId,
                              @"role_id" : order.roleId,

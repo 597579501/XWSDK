@@ -8,17 +8,12 @@
 #import <Foundation/Foundation.h>
 #import "XWBaseServer.h"
 #import "XWOrderModel.h"
+#import "XWSDKEnumHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 
-/** 请求类型 */
-typedef NS_ENUM(NSInteger, XWCodeType) {
-    XWRegisterCode,
-    XWResetCode,
-    XWBindCode,
-    XWUnbindCode
-};
+
 
 @interface XWGwDomainServer : XWBaseServer
 

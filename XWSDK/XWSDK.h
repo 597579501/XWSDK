@@ -10,6 +10,7 @@
 #import <XWSDK/XWRoleModel.h>
 #import <XWSDK/XWOrderModel.h>
 
+
 //! Project version number for XWSDK.
 FOUNDATION_EXPORT double XWSDKVersionNumber;
 
@@ -28,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 
 
-- (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure;
+- (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(void))completion failure:(void(^)(NSString *errorMessage))failure;
 
 - (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure;
 

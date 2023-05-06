@@ -10,17 +10,21 @@
 #import "XWGwDomainServer.h"
 #import "XWLogDomainServer.h"
 #import "XWConfModel.h"
-#import <YYModel/YYModel.h>
+
+
 
 @implementation XWSDKViewModel
 
-- (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure
+- (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(XWConfModel *confModel))completion failure:(void(^)(NSString *errorMessage))failure
 {
     [XWCommonModel sharedInstance].appId = appId;
     [XWCommonModel sharedInstance].appKey = appKey;
     [XWGwDomainServer conf:^(id data) {
-        XWConfModel *confModel = [XWConfModel yy_modelWithJSON:data];
-        
+//        XWConfModel *confModel = [XWConfModel modelToJSONObject:data];
+        if (completion && confModel)
+        {
+            completion(confModel);
+        }
     } failure:^(NSString *errorMessage) {
         if (failure)
         {
@@ -59,7 +63,7 @@
         return;
     }
     [XWGwDomainServer login:name password:password success:^(id data) {
-        XWUserModel *userModel = [XWUserModel yy_modelWithJSON:data];
+        XWUserModel *userModel = [XWUserModel modelToJSONObject:data];
         if (completion && userModel)
         {
             completion(userModel);

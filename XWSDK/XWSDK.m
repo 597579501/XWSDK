@@ -11,8 +11,8 @@
 #import "XWApiDomainServer.h"
 #import "XWSDKViewModel.h"
 #import "XWCommonModel.h"
-
-
+#import "XWFloatWindow.h"
+#import "XWSDKHeader.h"
 
 static XWSDK *_instance = nil;
 
@@ -21,7 +21,7 @@ static XWSDK *_instance = nil;
 
 @property (nonatomic, strong) XWSDKViewModel *sdkViewModel;
 @property (nonatomic, strong) XWCommonModel *commonModel;
-
+@property (nonatomic, strong) XWFloatWindow *floatWindow;
 @end
 
 @implementation XWSDK
@@ -37,9 +37,13 @@ static XWSDK *_instance = nil;
 
 
 
-- (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure
+- (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(void))completion failure:(void(^)(NSString *errorMessage))failure
 {
-    [self.sdkViewModel conf:appId appKey:appKey completion:completion failure:failure];
+    [self.sdkViewModel conf:appId appKey:appKey completion:^(XWConfModel * _Nonnull confModel) {
+        
+    } failure:^(NSString * _Nonnull errorMessage) {
+        
+    }];
 }
 
 - (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure
@@ -125,11 +129,43 @@ static XWSDK *_instance = nil;
 }
 
 
+- (void)initWindow:(NSDictionary *)dictionary
+{
+//    _canShowController = YES;
+    WS(weakSelf);
+    CGRect rect = CGRectMake(0, 0, 50, 50);
+    UIImage *image = [UIImage imageNamed:@"XW_SDK_FloatWindow"];
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.f);
+    [image drawInRect:rect];
+    UIImage *lastImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIColor *floatWindowBGcolor = [UIColor colorWithPatternImage:lastImage];
+    
+    if (!_floatWindow)
+    {
+        _floatWindow = [[XWFloatWindow alloc] initWithFrame:rect mainImageName:@"XW_SDK_FloatIcon"
+                                                  imagesAndTitle:dictionary
+                                                         bgcolor:floatWindowBGcolor
+                                                  animationColor:[UIColor clearColor]] ;
+        [_floatWindow dissmissWindow];
+        _floatWindow.clickBolcks = ^(NSInteger i){
+//            if (weakSelf.canShowController) {
+//                [weakSelf userCenter];
+//            }
+        };
+    }
+    
+}
+
+
 
 - (NSString *)version
 {
     return @"1.0.0";
 }
+
+
+
 - (XWSDKViewModel *)sdkViewModel
 {
     if (!_sdkViewModel)

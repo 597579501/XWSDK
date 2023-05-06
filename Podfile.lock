@@ -1,4 +1,10 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
   - AFNetworking/NSURLSession (4.0.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
@@ -6,30 +12,41 @@ PODS:
   - AFNetworking/Reachability (4.0.1)
   - AFNetworking/Security (4.0.1)
   - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - LookinServer (1.1.5):
     - LookinServer/Core (= 1.1.5)
   - LookinServer/Core (1.1.5)
-  - YYModel (1.0.4)
+  - Masonry (1.1.0)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
-  - AFNetworking/NSURLSession (~> 4.0)
-  - AFNetworking/Reachability (~> 4.0)
-  - AFNetworking/Security (~> 4.0)
-  - AFNetworking/Serialization (~> 4.0)
+  - AFNetworking (= 4.0.1)
+  - FMDB
   - LookinServer
-  - YYModel
+  - Masonry
+  - YYKit
 
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - FMDB
     - LookinServer
-    - YYModel
+    - Masonry
+    - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   LookinServer: 2893f2bae53cbf3fd49bbe1a8ea1745582ef1317
-  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: ae4d1febb6c661cf46c5a8fc7174a1023e5621a0
+PODFILE CHECKSUM: 8b72f7b00bdc42fb2a574976d95e3389d6ae2b23
 
 COCOAPODS: 1.11.3

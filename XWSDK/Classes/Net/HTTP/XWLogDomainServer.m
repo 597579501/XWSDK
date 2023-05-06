@@ -93,7 +93,7 @@ NSString *const XWAliveUrl = @"user/alive.php";
     
 
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
-    NSMutableDictionary *commonDictionary = [commonModel yy_modelToJSONObject];
+    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
 
     NSDictionary *params = @{@"user_id" : roleModel.userId,
                              @"server_id" : roleModel.serverId,
@@ -117,7 +117,7 @@ NSString *const XWAliveUrl = @"user/alive.php";
 //    NSString *signPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", password]];
 //
 //    XWCommonModel *commonModel = [XWCommonModel sharedInstance];
-//    NSMutableDictionary *commonDictionary = [commonModel yy_modelToJSONObject];
+//    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
 //
 //    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
 //    NSDictionary *params = @{@"name" : name,
