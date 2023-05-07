@@ -163,51 +163,51 @@
 }
 
 
-- (void)setCodeType:(CodeType)codeType
+- (void)setCodeType:(XWCodeType)codeType
 {
     _codeType = codeType;
     switch (codeType) {
-        case CodeTypeByPhoneLogin:
-        {
-            [self.submitButton setTitle:@"注册"];
-            [_subTitleLabel setText:@"账号注册"];
-            [self.passwordTextField setHidden:NO];
-            [self.passwordTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(self.codeTextField.mas_left);
-                make.top.mas_equalTo(self.codeTextField.mas_bottom).with.offset(10);
-                make.width.mas_equalTo(self.codeTextField.mas_width);
-                make.height.mas_equalTo(40);
-            }];
-            break;
-        }
-        case CodeTypeByFindPassword:
-        {
-            [self.submitButton setTitle:@"验证"];
-            [_subTitleLabel setText:@"验证手机"];
-            [self.passwordTextField setClipsToBounds:YES];
-            [self.passwordTextField setHidden:YES];
-            [self.passwordTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(self.codeTextField.mas_left);
-                make.top.mas_equalTo(self.codeTextField.mas_bottom).with.offset(10);
-                make.width.mas_equalTo(self.codeTextField.mas_width);
-                make.height.mas_equalTo(0);
-            }];
-            break;
-        }
-        case CodeTypeByBind:
-        {
-            [self.submitButton setTitle:@"绑定"];
-            [_subTitleLabel setText:@"绑定"];
-            [self.passwordTextField setClipsToBounds:YES];
-            [self.passwordTextField setHidden:YES];
-            [self.passwordTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(self.codeTextField.mas_left);
-                make.top.mas_equalTo(self.codeTextField.mas_bottom).with.offset(10);
-                make.width.mas_equalTo(self.codeTextField.mas_width);
-                make.height.mas_equalTo(0);
-            }];
-            break;
-        }
+//        case CodeTypeByPhoneLogin:
+//        {
+//            [self.submitButton setTitle:@"注册"];
+//            [_subTitleLabel setText:@"账号注册"];
+//            [self.passwordTextField setHidden:NO];
+//            [self.passwordTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                make.left.mas_equalTo(self.codeTextField.mas_left);
+//                make.top.mas_equalTo(self.codeTextField.mas_bottom).with.offset(10);
+//                make.width.mas_equalTo(self.codeTextField.mas_width);
+//                make.height.mas_equalTo(40);
+//            }];
+//            break;
+//        }
+//        case CodeTypeByFindPassword:
+//        {
+//            [self.submitButton setTitle:@"验证"];
+//            [_subTitleLabel setText:@"验证手机"];
+//            [self.passwordTextField setClipsToBounds:YES];
+//            [self.passwordTextField setHidden:YES];
+//            [self.passwordTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                make.left.mas_equalTo(self.codeTextField.mas_left);
+//                make.top.mas_equalTo(self.codeTextField.mas_bottom).with.offset(10);
+//                make.width.mas_equalTo(self.codeTextField.mas_width);
+//                make.height.mas_equalTo(0);
+//            }];
+//            break;
+//        }
+//        case CodeTypeByBind:
+//        {
+//            [self.submitButton setTitle:@"绑定"];
+//            [_subTitleLabel setText:@"绑定"];
+//            [self.passwordTextField setClipsToBounds:YES];
+//            [self.passwordTextField setHidden:YES];
+//            [self.passwordTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                make.left.mas_equalTo(self.codeTextField.mas_left);
+//                make.top.mas_equalTo(self.codeTextField.mas_bottom).with.offset(10);
+//                make.width.mas_equalTo(self.codeTextField.mas_width);
+//                make.height.mas_equalTo(0);
+//            }];
+//            break;
+//        }
         default:
             break;
     }
@@ -224,7 +224,7 @@
 - (void)codeTextChanged
 {
     switch (self.codeType) {
-        case CodeTypeByPhoneLogin:
+        case XWRegisterCode:
         {
             NSString *code = [_codeTextField text];
             NSString *password = [_passwordTextField text];
@@ -232,13 +232,13 @@
                                        && [[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 6)];
             break;
         }
-        case CodeTypeByFindPassword:
+        case XWResetCode:
         {
             NSString *code = [_codeTextField text];
             [_submitButton setEnabled:([[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 6)];
             break;
         }
-        case CodeTypeByBind:
+        case XWBindCode:
         {
             NSString *code = [_codeTextField text];
             [_submitButton setEnabled:([[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 6)];

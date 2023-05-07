@@ -10,7 +10,7 @@
 #import "XWGwDomainServer.h"
 #import "XWLogDomainServer.h"
 #import "XWConfModel.h"
-
+#import <YYKit/YYKit.h>
 
 
 @implementation XWSDKViewModel
@@ -20,7 +20,7 @@
     [XWCommonModel sharedInstance].appId = appId;
     [XWCommonModel sharedInstance].appKey = appKey;
     [XWGwDomainServer conf:^(id data) {
-//        XWConfModel *confModel = [XWConfModel modelToJSONObject:data];
+        XWConfModel *confModel = [XWConfModel modelWithJSON:data];
         if (completion && confModel)
         {
             completion(confModel);
@@ -63,7 +63,7 @@
         return;
     }
     [XWGwDomainServer login:name password:password success:^(id data) {
-        XWUserModel *userModel = [XWUserModel modelToJSONObject:data];
+        XWUserModel *userModel = [XWUserModel modelWithJSON:data];
         if (completion && userModel)
         {
             completion(userModel);

@@ -7,8 +7,10 @@
 
 #import "XWDBHelper.h"
 #import <FMDB/FMDB.h>
+#import "XWUserLoginRecordModel.h"
+#import "XWHelper.h"
 
-static DHDBHelper *_dbHelper = nil;
+static XWDBHelper *_dbHelper = nil;
 static FMDatabase *_fmdb;
 
 @implementation XWDBHelper
@@ -17,7 +19,7 @@ static FMDatabase *_fmdb;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _dbHelper = [[DHDBHelper alloc] init];
+        _dbHelper = [[XWDBHelper alloc] init];
         [_dbHelper initialize];
     });
     return _dbHelper;
@@ -46,13 +48,13 @@ static FMDatabase *_fmdb;
     //获取查询结果的下一个记录
     while ([result next]) {
         //根据字段名，获取记录的值，存储到字典中
-        DHUserLoginRecordModel *user = [DHUserLoginRecordModel new];
-        user.token = [DHHelper tripleDES:[result stringForColumn:@"token"] encryptOrDecrypt:kCCDecrypt];
-        user.accessToken = [DHHelper tripleDES:[result stringForColumn:@"accessToken"] encryptOrDecrypt:kCCDecrypt];
+        XWUserLoginRecordModel *user = [XWUserLoginRecordModel new];
+        user.token = [XWHelper tripleDES:[result stringForColumn:@"token"] encryptOrDecrypt:kCCDecrypt];
+        user.accessToken = [XWHelper tripleDES:[result stringForColumn:@"accessToken"] encryptOrDecrypt:kCCDecrypt];
         user.userType = [result intForColumn:@"userType"];
         user.userId = [result stringForColumn:@"userid"];
-        user.username = [DHHelper tripleDES:[result stringForColumn:@"username"] encryptOrDecrypt:kCCDecrypt];
-        user.password  = [DHHelper tripleDES:[result stringForColumn:@"passWord"] encryptOrDecrypt:kCCDecrypt];
+        user.username = [XWHelper tripleDES:[result stringForColumn:@"username"] encryptOrDecrypt:kCCDecrypt];
+        user.password  = [XWHelper tripleDES:[result stringForColumn:@"passWord"] encryptOrDecrypt:kCCDecrypt];
         user.loginTime = [result longForColumn:@"loginTime"];
         //把字典添加进数组中
         [userArray addObject:user];
@@ -60,18 +62,18 @@ static FMDatabase *_fmdb;
     return userArray;
 }
 
-- (DHUserLoginRecordModel *)getLastLoginUser
+- (XWUserLoginRecordModel *)getLastLoginUser
 {
     FMResultSet *result = [_fmdb executeQuery:@"select * from MKUsers order by loginTime desc limit 1"];
-    DHUserLoginRecordModel *user = [DHUserLoginRecordModel new];
+    XWUserLoginRecordModel *user = [XWUserLoginRecordModel new];
     while ([result next]) {
         //根据字段名，获取记录的值，存储到字典中
-        user.token = [DHHelper tripleDES:[result stringForColumn:@"token"] encryptOrDecrypt:kCCDecrypt];;
-        user.accessToken = [DHHelper tripleDES:[result stringForColumn:@"accessToken"] encryptOrDecrypt:kCCDecrypt];;
+        user.token = [XWHelper tripleDES:[result stringForColumn:@"token"] encryptOrDecrypt:kCCDecrypt];;
+        user.accessToken = [XWHelper tripleDES:[result stringForColumn:@"accessToken"] encryptOrDecrypt:kCCDecrypt];;
         user.userType = [result intForColumn:@"userType"];
         user.userId = [result stringForColumn:@"userid"];
-        user.username = [DHHelper tripleDES:[result stringForColumn:@"username"] encryptOrDecrypt:kCCDecrypt];;
-        user.password  = [DHHelper tripleDES:[result stringForColumn:@"passWord"] encryptOrDecrypt:kCCDecrypt];;
+        user.username = [XWHelper tripleDES:[result stringForColumn:@"username"] encryptOrDecrypt:kCCDecrypt];;
+        user.password  = [XWHelper tripleDES:[result stringForColumn:@"passWord"] encryptOrDecrypt:kCCDecrypt];;
         user.loginTime = [result longForColumn:@"loginTime"];
         //把字典添加进数组中
         break;
@@ -81,15 +83,15 @@ static FMDatabase *_fmdb;
 
 
 
-- (void)addUser:(DHUserLoginRecordModel *)user
+- (void)addUser:(XWUserLoginRecordModel *)user
 {
     
     NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO MKUsers(userid, token, accessToken, username,password,userType,loginTime) VALUES('%@','%@','%@','%@','%@','%ld','%ld')",
                            user.userId,
-                           [DHHelper tripleDES:user.token encryptOrDecrypt:kCCEncrypt],
-                           [DHHelper tripleDES:user.accessToken  encryptOrDecrypt:kCCEncrypt],
-                           [DHHelper tripleDES:user.username encryptOrDecrypt:kCCEncrypt],
-                           [DHHelper tripleDES:user.password encryptOrDecrypt:kCCEncrypt]
+                           [XWHelper tripleDES:user.token encryptOrDecrypt:kCCEncrypt],
+                           [XWHelper tripleDES:user.accessToken  encryptOrDecrypt:kCCEncrypt],
+                           [XWHelper tripleDES:user.username encryptOrDecrypt:kCCEncrypt],
+                           [XWHelper tripleDES:user.password encryptOrDecrypt:kCCEncrypt]
                            , (long)user.userType, user.loginTime];
     [_fmdb executeUpdate:insertSql] ;
 
@@ -104,12 +106,10 @@ static FMDatabase *_fmdb;
 
 - (void)deleteUser:(NSString *)username
 {
-    NSString *deleteSql = [NSString stringWithFormat:@"delete from MKUsers where username = '%@'",[DHHelper tripleDES:username encryptOrDecrypt:kCCEncrypt]];
+    NSString *deleteSql = [NSString stringWithFormat:@"delete from MKUsers where username = '%@'",[XWHelper tripleDES:username encryptOrDecrypt:kCCEncrypt]];
     [_fmdb executeUpdate:deleteSql];
 }
 
 
 @end
 
-
-@end

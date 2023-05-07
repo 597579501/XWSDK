@@ -39,9 +39,9 @@
 - (void)excuting
 {
     //隐藏支付完成动画
-    [XWmentSuccessHUD hideIn:self];
+    [XWMentSuccessHUD hideIn:self];
     //显示支付中动画
-    [XWmentLoadingHUD showIn:self];
+    [XWMentLoadingHUD showIn:self];
 }
 
 
@@ -49,9 +49,9 @@
 {
     
     //隐藏支付中成动画
-    [XWmentLoadingHUD hideIn:self];
+    [XWMentLoadingHUD hideIn:self];
     //显示支付完成动画
-    XWmentSuccessHUD *hud = [XWmentSuccessHUD showIn:self];
+    XWMentSuccessHUD *hud = [XWMentSuccessHUD showIn:self];
     
     [hud circleAnimation];
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);

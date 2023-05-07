@@ -7,7 +7,7 @@
 //
 
 #import "XWMainView.h"
-#import "XWUIMacor.h"
+//#import "XWUIMacor.h"
 
 @implementation XWMainView
 

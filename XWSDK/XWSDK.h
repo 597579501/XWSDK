@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedInstance;
 
+@property (nonatomic, strong, readonly) XWUserModel *currUser;
+
 
 - (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(void))completion failure:(void(^)(NSString *errorMessage))failure;
 

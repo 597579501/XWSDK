@@ -5,11 +5,11 @@
 //
 
 #import "XWViewController.h"
-
+#import "XWSDKEnumHeader.h"
 
 
 @interface XWPhoneLoginViewController : XWViewController
 
-//@property (nonatomic, assign) CodeType codeType;
+@property (nonatomic, assign) XWCodeType codeType;
 
 @end

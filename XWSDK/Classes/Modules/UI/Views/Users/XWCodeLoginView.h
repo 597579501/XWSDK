@@ -7,6 +7,7 @@
 #import "XWView.h"
 #import "XWTextField.h"
 #import "XWSubmitButton.h"
+#import "XWSDKEnumHeader.h"
 
 typedef void (^blockForCodeLabelTouchUpInside)(void);
 
@@ -21,7 +22,7 @@ typedef void (^blockForCodeLabelTouchUpInside)(void);
 @property (nonatomic, strong) XWPasswordTextField *passwordTextField;
 @property (nonatomic, strong) XWSubmitButton  *submitButton;
 @property (nonatomic, strong) NSString        *phone;
-@property (nonatomic, assign) WXCodeType         codeType;
+@property (nonatomic, assign) XWCodeType         codeType;
 @property (nonatomic, copy) blockForCodeLabelTouchUpInside blockForCodeLabelTouchUpInside;
 - (void)setBlockForCodeLabelTouchUpInside:(blockForCodeLabelTouchUpInside)blockForCodeLabelTouchUpInside;
 - (void)updateRotationView:(UIInterfaceOrientation)orientation animate:(BOOL)animated duration:(NSTimeInterval)duration;
