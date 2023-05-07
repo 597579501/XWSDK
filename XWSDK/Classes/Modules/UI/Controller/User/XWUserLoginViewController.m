@@ -15,6 +15,7 @@
 #import "XWSDK.h"
 #import "XWSDKEnumHeader.h"
 
+
 @interface XWUserLoginViewController ()
 {
     
@@ -80,22 +81,18 @@
         
         
         
-        NSLog(@"账号%@",weakSelf.userLoginView.usernameTextField.text);
-        NSLog(@"密码%@",weakSelf.userLoginView.passwordTextField.text);
+//        NSLog(@"账号%@",weakSelf.userLoginView.usernameTextField.text);
+//        NSLog(@"密码%@",weakSelf.userLoginView.passwordTextField.text);
         
-//        [XWUserSystemManager login:weakSelf.userLoginView.usernameTextField.text
-//                          passWord:weakSelf.userLoginView.passwordTextField.text
-//                       phoneNumber:@"" verifyCode:@"" type:UserTypeByNormal success:^(XWUserResponeModel *userResponeModel) {
-//                           
-//                           [weakSelf.userLoginView.submitButton stopCircleAnimation];
-//                           [weakSelf.userLoginView setUserInteractionEnabled:YES];
-//                           [weakSelf closeView];
-//                           
-//        } failure:^(int errcode, NSString *errorMessage) {
-//            [weakSelf.userLoginView.submitButton stopCircleAnimation];
-//            [weakSelf.userLoginView setUserInteractionEnabled:YES];
-//            [XWHUD showOnlyText:weakSelf.view text:errorMessage];
-//        }];
+        [weakSelf.viewModel login:weakSelf.userLoginView.usernameTextField.text password:weakSelf.userLoginView.passwordTextField.text completion:^(XWUserModel * _Nonnull userModel) {
+           [weakSelf.userLoginView.submitButton stopCircleAnimation];
+           [weakSelf.userLoginView setUserInteractionEnabled:YES];
+           [weakSelf closeView];
+        } failure:^(NSString * _Nonnull errorMessage) {
+            [weakSelf.userLoginView.submitButton stopCircleAnimation];
+            [weakSelf.userLoginView setUserInteractionEnabled:YES];
+            [XWHUD showOnlyText:weakSelf.view text:errorMessage];
+        }];
     }];
     
     

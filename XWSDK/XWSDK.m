@@ -13,6 +13,10 @@
 #import "XWCommonModel.h"
 #import "XWFloatWindow.h"
 #import "XWSDKHeader.h"
+#import "XWAutoLoginViewController.h"
+#import "XWUserLoginRecordModel.h"
+#import "XWDBHelper.h"
+#import "XWUserLoginViewController.h"
 
 static XWSDK *_instance = nil;
 
@@ -61,19 +65,115 @@ static XWSDK *_instance = nil;
     }];
 }
 
-- (void)login:(NSString *)name password:(NSString *)password completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure
+- (void)login
 {
-    [self.sdkViewModel login:name password:password completion:^(XWUserModel * _Nonnull userModel) {
-        if(completion)
-        {
-            completion(userModel);
-        }
-    } failure:^(NSString * _Nonnull errorMessage) {
-        if (failure)
-        {
-            failure(errorMessage);
-        }
-    }];
+    [self loginSucessCallBack:_loginCallBack];
+//    [self.sdkViewModel login:name password:password completion:^(XWUserModel * _Nonnull userModel) {
+//        if(completion)
+//        {
+//            completion(userModel);
+//        }
+//    } failure:^(NSString * _Nonnull errorMessage) {
+//        if (failure)
+//        {
+//            failure(errorMessage);
+//        }
+//    }];
+}
+
+- (void)loginSucessCallBack:(LoginSuccessBack)callBack{
+    
+//    if (!self.aInitResponeModel) {
+//        return;
+//    }
+    
+    NSNumber *aotuLogin = [[NSUserDefaults standardUserDefaults] objectForKey:@"autoLogin"];
+    
+    if (aotuLogin)
+    {
+        
+        __block BOOL isLogin = YES;
+        UIViewController *rootcontroller = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+        XWAutoLoginViewController *autoLoginViewController = [XWAutoLoginViewController new];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:autoLoginViewController];
+        [rootcontroller addChildViewController:navigationController];
+        [rootcontroller.view addSubview:navigationController.view];
+        XWUserLoginRecordModel *userLoginRecordModel = nil;
+//        DHUserResponeModel *userResponeModel = [DHUserSystemManager getUserInformation];
+//
+//        if (userResponeModel) {
+//            userLoginRecordModel = [[DHUserLoginRecordModel alloc] init];;
+//            [userLoginRecordModel setUsername:userResponeModel.username];
+//            [userLoginRecordModel setUserType:userResponeModel.type];
+//            [userLoginRecordModel setPassword:userResponeModel.password];
+//        }
+//        else
+//        {
+//            userLoginRecordModel = [[XWDBHelper sharedDBHelper] getLastLoginUser];
+//        }
+//
+//        [[[autoLoginViewController autoLoginView] usernameLabel] setText:[NSString stringWithFormat:@"正在登陆：%@",userLoginRecordModel.username]];
+//        [[[autoLoginViewController autoLoginView] cancelButton] setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+//            isLogin = false;
+//            [autoLoginViewController closeView];
+//            _currUser = nil;
+//            _role = nil;
+//            [self.floatWindow dissmissWindow];
+//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAotuLogin];
+//            [dhsdk login];
+//        }];
+//
+//
+//
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            if (isLogin) {
+//
+//                [DHUserSystemManager login:userLoginRecordModel.username passWord:userLoginRecordModel.password phoneNumber:@"" verifyCode:@"" type:userLoginRecordModel.userType success:^(DHUserResponeModel *userResponeModel) {
+//                    //                    [DHHUD showOnlyText:[[UIApplication sharedApplication] keyWindow] text:@"登陆成功"];
+//                    [autoLoginViewController closeView];
+//
+//
+//                    //调用了一次· 备注·
+////                    DHUser *user = [DHUser new];
+////                    user.accessToken = userResponeModel.accessToken;
+////                    user.username = userResponeModel.username;
+////                    user.userId = userResponeModel.userId;
+////
+////                    NSInteger loginType = userLoginRecordModel.userType;
+////
+////                    if (callBack) {
+////                        callBack(user, (DHLSS)loginType);
+////                    }
+////
+//
+//
+//                } failure:^(int errcode, NSString *errorMessage) {
+//                    if (errcode == 3002)
+//                    {
+//
+//                    }
+//                    [autoLoginViewController closeView];
+//                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAotuLogin];
+//                    [dhsdk login];
+//
+//                    [DHHUD showOnlyText:[[UIApplication sharedApplication] keyWindow] text:errorMessage];
+//
+//                }];
+//            }
+//        });
+    }
+    else
+    {
+        
+        UIViewController *rootcontroller = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+        XWUserLoginViewController *userLoginViewController = [XWUserLoginViewController new];
+        
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:userLoginViewController];
+        [rootcontroller addChildViewController:navigationController];
+        [rootcontroller.view addSubview:navigationController.view];
+        
+        _loginCallBack = callBack;
+    }
 }
 
 

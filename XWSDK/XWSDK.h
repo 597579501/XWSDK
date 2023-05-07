@@ -19,8 +19,25 @@ FOUNDATION_EXPORT const unsigned char XWSDKVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <XWSDK/PublicHeader.h>
 
+typedef NS_ENUM(NSInteger, XWInfoType) {
+    XWCreateOrderFail      = 1,    //创建订单失败
+    XWDoesNotExistProduct  = 2,    //商品信息不存在
+    XWUnknowFail           = 3,    //未知错误
+    XWVerifyReceiptSucceed = 4,    //验证成功
+    XWVerifyReceiptFail    = 5,    //验证失败
+    XWURLFail              = 6     //未能连接苹果商店
+};
+
+
+typedef void (^LoginSuccessBack)(XWUserModel * _Nonnull user);
+typedef void (^LogoutCallBack)(void);
+typedef void (^ColseBack)(void);
+typedef void (^InfoCallBack)(XWInfoType type);
+
 
 NS_ASSUME_NONNULL_BEGIN
+
+
 
 @interface XWSDK : NSObject
 
@@ -29,6 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 
 @property (nonatomic, strong, readonly) XWUserModel *currUser;
+@property (nonatomic, copy) LoginSuccessBack loginCallBack;
+@property (nonatomic, copy) LogoutCallBack logoutCallBack;
+@property (nonatomic, copy) ColseBack colseBack; //支付关闭回调
+@property (nonatomic, copy) InfoCallBack infoCallBack; //支付成功相关
 
 
 - (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(void))completion failure:(void(^)(NSString *errorMessage))failure;
@@ -36,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure;
 
 
-- (void)login:(NSString *)name password:(NSString *)password completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
+- (void)login;
 
 - (void)start:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
 

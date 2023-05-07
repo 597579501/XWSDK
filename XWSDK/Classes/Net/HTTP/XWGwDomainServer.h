@@ -21,11 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
                        failure:(Failure)failure;
 
 
-+ (NSURLSessionDataTask *)XWSendCodeUrl:(NSString *)phone
-                                   name:(NSString *)name
-                               codeType:(XWCodeType)codeType
-                                success:(Success)success
-                                failure:(Failure)failure;
++ (NSURLSessionDataTask *)sendCode:(NSString *)phone
+                              name:(NSString *)name
+                          codeType:(XWCodeType)codeType
+                           success:(Success)success
+                           failure:(Failure)failure;
 
 + (NSURLSessionDataTask *)reg:(NSString *)name password:(NSString *)password code:(NSString *)code
                       success:(Success)success

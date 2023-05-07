@@ -30,7 +30,7 @@
 //        [topView setImage:loginTopImage];
 //        [topView setBackgroundColor:UIColorHex(0x77aeee)];
         
-//        [topView setBackgroundColor:XWAdapterHead];
+        [topView setBackgroundColor:XWAdapterHead];
 
         [self addSubview:topView];
         _topView = topView;
@@ -80,6 +80,10 @@
         [_submitButton setTitle:@"注册并登录"];
         [self addSubview:_submitButton];
         
+        _phoneButton = [XWSubmitButton new];
+        [_phoneButton setTitle:@"手机号注册"];
+        [self addSubview:_phoneButton];
+        
         [topView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(0);
             make.height.mas_equalTo(44);
@@ -125,6 +129,15 @@
                 weakSelf.submitButtonClickBlock();
             }
         }];
+        
+        [_phoneButton setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            [weakSelf.usernameTextField resignFirstResponder];
+            [weakSelf.passwordTextField resignFirstResponder];
+            if (weakSelf.phoneButtonClickBlock) {
+                weakSelf.phoneButtonClickBlock();
+            }
+        }];
+        
         
         [backButton setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             if (weakSelf.backButtonClickBlock) {
@@ -211,11 +224,20 @@
         
         
         [_submitButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(weakSelf.passwordTextField.mas_width);
+            make.width.mas_equalTo(weakSelf.mas_width).multipliedBy(0.43);
             make.height.mas_equalTo(weakSelf.usernameTextField.mas_height);
             make.left.mas_equalTo(weakSelf.passwordTextField.mas_left);
             make.top.mas_equalTo(_userAgreementView.mas_bottom).with.offset(10);
         }];
+        
+        
+        [_phoneButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(weakSelf.mas_width).multipliedBy(0.43);
+            make.height.mas_equalTo(weakSelf.usernameTextField.mas_height);
+            make.right.mas_equalTo(weakSelf.passwordTextField.mas_right);
+            make.top.mas_equalTo(_userAgreementView.mas_bottom).with.offset(10);
+        }];
+        
         
         [self mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.bottom.mas_equalTo(weakSelf.submitButton.mas_bottom).with.offset(margin);
@@ -246,9 +268,16 @@
         }];
 
         [_submitButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(weakSelf.passwordTextField.mas_width);
+            make.width.mas_equalTo(weakSelf.mas_width).multipliedBy(0.43);
             make.height.mas_equalTo(weakSelf.usernameTextField.mas_height);
             make.left.mas_equalTo(weakSelf.passwordTextField.mas_left);
+            make.top.mas_equalTo(_userAgreementView.mas_bottom).with.offset(10);
+        }];
+        
+        [_phoneButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(weakSelf.mas_width).multipliedBy(0.43);
+            make.height.mas_equalTo(weakSelf.usernameTextField.mas_height);
+            make.right.mas_equalTo(weakSelf.passwordTextField.mas_right);
             make.top.mas_equalTo(_userAgreementView.mas_bottom).with.offset(10);
         }];
         

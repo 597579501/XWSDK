@@ -10,7 +10,7 @@
 #import "XWUserModel.h"
 #import "XWOrderModel.h"
 #import "XWConfModel.h"
-
+#import "XWSDKEnumHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(XWConfModel *confModel))completion failure:(void(^)(NSString *errorMessage))failure;
 
+- (void)sendCode:(NSString *)phone name:(NSString *)name codeType:(XWCodeType)codeType completion:(void(^)(void))completion failure:(void(^)(NSString *errorMessage))failure;
 
 - (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure;
 

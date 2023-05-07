@@ -54,15 +54,15 @@
         [weakSelf.codeLoginView.codeTextField resignFirstResponder];
         [weakSelf.codeLoginView.passwordTextField resignFirstResponder];
         XWProgressHUD *hud = [XWHUD showHUD:weakSelf.view];
-        //todk
-//        [XWUserSystemManager getVerifyCode:weakSelf.phone codeType:weakSelf.codeType success:^{
-//            [weakSelf.codeLoginView codeLabelCountDown:[NSNumber numberWithInt:59]];
-//            [XWHUD hideHUD:hud];
-//            [XWHUD showOnlyText:weakSelf.view text:@"获取验证码成功"];
-//        } failure:^(int errcode, NSString *errorMessage) {
-//            [XWHUD hideHUD:hud];
-//            [XWHUD showOnlyText:weakSelf.view text:errorMessage];
-//        }];
+        
+        [weakSelf.viewModel sendCode:weakSelf.phone name:weakSelf.phone codeType:weakSelf.codeType completion:^{
+            [weakSelf.codeLoginView codeLabelCountDown:[NSNumber numberWithInt:59]];
+            [XWHUD hideHUD:hud];
+            [XWHUD showOnlyText:weakSelf.view text:@"获取验证码成功"];
+        } failure:^(NSString * _Nonnull errorMessage) {
+            [XWHUD hideHUD:hud];
+            [XWHUD showOnlyText:weakSelf.view text:errorMessage];
+        }];
         
     }];
     
@@ -74,24 +74,26 @@
         [weakSelf.codeLoginView setUserInteractionEnabled:NO];
         [weakSelf.codeLoginView.codeTextField resignFirstResponder];
         [weakSelf.codeLoginView.passwordTextField resignFirstResponder];
-        //todo
-//        if (weakSelf.codeType == CodeTypeByPhoneLogin) {
-//            [XWUserSystemManager registerUser:@""
-//                                     passWord:weakSelf.codeLoginView.passwordTextField.text
-//                                  phoneNumber:weakSelf.phone
-//                                   verifyCode:weakSelf.codeLoginView.codeTextField.text
-//                                         type:UserTypeByPhone
-//                                      success:^(XWUserResponeModel *userResponeModel) {
-//                                          [weakSelf.codeLoginView.submitButton stopCircleAnimation];
-//                                          [weakSelf.codeLoginView setUserInteractionEnabled:YES];
-//                                          [weakSelf closeView];
-//                                      } failure:^(int errcode, NSString *errorMessage) {
-//                                          [weakSelf.codeLoginView.submitButton stopCircleAnimation];
-//                                          [weakSelf.codeLoginView setUserInteractionEnabled:YES];
-//                                          [XWHUD showOnlyText:weakSelf.view text:errorMessage];
-//            }];
+        
+//        if (weakSelf.codeType == XWRegisterCode) {
+////            [XWUserSystemManager registerUser:@""
+////                                     passWord:weakSelf.codeLoginView.passwordTextField.text
+////                                  phoneNumber:weakSelf.phone
+////                                   verifyCode:weakSelf.codeLoginView.codeTextField.text
+////                                         type:UserTypeByPhone
+////                                      success:^(XWUserResponeModel *userResponeModel) {
+////                                          [weakSelf.codeLoginView.submitButton stopCircleAnimation];
+////                                          [weakSelf.codeLoginView setUserInteractionEnabled:YES];
+////                                          [weakSelf closeView];
+////                                      } failure:^(int errcode, NSString *errorMessage) {
+////                                          [weakSelf.codeLoginView.submitButton stopCircleAnimation];
+////                                          [weakSelf.codeLoginView setUserInteractionEnabled:YES];
+////                                          [XWHUD showOnlyText:weakSelf.view text:errorMessage];
+////                [weakSelf.viewModel sendCode:weakSelf.phone name:<#(nonnull NSString *)#> codeType:<#(XWCodeType)#> completion:<#^(void)completion#> failure:<#^(NSString * _Nonnull errorMessage)failure#>]
+//            
+////            }];
 //        }
-//        else if (weakSelf.codeType == CodeTypeByFindPassword)
+//        else if (weakSelf.codeType == XWResetCode)
 //        {
 //            [XWUserSystemManager verifyCode:weakSelf.codeLoginView.codeTextField.text phoneNumber:weakSelf.phone method:XW_RESETPASSWORDEVERIFY_METHOD success:^(NSString *resetToken) {
 //                [weakSelf.codeLoginView.submitButton stopCircleAnimation];
@@ -108,7 +110,7 @@
 //                [XWHUD showOnlyText:weakSelf.view text:errorMessage];
 //            }];
 //        }
-//        else if (weakSelf.codeType == CodeTypeByBind)
+//        else if (weakSelf.codeType == XWBindCode)
 //        {
 //            [XWUserSystemManager verifyCode:weakSelf.codeLoginView.codeTextField.text phoneNumber:weakSelf.phone method:XW_BINDPHONEVERIFY_METHOD success:^(NSString *resetToken) {
 //                [weakSelf.codeLoginView.submitButton stopCircleAnimation];

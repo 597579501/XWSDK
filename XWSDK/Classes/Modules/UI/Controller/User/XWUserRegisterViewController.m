@@ -8,6 +8,8 @@
 //#import "XWWebViewController.h"
 #import "XWUserRegisterView.h"
 //#import "XWUserSystemManager.h"
+#import "XWHelper.h"
+#import "XWPhoneLoginViewController.h"
 
 @interface XWUserRegisterViewController ()
 {
@@ -53,28 +55,43 @@
     
     
     [_userRegisterView setSubmitButtonClickBlock:^{
-        [[UIApplication sharedApplication].keyWindow endEditing:YES]; 
+        [[UIApplication sharedApplication].keyWindow endEditing:YES];
         [weakSelf.userRegisterView.usernameTextField resignFirstResponder];
         [weakSelf.userRegisterView.passwordTextField resignFirstResponder];
         [weakSelf.userRegisterView setUserInteractionEnabled:NO];
+        
+        [weakSelf.viewModel reg:weakSelf.userRegisterView.usernameTextField.text password:weakSelf.userRegisterView.passwordTextField.text code:@"" completion:^(NSString * _Nonnull userId) {
+            [[weakSelf.userRegisterView passwordTextField] setSecureTextEntry:NO];
+            [weakSelf.userRegisterView.submitButton stopCircleAnimation];
+            UIImage *saveImage = [XWHelper screenView:weakSelf.userRegisterView];
+            [[weakSelf.userRegisterView passwordTextField] setSecureTextEntry:YES];
+            UIImageWriteToSavedPhotosAlbum(saveImage, weakSelf, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+            [weakSelf.userRegisterView setUserInteractionEnabled:YES];
+            [weakSelf closeView];
+        } failure:^(NSString * _Nonnull errorMessage) {
+
+            [weakSelf.userRegisterView.submitButton stopCircleAnimation];
+            [weakSelf.userRegisterView setUserInteractionEnabled:YES];
+            [XWHUD showOnlyText:weakSelf.view text:errorMessage];
+        }];
+        
 //        [XWUserSystemManager registerUser:weakSelf.userRegisterView.usernameTextField.text
 //                                 passWord:weakSelf.userRegisterView.passwordTextField.text
 //                              phoneNumber:@""
 //                               verifyCode:@""
 //                                     type:UserTypeByNormal
 //                                  success:^(XWUserResponeModel *userResponeModel) {
-//                                      [[weakSelf.userRegisterView passwordTextField] setSecureTextEntry:NO];
-//                                      [weakSelf.userRegisterView.submitButton stopCircleAnimation];
-//                                      UIImage *saveImage = [XWHelper screenView:weakSelf.userRegisterView];
-//                                      [[weakSelf.userRegisterView passwordTextField] setSecureTextEntry:YES];
-//                                      UIImageWriteToSavedPhotosAlbum(saveImage, weakSelf, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-//                                      [weakSelf.userRegisterView setUserInteractionEnabled:YES];
-//                                      [weakSelf closeView];
+
 //                                  } failure:^(int errcode, NSString *errorMessage) {
-//                                      [weakSelf.userRegisterView.submitButton stopCircleAnimation];
-//                                      [weakSelf.userRegisterView setUserInteractionEnabled:YES];
-//                                      [XWHUD showOnlyText:weakSelf.view text:errorMessage];
+
 //                                  }];
+    }];
+    
+    [_userRegisterView setPhoneButtonClickBlock:^{
+        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        XWPhoneLoginViewController *phoneLoginViewController = [XWPhoneLoginViewController new];
+        [phoneLoginViewController setCodeType:XWRegisterCode];
+        [weakSelf.navigationController pushViewController:phoneLoginViewController animated:NO];
     }];
     
     [_userRegisterView setLabelClickBlock:^{

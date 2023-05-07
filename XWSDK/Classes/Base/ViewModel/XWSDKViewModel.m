@@ -33,6 +33,26 @@
     }];
 }
 
+- (void)sendCode:(NSString *)phone name:(NSString *)name codeType:(XWCodeType)codeType completion:(void(^)(void))completion failure:(void(^)(NSString *errorMessage))failure
+{
+    if (![self checkConf])
+    {
+        failure(@"未初始化SDK");
+        return;
+    }
+    [XWGwDomainServer sendCode:phone name:name codeType:codeType success:^(id  _Nullable data) {
+        if (completion)
+        {
+            completion();
+        }
+    } failure:^(NSString * _Nullable errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
 - (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure
 {
     if (![self checkConf])

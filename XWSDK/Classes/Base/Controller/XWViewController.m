@@ -217,7 +217,15 @@
     if (_closeButtonClickBlock) {
         _closeButtonClickBlock();
     }
-    
+}
+
+- (XWSDKViewModel *)viewModel
+{
+    if (!_viewModel)
+    {
+        _viewModel = [[XWSDKViewModel alloc] init];
+    }
+    return _viewModel;
 }
 
 @end
