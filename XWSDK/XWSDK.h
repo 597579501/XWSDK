@@ -59,7 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)login;
 
-- (void)login:(NSString *)name password:(NSString *)password completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
+- (void)logoutAccount;
+
+
 
 - (void)start:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
 

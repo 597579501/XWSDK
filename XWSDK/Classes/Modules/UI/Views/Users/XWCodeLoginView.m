@@ -228,20 +228,20 @@
         {
             NSString *code = [_codeTextField text];
             NSString *password = [_passwordTextField text];
-            [_submitButton setEnabled:(([[password stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 6)
-                                       && [[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 6)];
+            [_submitButton setEnabled:(([[password stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 5)
+                                       && [[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 5)];
             break;
         }
         case XWResetCode:
         {
             NSString *code = [_codeTextField text];
-            [_submitButton setEnabled:([[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 6)];
+            [_submitButton setEnabled:([[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 5)];
             break;
         }
         case XWBindCode:
         {
             NSString *code = [_codeTextField text];
-            [_submitButton setEnabled:([[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 6)];
+            [_submitButton setEnabled:([[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 5)];
             break;
         }
         default:

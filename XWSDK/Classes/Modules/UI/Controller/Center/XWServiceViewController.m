@@ -6,6 +6,7 @@
 
 #import "XWServiceViewController.h"
 #import "XWServiceView.h"
+#import "XWHelper.h"
 
 @interface XWServiceViewController ()
 {
@@ -49,11 +50,11 @@
     [_serviceView setQQLabelClickBlock:^(NSString *qq) {
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = qq;
-        [DHHUD showOnlyText:weakSelf.view text:@"复制成功"];
+        [XWHUD showOnlyText:weakSelf.view text:@"复制成功"];
     }];
     
     [_serviceView setMobileLabelClickBlock:^(NSString *mobile) {
-        [DHHelper callMobileWithWebView:mobile];
+        [XWHelper callMobileWithWebView:mobile];
     }];
     
 }   

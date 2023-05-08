@@ -106,6 +106,22 @@ static XWSDK *_instance = nil;
 //    }];
 }
 
+- (void)logoutAccount
+{
+    [self logoutAccountCallBack:_logoutCallBack];
+}
+
+- (void)logoutAccountCallBack:(LogoutCallBack )callBack{
+    
+  
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAotuLogin];
+    [self.floatWindow dissmissWindow];
+    _currUser = nil;
+    if (callBack) {
+        callBack();
+    }
+}
+
 - (void)loginSucessCallBack:(LoginSuccessBack)callBack{
     
 //    if (!self.aInitResponeModel) {
@@ -150,7 +166,7 @@ static XWSDK *_instance = nil;
 
 
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (isLogin) {
                 
                 

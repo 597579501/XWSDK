@@ -10,6 +10,8 @@
 #import "XWPhoneLoginViewController.h"
 //#import "XWUserSystemManager.h"
 #import "XWServiceViewController.h"
+#import "XWUIHelper.h"
+#import "XWSDK.h"
 
 @interface XWUserCenterViewController ()
 @property (nonatomic, strong) XWUserCenterView *userCenterView;
@@ -65,19 +67,19 @@
         make.centerY.mas_equalTo(weakSelf.view.mas_centerY);
     }];
     [[_userCenterView updateButton] setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        DHUpdatePassWordViewController *updatePassWordViewController = [DHUpdatePassWordViewController new];
+        XWUpdatePassWordViewController *updatePassWordViewController = [XWUpdatePassWordViewController new];
         [weakSelf.navigationController pushViewController:updatePassWordViewController animated:NO];
     }];
     
     [[_userCenterView bindButton] setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        if (_userResponeModel.phoneNumber.length == 11)
+        if (_userModel.userPhone.length == 11)
         {
             [XWUIHelper showAlertView:nil message:@"已绑定手机" cancelButtonTitle:@"确定" otherButtonTitles:nil];
         }
         else
         {
-            DHPhoneLoginViewController *phoneLoginViewController = [DHPhoneLoginViewController new];
-            [phoneLoginViewController setCodeType:CodeTypeByBind];
+            XWPhoneLoginViewController *phoneLoginViewController = [XWPhoneLoginViewController new];
+            [phoneLoginViewController setCodeType:XWBindCode];
             [weakSelf.navigationController pushViewController:phoneLoginViewController animated:NO];
         }
     }];
@@ -91,7 +93,7 @@
 //        UIAlertView *alertView = [DHUIHelper showAlertView:nil message:@"确认注销吗" cancelButtonTitle:@"确定" otherButtonTitles:@"取消"];
 //        [alertView setDelegate:self];
            [weakSelf closeView];
-           [[DHSDK share] logoutAccount];
+           [[XWSDK sharedInstance] logoutAccount];
     }];
     
 

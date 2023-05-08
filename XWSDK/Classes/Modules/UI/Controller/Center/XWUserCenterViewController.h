@@ -10,6 +10,6 @@
 @interface XWUserCenterViewController : XWViewController
 {
     NSString *_phone;
-    XWUserModel *userModel;
+    XWUserModel *_userModel;
 }
 @end

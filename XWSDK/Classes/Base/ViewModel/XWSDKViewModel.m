@@ -205,9 +205,24 @@
             failure(errorMessage);
         }
     }];
-    
+}
+
+- (void)update:(NSString *)name newPassword:(NSString *)newPassword completion:(void(^)(XWUserModel *userModel))completion
+       failure:(void(^)(NSString *errorMessage))failure
+{
+//    [XWGwDomainServer update:name newPassword:newPassword success:^(id  _Nullable data) {
+//            
+//    } failure:^(NSString * _Nullable errorMessage) {
+//        
+//    }];
+}
+
+- (void)resetPassword:(NSString *)phone code:(NSString *)code
+{
     
 }
+
+
 
 
 - (void)open:(XWOrderModel *)order

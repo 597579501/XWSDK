@@ -147,6 +147,10 @@
             [tableView reloadData];
         }];
     }
+    else if (indexPath.row == 5)
+    {
+        
+    }
     else
     {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -191,7 +195,7 @@
 {
     if (!_dataArray)
     {
-        _dataArray = @[@"初始化", @"注册", @"登录", @"激活上报", @"角色上报", @"请求支付"];
+        _dataArray = @[@"初始化", @"注册", @"登录", @"激活上报", @"角色上报", @"用户中心",@"请求支付"];
     }
     return _dataArray;;
 }

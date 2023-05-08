@@ -119,7 +119,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
     NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     
-    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonDictionary[@"time"]]];
+    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
     NSDictionary *params = @{@"name" : name,
                              @"token" : token
     };
@@ -129,7 +129,34 @@ NSString *const XWOpenUrl = @"pay/open.php";
     return [[XWNetManager sharedInstance] getWithUrl:url parameters:commonDictionary success:success failure:failure];
 }
 
-+ (NSURLSessionDataTask *)update:(NSString *)name newPassword:(NSString *)newPassword code:(NSString *)code
++ (NSURLSessionDataTask *)update:(NSString *)name password:(NSString *)password newPassword:(NSString *)newPassword
+                        success:(Success)success
+                        failure:(Failure)failure
+{
+    NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWUpdateUrl];
+    NSString *signNewPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", newPassword]];
+    
+    NSString *signPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", password]];
+    
+    
+    XWCommonModel *commonModel = [XWCommonModel sharedInstance];
+    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
+    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
+    
+    
+    
+    NSDictionary *params = @{@"type" : @"passwd",
+                             @"name" : name,
+                             @"data" : signNewPassword,
+                             @"token" : token
+    };
+    [commonDictionary addEntriesFromDictionary:params];
+    NSString *signString = [self signWithParams:commonDictionary];
+    [commonDictionary setObject:signString forKey:@"sign"];
+    return [[XWNetManager sharedInstance] getWithUrl:url parameters:commonDictionary success:success failure:failure];
+}
+
++ (NSURLSessionDataTask *)resetPassword:(NSString *)phone newPassword:(NSString *)newPassword code:(NSString *)code
                         success:(Success)success
                         failure:(Failure)failure
 {
@@ -139,10 +166,9 @@ NSString *const XWOpenUrl = @"pay/open.php";
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
     NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     
-//    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
     NSDictionary *params = @{@"type" : @"reset_passwd",
                              @"code" : code,
-                             @"name" : name,
+                             @"name" : phone,
                              @"data" : signNewPassword,
                              @"notoken" : @""
     };

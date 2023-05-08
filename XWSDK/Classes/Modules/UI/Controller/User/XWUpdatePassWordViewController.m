@@ -6,6 +6,7 @@
 
 #import "XWUpdatePassWordViewController.h"
 //#import "XWUserSystemManager.h"
+#import "XWSDKViewModel.h"
 
 
 @interface XWUpdatePassWordViewController ()
@@ -35,9 +36,9 @@
     }];
     
     
-//    [_updatePassWordView setBackButtonClickBlock:^{
-//        [weakSelf.navigationController popViewControllerAnimated:NO];
-//    }];
+    [_updatePassWordView setBackButtonClickBlock:^{
+        [weakSelf.navigationController popViewControllerAnimated:NO];
+    }];
 //    
 //    [_updatePassWordView setSubmitButtonClickBlock:^{
 //        [[UIApplication sharedApplication].windows.firstObject endEditing:YES]; 
@@ -62,6 +63,8 @@
 //        
 //
 //    }];
+    
+//    self.viewModel update
     
 }
 
