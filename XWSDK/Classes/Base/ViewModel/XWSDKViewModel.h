@@ -11,6 +11,7 @@
 #import "XWOrderModel.h"
 #import "XWConfModel.h"
 #import "XWSDKEnumHeader.h"
+#import "XWUserLoginRecordModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,6 +28,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)login:(NSString *)name password:(NSString *)password completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
 
+- (void)bind:(NSString *)name newPassword:(NSString *)newPassword code:(NSString *)code
+  completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
+
+- (void)unBind:(NSString *)name newPassword:(NSString *)newPassword code:(NSString *)code
+    completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
+
 - (void)start:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
 
 - (void)alive:(XWRoleModel *)roleModel
@@ -37,6 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)open:(XWOrderModel *)order
    completion:(void(^)(NSString *orderId, NSString *url))completion
      failure:(void(^)(NSString *errorMessage))failure;
+
+- (XWUserLoginRecordModel *)getUserInformation;
+
 @end
 
 NS_ASSUME_NONNULL_END

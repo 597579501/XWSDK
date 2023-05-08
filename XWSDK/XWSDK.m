@@ -17,6 +17,8 @@
 #import "XWUserLoginRecordModel.h"
 #import "XWDBHelper.h"
 #import "XWUserLoginViewController.h"
+#import "XWUserCenterViewController.h"
+#import "XWUIHelper.h"
 
 static XWSDK *_instance = nil;
 
@@ -26,6 +28,7 @@ static XWSDK *_instance = nil;
 @property (nonatomic, strong) XWSDKViewModel *sdkViewModel;
 @property (nonatomic, strong) XWCommonModel *commonModel;
 @property (nonatomic, strong) XWFloatWindow *floatWindow;
+@property (nonatomic, assign) BOOL          canShowController;
 @end
 
 @implementation XWSDK
@@ -35,6 +38,7 @@ static XWSDK *_instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _instance = [[self alloc] init];
+        [[NSNotificationCenter defaultCenter] addObserver:_instance selector:@selector(loginSuccessNotification:) name:@"InfoNotification" object:nil];
     });
     return _instance;
 }
@@ -43,8 +47,12 @@ static XWSDK *_instance = nil;
 
 - (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(void))completion failure:(void(^)(NSString *errorMessage))failure
 {
+    WS(weakSelf);
     [self.sdkViewModel conf:appId appKey:appKey completion:^(XWConfModel * _Nonnull confModel) {
-        
+        NSMutableArray *imageArray = [[NSMutableArray alloc] initWithObjects:@"XS_SDK_PassWord_Update", @"XS_SDK_Account_Bind", @"XS_SDK_Account_Logout", nil];
+        NSMutableArray *menuNameArray = [[NSMutableArray alloc] initWithObjects:@"修改密码", @"绑定手机", @"注销", nil];
+        NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:menuNameArray forKeys:imageArray];
+        [self initWindow:dictionary];
     } failure:^(NSString * _Nonnull errorMessage) {
         
     }];
@@ -64,6 +72,23 @@ static XWSDK *_instance = nil;
         }
     }];
 }
+
+- (void)login:(NSString *)name password:(NSString *)password completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure
+{
+    [self.sdkViewModel login:name password:password completion:^(XWUserModel *userModel) {
+        if(completion)
+        {
+            completion(userModel);
+        }
+    } failure:^(NSString * _Nonnull errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
+
 
 - (void)login
 {
@@ -93,43 +118,55 @@ static XWSDK *_instance = nil;
     {
         
         __block BOOL isLogin = YES;
-        UIViewController *rootcontroller = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+        UIViewController *rootcontroller = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
         XWAutoLoginViewController *autoLoginViewController = [XWAutoLoginViewController new];
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:autoLoginViewController];
         [rootcontroller addChildViewController:navigationController];
         [rootcontroller.view addSubview:navigationController.view];
-        XWUserLoginRecordModel *userLoginRecordModel = nil;
-//        DHUserResponeModel *userResponeModel = [DHUserSystemManager getUserInformation];
-//
-//        if (userResponeModel) {
-//            userLoginRecordModel = [[DHUserLoginRecordModel alloc] init];;
-//            [userLoginRecordModel setUsername:userResponeModel.username];
-//            [userLoginRecordModel setUserType:userResponeModel.type];
-//            [userLoginRecordModel setPassword:userResponeModel.password];
-//        }
-//        else
-//        {
-//            userLoginRecordModel = [[XWDBHelper sharedDBHelper] getLastLoginUser];
-//        }
-//
-//        [[[autoLoginViewController autoLoginView] usernameLabel] setText:[NSString stringWithFormat:@"正在登陆：%@",userLoginRecordModel.username]];
-//        [[[autoLoginViewController autoLoginView] cancelButton] setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-//            isLogin = false;
-//            [autoLoginViewController closeView];
-//            _currUser = nil;
+        
+        XWUserLoginRecordModel *userLoginRecordModel = [self.sdkViewModel getUserInformation];
+        
+        
+
+        if (userLoginRecordModel) {
+            
+        }
+        else
+        {
+            userLoginRecordModel = [[XWDBHelper sharedDBHelper] getLastLoginUser];
+        }
+
+        
+        [[[autoLoginViewController autoLoginView] usernameLabel] setText:[NSString stringWithFormat:@"正在登陆：%@",userLoginRecordModel.username]];
+        [[[autoLoginViewController autoLoginView] cancelButton] setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            isLogin = false;
+            [autoLoginViewController closeView];
+            self -> _currUser = nil;
 //            _role = nil;
-//            [self.floatWindow dissmissWindow];
-//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAotuLogin];
-//            [dhsdk login];
-//        }];
-//
-//
-//
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            if (isLogin) {
-//
+            [self.floatWindow dissmissWindow];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAotuLogin];
+            [[XWSDK sharedInstance] login];
+        }];
+
+
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (isLogin) {
+                
+                
+                [self.sdkViewModel login:userLoginRecordModel.username password:userLoginRecordModel.password completion:^(XWUserModel * _Nonnull userModel) {
+                    [autoLoginViewController closeView];
+                } failure:^(NSString * _Nonnull errorMessage) {
+                    
+                    [autoLoginViewController closeView];
+                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAotuLogin];
+                    [[XWSDK sharedInstance] login];
+
+                    [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:errorMessage];
+                }];
+                
 //                [DHUserSystemManager login:userLoginRecordModel.username passWord:userLoginRecordModel.password phoneNumber:@"" verifyCode:@"" type:userLoginRecordModel.userType success:^(DHUserResponeModel *userResponeModel) {
-//                    //                    [DHHUD showOnlyText:[[UIApplication sharedApplication] keyWindow] text:@"登陆成功"];
+//                    //                    [DHHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject] text:@"登陆成功"];
 //                    [autoLoginViewController closeView];
 //
 //
@@ -156,16 +193,16 @@ static XWSDK *_instance = nil;
 //                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAotuLogin];
 //                    [dhsdk login];
 //
-//                    [DHHUD showOnlyText:[[UIApplication sharedApplication] keyWindow] text:errorMessage];
+//                    [DHHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject] text:errorMessage];
 //
 //                }];
-//            }
-//        });
+            }
+        });
     }
     else
     {
         
-        UIViewController *rootcontroller = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+        UIViewController *rootcontroller = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
         XWUserLoginViewController *userLoginViewController = [XWUserLoginViewController new];
         
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:userLoginViewController];
@@ -231,7 +268,7 @@ static XWSDK *_instance = nil;
 
 - (void)initWindow:(NSDictionary *)dictionary
 {
-//    _canShowController = YES;
+    _canShowController = YES;
     WS(weakSelf);
     CGRect rect = CGRectMake(0, 0, 50, 50);
     UIImage *image = [UIImage imageNamed:@"XW_SDK_FloatWindow"];
@@ -249,12 +286,75 @@ static XWSDK *_instance = nil;
                                                   animationColor:[UIColor clearColor]] ;
         [_floatWindow dissmissWindow];
         _floatWindow.clickBolcks = ^(NSInteger i){
-//            if (weakSelf.canShowController) {
-//                [weakSelf userCenter];
-//            }
+            if (weakSelf.canShowController) {
+                [weakSelf userCenter];
+            }
         };
     }
+}
+
+
+
+/**
+ *  用户中心
+ */
+- (void)userCenter{
     
+    if (_currUser != nil)
+    {
+        [self.floatWindow dissmissWindow];
+        
+        UIViewController *rootcontroller = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
+        XWUserCenterViewController *userCenterViewController = [XWUserCenterViewController new];
+        
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:userCenterViewController];
+        [rootcontroller addChildViewController:navigationController];
+        [rootcontroller.view addSubview:navigationController.view];
+        [userCenterViewController setCloseButtonClickBlock:^{
+            if (_currUser != nil)
+            {
+                [self.floatWindow showWindow];
+            }
+        }];
+    }
+    else
+    {
+        [XWUIHelper showAlertView:nil message:@"用户未登陆" cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    }
+    
+}
+
+- (void)loginSuccessNotification:(NSNotification *)notification
+{
+    //登陆成功过移除标识
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLogin"];
+    XWUserModel *user = (XWUserModel *)notification.object;
+    [self.floatWindow showWindow];
+    _currUser = user;
+    if (_loginCallBack) {
+        //        if (lSS == MKLSBL) {
+        //            [reyun setLoginWithAccountID:user.userId andGender:o andage:@"" andServerId:@"" andlevel:0 andRole:@""];
+        //            [TrackingIO setLoginWithAccountID:user.userId];
+        //        }
+        //        else if (lSS == MKLSBR)
+        //        {
+        //            [reyun setRegisterWithAccountID:user.userId andGender:o andage:@"" andServerId:@"" andAccountType:@"" andRole:@""];
+        //            [TrackingIO setRegisterWithAccountID:user.userId];
+        //        }
+        [self showFloatBtn];
+        _loginCallBack(user);
+    }
+    
+}
+
+- (void)showFloatBtn
+{
+    [self.floatWindow showWindow];
+}
+
+- (void)disFloatBtn
+{
+    [self.floatWindow dissmissWindow];
 }
 
 

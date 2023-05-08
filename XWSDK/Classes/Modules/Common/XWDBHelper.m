@@ -34,7 +34,7 @@ static FMDatabase *_fmdb;
     _fmdb = [FMDatabase databaseWithPath:filePath];
     [_fmdb open];
     
-    NSString *createSql = @"CREATE table if not exists MKUsers(userid varchar(30) primary key not null, token varchar(30) not null, accessToken varchar(32) not null, username varchar(30)  not null,password varchar(30)  not null, userType int  not null, loginTime BIGINT not null)";
+    NSString *createSql = @"CREATE table if not exists XWUsers(userid varchar(30) primary key not null, username varchar(30)  not null,password varchar(30)  not null, userType int  not null, loginTime BIGINT not null)";
     [_fmdb executeUpdate:createSql];
 }
 
@@ -42,15 +42,13 @@ static FMDatabase *_fmdb;
 - (NSMutableArray *)getAllUsers
 {
     //执行查询SQL语句，返回查询结果   陈煦说这里只查询最新的三条记录
-    FMResultSet *result = [_fmdb executeQuery:@"select * from MKUsers order by loginTime desc limit 3"];
+    FMResultSet *result = [_fmdb executeQuery:@"select * from XWUsers order by loginTime desc limit 3"];
 //    FMResultSet *result = [_fmdb executeQuery:@"select * from MKUsers order by loginTime desc"];
     NSMutableArray *userArray = [NSMutableArray array];
     //获取查询结果的下一个记录
     while ([result next]) {
         //根据字段名，获取记录的值，存储到字典中
         XWUserLoginRecordModel *user = [XWUserLoginRecordModel new];
-        user.token = [XWHelper tripleDES:[result stringForColumn:@"token"] encryptOrDecrypt:kCCDecrypt];
-        user.accessToken = [XWHelper tripleDES:[result stringForColumn:@"accessToken"] encryptOrDecrypt:kCCDecrypt];
         user.userType = [result intForColumn:@"userType"];
         user.userId = [result stringForColumn:@"userid"];
         user.username = [XWHelper tripleDES:[result stringForColumn:@"username"] encryptOrDecrypt:kCCDecrypt];
@@ -64,12 +62,10 @@ static FMDatabase *_fmdb;
 
 - (XWUserLoginRecordModel *)getLastLoginUser
 {
-    FMResultSet *result = [_fmdb executeQuery:@"select * from MKUsers order by loginTime desc limit 1"];
+    FMResultSet *result = [_fmdb executeQuery:@"select * from XWUsers order by loginTime desc limit 1"];
     XWUserLoginRecordModel *user = [XWUserLoginRecordModel new];
     while ([result next]) {
         //根据字段名，获取记录的值，存储到字典中
-        user.token = [XWHelper tripleDES:[result stringForColumn:@"token"] encryptOrDecrypt:kCCDecrypt];;
-        user.accessToken = [XWHelper tripleDES:[result stringForColumn:@"accessToken"] encryptOrDecrypt:kCCDecrypt];;
         user.userType = [result intForColumn:@"userType"];
         user.userId = [result stringForColumn:@"userid"];
         user.username = [XWHelper tripleDES:[result stringForColumn:@"username"] encryptOrDecrypt:kCCDecrypt];;
@@ -86,19 +82,20 @@ static FMDatabase *_fmdb;
 - (void)addUser:(XWUserLoginRecordModel *)user
 {
     
-    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO MKUsers(userid, token, accessToken, username,password,userType,loginTime) VALUES('%@','%@','%@','%@','%@','%ld','%ld')",
+    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO XWUsers(userid, username,password,userType,loginTime) VALUES('%@','%@','%@','%ld','%ld')",
                            user.userId,
-                           [XWHelper tripleDES:user.token encryptOrDecrypt:kCCEncrypt],
-                           [XWHelper tripleDES:user.accessToken  encryptOrDecrypt:kCCEncrypt],
+//                           [XWHelper tripleDES:user.token encryptOrDecrypt:kCCEncrypt],
+//                           [XWHelper tripleDES:user.accessToken  encryptOrDecrypt:kCCEncrypt],
                            [XWHelper tripleDES:user.username encryptOrDecrypt:kCCEncrypt],
                            [XWHelper tripleDES:user.password encryptOrDecrypt:kCCEncrypt]
                            , (long)user.userType, user.loginTime];
-    [_fmdb executeUpdate:insertSql] ;
+    bool s = [_fmdb executeUpdate:insertSql] ;
+    
 
     
     NSUInteger count = [_dbHelper getAllUsers].count;
     if (count > 3) {
-        NSString *deleteSql = [NSString stringWithFormat:@"delete from MKUsers order by loginTime limit 1"];
+        NSString *deleteSql = [NSString stringWithFormat:@"delete from XWUsers order by loginTime limit 1"];
         [_fmdb executeUpdate:deleteSql];
     }
 }
@@ -106,7 +103,7 @@ static FMDatabase *_fmdb;
 
 - (void)deleteUser:(NSString *)username
 {
-    NSString *deleteSql = [NSString stringWithFormat:@"delete from MKUsers where username = '%@'",[XWHelper tripleDES:username encryptOrDecrypt:kCCEncrypt]];
+    NSString *deleteSql = [NSString stringWithFormat:@"delete from XWUsers where username = '%@'",[XWHelper tripleDES:username encryptOrDecrypt:kCCEncrypt]];
     [_fmdb executeUpdate:deleteSql];
 }
 

@@ -170,7 +170,7 @@
 
 - (void)backButtonClick
 {
-    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

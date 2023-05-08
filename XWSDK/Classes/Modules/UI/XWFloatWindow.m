@@ -125,7 +125,7 @@
         
     }
     
-//    NSLog(@"fuck11 - %@",NSStringFromCGRect(self.frame));
+    NSLog(@"fuck11 - %@",NSStringFromCGRect(self.frame));
 //    self.frame = CGRectMake(0, 0, self.frame.size.width,self.frame.size.height);
     self.hidden = NO;
 }
@@ -190,7 +190,7 @@
 //改变位置
 - (void)locationChange:(UIPanGestureRecognizer*)p
 {
-    CGPoint panPoint = [p locationInView:[[UIApplication sharedApplication] keyWindow]];
+    CGPoint panPoint = [p locationInView:[[UIApplication sharedApplication] windows].firstObject];
     if(p.state == UIGestureRecognizerStateBegan)
     {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(changeStatus) object:nil];

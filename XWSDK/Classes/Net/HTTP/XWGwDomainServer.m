@@ -51,7 +51,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
                            success:(Success)success
                            failure:(Failure)failure
 {
-    NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWRegisterUrl];
+    NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWSendCodeUrl];
     
     NSString *bundleId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
     NSString *bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
@@ -85,7 +85,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
     [commonDictionary addEntriesFromDictionary:params];
     NSString *signString = [self signWithParams:commonDictionary];
     [commonDictionary setObject:signString forKey:@"sign"];
-    return [[XWNetManager sharedInstance] postWithUrl:url parameters:commonDictionary success:success failure:failure];
+    return [[XWNetManager sharedInstance] getWithUrl:url parameters:commonDictionary success:success failure:failure];
 }
 
 + (NSURLSessionDataTask *)reg:(NSString *)name password:(NSString *)password code:(NSString *)code
@@ -99,7 +99,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
     NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     
     NSDictionary *params = @{@"name" : name,
-                             @"passwd" : [self md5HexDigest:signPassword],
+                             @"passwd" : signPassword,
                              @"code" : code
     };
     [commonDictionary addEntriesFromDictionary:params];
@@ -119,7 +119,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
     NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     
-    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
+    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonDictionary[@"time"]]];
     NSDictionary *params = @{@"name" : name,
                              @"token" : token
     };

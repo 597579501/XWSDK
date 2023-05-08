@@ -40,7 +40,7 @@
 //    }];
 //    
 //    [_updatePassWordView setSubmitButtonClickBlock:^{
-//        [[UIApplication sharedApplication].keyWindow endEditing:YES]; 
+//        [[UIApplication sharedApplication].windows.firstObject endEditing:YES]; 
 //        [weakSelf.updatePassWordView.submitButton startCircleAnimation];
 //        [weakSelf.updatePassWordView setUserInteractionEnabled:NO];
 //        [weakSelf.updatePassWordView.oldPasswordTextField resignFirstResponder];
@@ -53,7 +53,7 @@
 ////                                        [weakSelf.updatePassWordView setUserInteractionEnabled:YES];
 ////                                        [weakSelf closeView];
 ////                                        [[XWSDK share] showFloatBtn];
-////                                        [XWHUD showOnlyText:[[UIApplication sharedApplication] keyWindow] text:@"修改密码成功"];
+////                                        [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject] text:@"修改密码成功"];
 ////                                    } failure:^(int errcode, NSString *errorMessage) {
 ////                                        [weakSelf.updatePassWordView.submitButton stopCircleAnimation];
 ////                                        [weakSelf.updatePassWordView setUserInteractionEnabled:YES];

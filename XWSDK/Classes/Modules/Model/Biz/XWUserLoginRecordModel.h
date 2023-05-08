@@ -14,11 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) UserType userType;
 
-@property (nonatomic, strong) NSString *accessToken;
-/**
- *  用户令牌
- */
-@property (nonatomic, strong) NSString *token;
+
 
 /**
  *  用户ID

@@ -58,13 +58,13 @@
     }];
     
     [_userLoginView setRegisterButtonClickBlock:^{
-        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
         XWUserRegisterViewController *userRegisterViewController = [XWUserRegisterViewController new];
         [weakSelf.navigationController pushViewController:userRegisterViewController animated:NO];
     }];
     
     [_userLoginView setForgetLabelClickBlock:^{
-        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
         XWPhoneLoginViewController *phoneLoginViewController = [XWPhoneLoginViewController new];
         [phoneLoginViewController setCodeType:XWRegisterCode];
         [weakSelf.navigationController pushViewController:phoneLoginViewController animated:NO];
@@ -74,7 +74,7 @@
     
     [_userLoginView setSubmitButtonClickBlock:^{
         
-        [[UIApplication sharedApplication].keyWindow endEditing:YES]; 
+        [[UIApplication sharedApplication].windows.firstObject endEditing:YES]; 
         [weakSelf.userLoginView.usernameTextField resignFirstResponder];
         [weakSelf.userLoginView.passwordTextField resignFirstResponder];
         [weakSelf.userLoginView setUserInteractionEnabled:NO];
@@ -93,6 +93,10 @@
             [weakSelf.userLoginView setUserInteractionEnabled:YES];
             [XWHUD showOnlyText:weakSelf.view text:errorMessage];
         }];
+        
+        
+        
+        
     }];
     
     
@@ -104,7 +108,7 @@
         userLoginRecordModel = [[XWUserLoginRecordModel alloc] init];;
         [userLoginRecordModel setUsername:userModel.userName];
 //        [userLoginRecordModel setUserType:userModel.type];
-//        [userLoginRecordModel setPassword:userModel.password];
+//        [userLoginRecordModel setPassword:userModel.pas];
     }
     else
     {
@@ -128,6 +132,15 @@
 //
 //        [weakSelf closeButtonClick];
 //    }];
+    
+    
+    //todo ceshi
+//    _userLoginView.usernameTextField.text = @"xwtest5";
+//    _userLoginView.passwordTextField.text = @"xwtest1";
+    
+    _userLoginView.usernameTextField.text = @"A999999";
+    _userLoginView.passwordTextField.text = @"123123";
+    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

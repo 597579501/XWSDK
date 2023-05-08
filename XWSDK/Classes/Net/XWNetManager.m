@@ -249,8 +249,16 @@ NSInteger const XWHTTPServiceTimeoutInterval = 30;
             }
             else
             {
-                if (failure)
+                if (response.success)
                 {
+                    NSLog(@"successBlockMethod %@", [responseObject modelToJSONString]);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        success(data);
+                    });
+                }
+                else if (failure)
+                {
+                    NSLog(@"error   BlockMethod 数据异常 %@", [responseObject modelToJSONString]);
                     NSString *errorMessage = @"数据异常";
                     dispatch_async(dispatch_get_main_queue(), ^{
                         failure(errorMessage);
@@ -276,9 +284,12 @@ NSInteger const XWHTTPServiceTimeoutInterval = 30;
 - (void)errorBlockMethod:(Failure)failure task:(NSURLSessionDataTask *)task error:(NSError *)error
 {
     NSString *errorMessage = @"网络异常，请检查网络";
-    if (failure) {
-        failure(errorMessage);
-    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (failure) {
+            failure(errorMessage);
+        }
+    });
 }
 
 - (NSString *)parsedSuccesWithError:(XWHttpResponse *)response

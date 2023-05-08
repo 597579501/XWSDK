@@ -28,6 +28,10 @@
     
     NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:0];
     
+    [[XWSDK sharedInstance] setLoginCallBack:^(XWUserModel * _Nonnull user) {
+            
+    }];
+    
     [self tableView:self.tableView didSelectRowAtIndexPath:index];
 }
 
