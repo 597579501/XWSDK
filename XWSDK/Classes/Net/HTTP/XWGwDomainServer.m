@@ -45,11 +45,11 @@ NSString *const XWOpenUrl = @"pay/open.php";
 
 
 
-+ (NSURLSessionDataTask *)XWSendCodeUrl:(NSString *)phone
-                                   name:(NSString *)name
-                               codeType:(XWCodeType)codeType
-                                success:(Success)success
-                                failure:(Failure)failure
++ (NSURLSessionDataTask *)sendCode:(NSString *)phone
+                              name:(NSString *)name
+                          codeType:(XWCodeType)codeType
+                           success:(Success)success
+                           failure:(Failure)failure
 {
     NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWRegisterUrl];
     

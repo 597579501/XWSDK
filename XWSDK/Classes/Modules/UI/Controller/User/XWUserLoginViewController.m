@@ -8,9 +8,12 @@
 #import "XWUserRegisterViewController.h"
 #import "XWUserLoginView.h"
 //#import "XWUserSystemManager.h"
-//#import "XWUserResponeModel.h"
+#import "XWUserModel.h"
+#import "XWUserLoginRecordModel.h"
 #import "XWPhoneLoginViewController.h"
 #import "XWDBHelper.h"
+#import "XWSDK.h"
+#import "XWSDKEnumHeader.h"
 
 
 @interface XWUserLoginViewController ()
@@ -63,7 +66,7 @@
     [_userLoginView setForgetLabelClickBlock:^{
         [[UIApplication sharedApplication].keyWindow endEditing:YES];
         XWPhoneLoginViewController *phoneLoginViewController = [XWPhoneLoginViewController new];
-        [phoneLoginViewController setCodeType:CodeTypeByFindPassword];
+        [phoneLoginViewController setCodeType:XWRegisterCode];
         [weakSelf.navigationController pushViewController:phoneLoginViewController animated:NO];
     
         
@@ -72,40 +75,36 @@
     [_userLoginView setSubmitButtonClickBlock:^{
         
         [[UIApplication sharedApplication].keyWindow endEditing:YES]; 
-//        [weakSelf.userLoginView.usernameTextField resignFirstResponder];
-//        [weakSelf.userLoginView.passwordTextField resignFirstResponder];
-//        [weakSelf.userLoginView setUserInteractionEnabled:NO];
+        [weakSelf.userLoginView.usernameTextField resignFirstResponder];
+        [weakSelf.userLoginView.passwordTextField resignFirstResponder];
+        [weakSelf.userLoginView setUserInteractionEnabled:NO];
         
         
         
-        NSLog(@"账号%@",weakSelf.userLoginView.usernameTextField.text);
-        NSLog(@"密码%@",weakSelf.userLoginView.passwordTextField.text);
+//        NSLog(@"账号%@",weakSelf.userLoginView.usernameTextField.text);
+//        NSLog(@"密码%@",weakSelf.userLoginView.passwordTextField.text);
         
-//        [XWUserSystemManager login:weakSelf.userLoginView.usernameTextField.text
-//                          passWord:weakSelf.userLoginView.passwordTextField.text
-//                       phoneNumber:@"" verifyCode:@"" type:UserTypeByNormal success:^(XWUserResponeModel *userResponeModel) {
-//                           
-//                           [weakSelf.userLoginView.submitButton stopCircleAnimation];
-//                           [weakSelf.userLoginView setUserInteractionEnabled:YES];
-//                           [weakSelf closeView];
-//                           
-//        } failure:^(int errcode, NSString *errorMessage) {
-//            [weakSelf.userLoginView.submitButton stopCircleAnimation];
-//            [weakSelf.userLoginView setUserInteractionEnabled:YES];
-//            [XWHUD showOnlyText:weakSelf.view text:errorMessage];
-//        }];
+        [weakSelf.viewModel login:weakSelf.userLoginView.usernameTextField.text password:weakSelf.userLoginView.passwordTextField.text completion:^(XWUserModel * _Nonnull userModel) {
+           [weakSelf.userLoginView.submitButton stopCircleAnimation];
+           [weakSelf.userLoginView setUserInteractionEnabled:YES];
+           [weakSelf closeView];
+        } failure:^(NSString * _Nonnull errorMessage) {
+            [weakSelf.userLoginView.submitButton stopCircleAnimation];
+            [weakSelf.userLoginView setUserInteractionEnabled:YES];
+            [XWHUD showOnlyText:weakSelf.view text:errorMessage];
+        }];
     }];
     
     
     
     //解决旧版版本账号记录兼容问题
     XWUserLoginRecordModel *userLoginRecordModel = nil;
-    XWUserResponeModel *userResponeModel = [XWUserSystemManager getUserInformation];
-    if (userResponeModel) {
+    XWUserModel *userModel = [XWSDK sharedInstance].currUser;
+    if (userModel) {
         userLoginRecordModel = [[XWUserLoginRecordModel alloc] init];;
-        [userLoginRecordModel setUsername:userResponeModel.username];
-        [userLoginRecordModel setUserType:userResponeModel.type];
-        [userLoginRecordModel setPassword:userResponeModel.password];
+        [userLoginRecordModel setUsername:userModel.userName];
+//        [userLoginRecordModel setUserType:userModel.type];
+//        [userLoginRecordModel setPassword:userModel.password];
     }
     else
     {

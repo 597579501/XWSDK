@@ -10,7 +10,7 @@
 #import "XWGwDomainServer.h"
 #import "XWLogDomainServer.h"
 #import "XWConfModel.h"
-
+#import <YYKit/YYKit.h>
 
 
 @implementation XWSDKViewModel
@@ -20,12 +20,32 @@
     [XWCommonModel sharedInstance].appId = appId;
     [XWCommonModel sharedInstance].appKey = appKey;
     [XWGwDomainServer conf:^(id data) {
-//        XWConfModel *confModel = [XWConfModel modelToJSONObject:data];
+        XWConfModel *confModel = [XWConfModel modelWithJSON:data];
         if (completion && confModel)
         {
             completion(confModel);
         }
     } failure:^(NSString *errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
+- (void)sendCode:(NSString *)phone name:(NSString *)name codeType:(XWCodeType)codeType completion:(void(^)(void))completion failure:(void(^)(NSString *errorMessage))failure
+{
+    if (![self checkConf])
+    {
+        failure(@"未初始化SDK");
+        return;
+    }
+    [XWGwDomainServer sendCode:phone name:name codeType:codeType success:^(id  _Nullable data) {
+        if (completion)
+        {
+            completion();
+        }
+    } failure:^(NSString * _Nullable errorMessage) {
         if (failure)
         {
             failure(errorMessage);
@@ -63,7 +83,7 @@
         return;
     }
     [XWGwDomainServer login:name password:password success:^(id data) {
-        XWUserModel *userModel = [XWUserModel modelToJSONObject:data];
+        XWUserModel *userModel = [XWUserModel modelWithJSON:data];
         if (completion && userModel)
         {
             completion(userModel);

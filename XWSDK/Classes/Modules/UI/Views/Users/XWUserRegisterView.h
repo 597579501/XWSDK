@@ -13,6 +13,7 @@
 
 
 typedef void (^labelClickBlock)(void);
+typedef void (^PhoneButtonClickBlock)(void);
 
 @interface XWUserRegisterView : XWView
 {
@@ -23,7 +24,9 @@ typedef void (^labelClickBlock)(void);
 @property (nonatomic, strong, readonly) XWUsernameTextField *usernameTextField;
 @property (nonatomic, strong, readonly) XWPasswordTextField *passwordTextField;
 @property (nonatomic, strong, readonly) XWSubmitButton *submitButton;
+@property (nonatomic, strong, readonly) XWSubmitButton *phoneButton;
 @property (nonatomic, copy, readonly) labelClickBlock labelClickBlock;
+@property (nonatomic, copy) PhoneButtonClickBlock phoneButtonClickBlock;
 
 
 - (void)updateRotationView:(UIInterfaceOrientation)orientation animate:(BOOL)animated duration:(NSTimeInterval)duration;

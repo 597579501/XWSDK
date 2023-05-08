@@ -25,6 +25,10 @@
     [self.tableView setDataSource:self];
     [self.tableView setDelegate:self];
     [self.view addSubview:self.tableView];
+    
+    NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:0];
+    
+    [self tableView:self.tableView didSelectRowAtIndexPath:index];
 }
 
 
@@ -96,14 +100,15 @@
     else if (indexPath.row == 2)
     {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        [[XWSDK sharedInstance] login:@"xwtest5" password:@"xwtest1" completion:^(XWUserModel * _Nonnull userModel) {
-            self.userId = userModel.userId;
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", userModel.userName , userModel.userId];
-            [tableView reloadData];
-        } failure:^(NSString * _Nonnull errorMessage) {
-            cell.detailTextLabel.text = errorMessage;
-            [tableView reloadData];
-        }];
+        [[XWSDK sharedInstance] login];
+//        [[XWSDK sharedInstance] login:@"xwtest5" password:@"xwtest1" completion:^(XWUserModel * _Nonnull userModel) {
+//            self.userId = userModel.userId;
+//            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", userModel.userName , userModel.userId];
+//            [tableView reloadData];
+//        } failure:^(NSString * _Nonnull errorMessage) {
+//            cell.detailTextLabel.text = errorMessage;
+//            [tableView reloadData];
+//        }];
         
     }
     else if (indexPath.row == 3)

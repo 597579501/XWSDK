@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class XWUserLoginRecordModel;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XWDBHelper : NSObject
@@ -15,11 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSMutableArray *)getAllUsers;
 
-- (void)addUser:(DHUserLoginRecordModel *)user;
+- (void)addUser:(XWUserLoginRecordModel *)user;
 
 - (void)deleteUser:(NSString *)username;
 
-- (DHUserLoginRecordModel *)getLastLoginUser;
+- (XWUserLoginRecordModel *)getLastLoginUser;
 
 @end
 

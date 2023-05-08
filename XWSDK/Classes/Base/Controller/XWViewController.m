@@ -6,6 +6,7 @@
 //
 
 #import "XWViewController.h"
+#import <YYKit/YYKit.h>
 
 @interface XWViewController ()
 //<YYKeyboard>
@@ -74,7 +75,7 @@
 
     }];
 //
-    YYKeyboardManager *keyboardManager = [YYKeyboardManager defaultManager];
+    YYTextKeyboardManager *keyboardManager = [YYTextKeyboardManager defaultManager];
     [keyboardManager addObserver:self];
 //
 //
@@ -91,10 +92,7 @@
         UIButton *backButton = [UIButton new];
         [backButton addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
         [backButton setFrame:CGRectMake(10, 0, 40, 40)];
-        if (iOS9Later) {
-            [backButton.widthAnchor constraintEqualToConstant:40].active = YES;
-            [backButton.heightAnchor constraintEqualToConstant:40].active = YES;
-        }
+
         [backButton setBackgroundImage:backButtonNormalImage forState:UIControlStateNormal];
         [backButton setBackgroundImage:backButtonHighlightedImage forState:UIControlStateHighlighted];
         UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
@@ -123,10 +121,6 @@
     }];
     
 
-//    if (iOS9Later) {
-//        [closeButton.widthAnchor constraintEqualToConstant:40].active = YES;
-//        [closeButton.heightAnchor constraintEqualToConstant:40].active = YES;
-//    }
     
  
     [closeButton setBackgroundImage:closeButtonNormalImage forState:UIControlStateNormal];
@@ -139,10 +133,10 @@
 
 
 #pragma mark - @protocol YYKeyboardObserver
-- (void)keyboardChangedWithTransition:(YYKeyboardTransition)transition {
+- (void)keyboardChangedWithTransition:(YYTextKeyboardTransition)transition {
     UIInterfaceOrientation interfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
     if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
-        CGRect kbFrame = [[YYKeyboardManager defaultManager] convertRect:transition.toFrame toView:self.view];
+        CGRect kbFrame = [[YYTextKeyboardManager defaultManager] convertRect:transition.toFrame toView:self.view];
         
         [UIView animateWithDuration:transition.animationDuration delay:0 options:transition.animationOption animations:^{
             [[self.view superview] layoutIfNeeded];
@@ -184,22 +178,23 @@
 - (void)closeButtonClick
 {
 
-    if ([self isKindOfClass:[DHWebViewController class]])
-    {
-        DHWebViewController *webViewController = (DHWebViewController *)self;
-        if (webViewController.isPay)
-        {
-            [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                
-            }];
-        }
-        else
-        {
-            [self.navigationController.view removeFromSuperview];
-            [self.navigationController removeFromParentViewController];
-        }
-    }
-    else
+    //todo
+//    if ([self isKindOfClass:[DHWebViewController class]])
+//    {
+//        DHWebViewController *webViewController = (DHWebViewController *)self;
+//        if (webViewController.isPay)
+//        {
+//            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+//                
+//            }];
+//        }
+//        else
+//        {
+//            [self.navigationController.view removeFromSuperview];
+//            [self.navigationController removeFromParentViewController];
+//        }
+//    }
+//    else
     {
         [self.navigationController.view removeFromSuperview];
         [self.navigationController removeFromParentViewController];
@@ -222,7 +217,15 @@
     if (_closeButtonClickBlock) {
         _closeButtonClickBlock();
     }
-    
+}
+
+- (XWSDKViewModel *)viewModel
+{
+    if (!_viewModel)
+    {
+        _viewModel = [[XWSDKViewModel alloc] init];
+    }
+    return _viewModel;
 }
 
 @end

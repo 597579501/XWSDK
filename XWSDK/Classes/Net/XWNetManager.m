@@ -8,7 +8,7 @@
 #import "XWNetManager.h"
 #import "XWHttpResponse.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
-
+#import <YYKit/YYKit.h>
 
 
 NSInteger const XWHTTPServiceTimeoutInterval = 30;
@@ -242,7 +242,7 @@ NSInteger const XWHTTPServiceTimeoutInterval = 30;
             id data = response.data;
             if (data)
             {
-//                NSLog(@"successBlockMethod %@", [responseObject yy_modelToJSONString]);
+                NSLog(@"successBlockMethod %@", [responseObject modelToJSONString]);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(data);
                 });
@@ -261,7 +261,7 @@ NSInteger const XWHTTPServiceTimeoutInterval = 30;
     }
     else
     {
-//        NSLog(@"error   BlockMethod %@", [responseObject yy_modelToJSONString]);
+        NSLog(@"error   BlockMethod %@", [responseObject modelToJSONString]);
         if (failure)
         {
             NSString *errorMessage = [self parsedSuccesWithError:response];

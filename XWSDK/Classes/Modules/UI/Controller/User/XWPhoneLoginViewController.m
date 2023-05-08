@@ -52,8 +52,7 @@
         [[UIApplication sharedApplication].keyWindow endEditing:YES]; 
         [weakSelf.phoneLoginView.submitButton stopCircleAnimation];
         XWCodeLoginViewController *codeLoginViewController = [XWCodeLoginViewController new];
-        //todo
-//        [codeLoginViewController setCodeType:weakSelf.codeType];
+        [codeLoginViewController setCodeType:weakSelf.codeType];
         [weakSelf.navigationController pushViewController:codeLoginViewController animated:NO];
         NSString *phone = [NSString stringWithFormat:@"%@", weakSelf.phoneLoginView.phoneTextField.text];
         [codeLoginViewController setPhone:[weakSelf formatPhone:phone]];

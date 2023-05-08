@@ -163,11 +163,11 @@
 }
 
 
-- (void)setCodeType:(CodeType)codeType
+- (void)setCodeType:(XWCodeType)codeType
 {
     _codeType = codeType;
     switch (codeType) {
-        case CodeTypeByPhoneLogin:
+        case XWRegisterCode:
         {
             [self.submitButton setTitle:@"注册"];
             [_subTitleLabel setText:@"账号注册"];
@@ -180,7 +180,7 @@
             }];
             break;
         }
-        case CodeTypeByFindPassword:
+        case XWResetCode:
         {
             [self.submitButton setTitle:@"验证"];
             [_subTitleLabel setText:@"验证手机"];
@@ -194,7 +194,7 @@
             }];
             break;
         }
-        case CodeTypeByBind:
+        case XWBindCode:
         {
             [self.submitButton setTitle:@"绑定"];
             [_subTitleLabel setText:@"绑定"];
@@ -224,7 +224,7 @@
 - (void)codeTextChanged
 {
     switch (self.codeType) {
-        case CodeTypeByPhoneLogin:
+        case XWRegisterCode:
         {
             NSString *code = [_codeTextField text];
             NSString *password = [_passwordTextField text];
@@ -232,13 +232,13 @@
                                        && [[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 6)];
             break;
         }
-        case CodeTypeByFindPassword:
+        case XWResetCode:
         {
             NSString *code = [_codeTextField text];
             [_submitButton setEnabled:([[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 6)];
             break;
         }
-        case CodeTypeByBind:
+        case XWBindCode:
         {
             NSString *code = [_codeTextField text];
             [_submitButton setEnabled:([[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 6)];

@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <Masonry/Masonry.h>
 #import <YYKit/YYKit.h>
-
+#import "XWSDKViewModel.h"
 #import "XWHUD.h"
 
 typedef void (^closeButtonClickBlock)(void);
@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL                  isCanShowBack;
 @property (nonatomic, copy)   closeButtonClickBlock closeButtonClickBlock;
+
+@property (nonatomic, copy)   XWSDKViewModel *viewModel;
+
 - (void)bgClick;
 - (void)closeButtonClick;
 - (void)backButtonClick;

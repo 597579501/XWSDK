@@ -113,6 +113,7 @@
 		14A5A35F2A01F09300BC76A4 /* XWRoleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A5A35D2A01F09300BC76A4 /* XWRoleModel.m */; };
 		14A5A3622A020DB400BC76A4 /* XWOrderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A5A3602A020DB400BC76A4 /* XWOrderModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A5A3632A020DB400BC76A4 /* XWOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A5A3612A020DB400BC76A4 /* XWOrderModel.m */; };
+		14D095882A085C0800DDC68A /* XWSDK.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14D095872A085C0800DDC68A /* XWSDK.xcassets */; };
 		14DE9EBB29F7FD920093BF1C /* XWSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 14DE9EBA29F7FD920093BF1C /* XWSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14DE9EC929F7FDAB0093BF1C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9EC829F7FDAB0093BF1C /* AppDelegate.m */; };
 		14DE9ECC29F7FDAB0093BF1C /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9ECB29F7FDAB0093BF1C /* SceneDelegate.m */; };
@@ -270,6 +271,7 @@
 		14A5A35D2A01F09300BC76A4 /* XWRoleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWRoleModel.m; sourceTree = "<group>"; };
 		14A5A3602A020DB400BC76A4 /* XWOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWOrderModel.h; sourceTree = "<group>"; };
 		14A5A3612A020DB400BC76A4 /* XWOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWOrderModel.m; sourceTree = "<group>"; };
+		14D095872A085C0800DDC68A /* XWSDK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = XWSDK.xcassets; sourceTree = "<group>"; };
 		14DE9EB729F7FD920093BF1C /* XWSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XWSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14DE9EBA29F7FD920093BF1C /* XWSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWSDK.h; sourceTree = "<group>"; };
 		14DE9EC529F7FDAB0093BF1C /* XWSDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XWSDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -589,6 +591,7 @@
 		14DE9EE529F7FE710093BF1C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				14D095872A085C0800DDC68A /* XWSDK.xcassets */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -852,6 +855,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14D095882A085C0800DDC68A /* XWSDK.xcassets in Resources */,
 				14DE9ED729F7FDAC0093BF1C /* LaunchScreen.storyboard in Resources */,
 				14DE9ED429F7FDAC0093BF1C /* Assets.xcassets in Resources */,
 				14DE9ED229F7FDAB0093BF1C /* Main.storyboard in Resources */,
@@ -1180,10 +1184,11 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = F9F3VY46M8;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = SU47M35443;
 				GCC_PREFIX_HEADER = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = XWSDKDemo/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "需要获取您的相册权限用以保存账号密码";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1198,7 +1203,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xwsdkdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "SDKDemo Dev";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Wildcard;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1213,10 +1218,11 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = F9F3VY46M8;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = SU47M35443;
 				GCC_PREFIX_HEADER = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = XWSDKDemo/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "需要获取您的相册权限用以保存账号密码";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1231,7 +1237,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xwsdkdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "SDKDemo Dev";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Wildcard;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
