@@ -62,7 +62,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)aTextfield {
-    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
     [aTextfield resignFirstResponder];//关闭键盘
     return YES;
 }
@@ -297,7 +297,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)aTextfield {
-    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
     [aTextfield resignFirstResponder];//关闭键盘
     return YES;
 }
@@ -490,7 +490,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)aTextfield {
-    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
     [aTextfield resignFirstResponder];//关闭键盘
     return YES;
 }

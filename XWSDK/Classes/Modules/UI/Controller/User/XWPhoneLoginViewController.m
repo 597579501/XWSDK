@@ -49,7 +49,7 @@
     }];
     
     [_phoneLoginView setSubmitButtonClickBlock:^{
-        [[UIApplication sharedApplication].keyWindow endEditing:YES]; 
+        [[UIApplication sharedApplication].windows.firstObject endEditing:YES]; 
         [weakSelf.phoneLoginView.submitButton stopCircleAnimation];
         XWCodeLoginViewController *codeLoginViewController = [XWCodeLoginViewController new];
         [codeLoginViewController setCodeType:weakSelf.codeType];

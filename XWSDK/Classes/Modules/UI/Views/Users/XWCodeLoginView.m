@@ -30,6 +30,7 @@
         _topView = topView;
         
         UILabel *companyLabel = [UILabel new];
+        [companyLabel setTag:1];
         [companyLabel setTextColor:[UIColor whiteColor]];
         [companyLabel setText:@"账号登陆"];
         [companyLabel setFont:kFont(17)];
@@ -166,11 +167,13 @@
 - (void)setCodeType:(XWCodeType)codeType
 {
     _codeType = codeType;
+    UILabel *companyLabel = [_topView viewWithTag:1];
     switch (codeType) {
         case XWRegisterCode:
         {
             [self.submitButton setTitle:@"注册"];
             [_subTitleLabel setText:@"账号注册"];
+            [companyLabel  setText:@"账号注册"];
             [self.passwordTextField setHidden:NO];
             [self.passwordTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(self.codeTextField.mas_left);
@@ -184,6 +187,7 @@
         {
             [self.submitButton setTitle:@"验证"];
             [_subTitleLabel setText:@"验证手机"];
+            [companyLabel  setText:@"验证手机"];
             [self.passwordTextField setClipsToBounds:YES];
             [self.passwordTextField setHidden:YES];
             [self.passwordTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -198,13 +202,13 @@
         {
             [self.submitButton setTitle:@"绑定"];
             [_subTitleLabel setText:@"绑定"];
-            [self.passwordTextField setClipsToBounds:YES];
-            [self.passwordTextField setHidden:YES];
+            [companyLabel  setText:@"绑定"];
+            [self.passwordTextField setHidden:NO];
             [self.passwordTextField mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(self.codeTextField.mas_left);
                 make.top.mas_equalTo(self.codeTextField.mas_bottom).with.offset(10);
                 make.width.mas_equalTo(self.codeTextField.mas_width);
-                make.height.mas_equalTo(0);
+                make.height.mas_equalTo(40);
             }];
             break;
         }
@@ -228,20 +232,20 @@
         {
             NSString *code = [_codeTextField text];
             NSString *password = [_passwordTextField text];
-            [_submitButton setEnabled:(([[password stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 6)
-                                       && [[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 6)];
+            [_submitButton setEnabled:(([[password stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 5)
+                                       && [[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 5)];
             break;
         }
         case XWResetCode:
         {
             NSString *code = [_codeTextField text];
-            [_submitButton setEnabled:([[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 6)];
+            [_submitButton setEnabled:([[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 5)];
             break;
         }
         case XWBindCode:
         {
             NSString *code = [_codeTextField text];
-            [_submitButton setEnabled:([[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 6)];
+            [_submitButton setEnabled:([[code stringByReplacingOccurrencesOfString:@" " withString:@""] length] == 5)];
             break;
         }
         default:

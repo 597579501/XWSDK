@@ -109,6 +109,10 @@
 		148B24FA2A065B76009BFE2E /* XWGQOrderInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B24F82A065B76009BFE2E /* XWGQOrderInfoModel.m */; };
 		148B24FE2A0665A9009BFE2E /* XWUIHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B24FC2A0665A9009BFE2E /* XWUIHelper.h */; };
 		148B24FF2A0665A9009BFE2E /* XWUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B24FD2A0665A9009BFE2E /* XWUIHelper.m */; };
+		1496C9732A08F924007D8CF6 /* XWUserCenterViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1496C96F2A08F924007D8CF6 /* XWUserCenterViewController.h */; };
+		1496C9742A08F924007D8CF6 /* XWServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1496C9702A08F924007D8CF6 /* XWServiceViewController.m */; };
+		1496C9752A08F924007D8CF6 /* XWUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1496C9712A08F924007D8CF6 /* XWUserCenterViewController.m */; };
+		1496C9762A08F924007D8CF6 /* XWServiceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1496C9722A08F924007D8CF6 /* XWServiceViewController.h */; };
 		14A5A35E2A01F09300BC76A4 /* XWRoleModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A5A35C2A01F09300BC76A4 /* XWRoleModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A5A35F2A01F09300BC76A4 /* XWRoleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A5A35D2A01F09300BC76A4 /* XWRoleModel.m */; };
 		14A5A3622A020DB400BC76A4 /* XWOrderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A5A3602A020DB400BC76A4 /* XWOrderModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -116,9 +120,7 @@
 		14D095882A085C0800DDC68A /* XWSDK.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14D095872A085C0800DDC68A /* XWSDK.xcassets */; };
 		14DE9EBB29F7FD920093BF1C /* XWSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 14DE9EBA29F7FD920093BF1C /* XWSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14DE9EC929F7FDAB0093BF1C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9EC829F7FDAB0093BF1C /* AppDelegate.m */; };
-		14DE9ECC29F7FDAB0093BF1C /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9ECB29F7FDAB0093BF1C /* SceneDelegate.m */; };
 		14DE9ECF29F7FDAB0093BF1C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9ECE29F7FDAB0093BF1C /* ViewController.m */; };
-		14DE9ED229F7FDAB0093BF1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14DE9ED029F7FDAB0093BF1C /* Main.storyboard */; };
 		14DE9ED429F7FDAC0093BF1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14DE9ED329F7FDAC0093BF1C /* Assets.xcassets */; };
 		14DE9ED729F7FDAC0093BF1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14DE9ED529F7FDAC0093BF1C /* LaunchScreen.storyboard */; };
 		14DE9EDA29F7FDAC0093BF1C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9ED929F7FDAC0093BF1C /* main.m */; };
@@ -267,6 +269,10 @@
 		148B24FB2A0660D2009BFE2E /* XWSDKEnumHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWSDKEnumHeader.h; sourceTree = "<group>"; };
 		148B24FC2A0665A9009BFE2E /* XWUIHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWUIHelper.h; sourceTree = "<group>"; };
 		148B24FD2A0665A9009BFE2E /* XWUIHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWUIHelper.m; sourceTree = "<group>"; };
+		1496C96F2A08F924007D8CF6 /* XWUserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWUserCenterViewController.h; sourceTree = "<group>"; };
+		1496C9702A08F924007D8CF6 /* XWServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWServiceViewController.m; sourceTree = "<group>"; };
+		1496C9712A08F924007D8CF6 /* XWUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWUserCenterViewController.m; sourceTree = "<group>"; };
+		1496C9722A08F924007D8CF6 /* XWServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWServiceViewController.h; sourceTree = "<group>"; };
 		14A5A35C2A01F09300BC76A4 /* XWRoleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWRoleModel.h; sourceTree = "<group>"; };
 		14A5A35D2A01F09300BC76A4 /* XWRoleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWRoleModel.m; sourceTree = "<group>"; };
 		14A5A3602A020DB400BC76A4 /* XWOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWOrderModel.h; sourceTree = "<group>"; };
@@ -277,11 +283,8 @@
 		14DE9EC529F7FDAB0093BF1C /* XWSDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XWSDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14DE9EC729F7FDAB0093BF1C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		14DE9EC829F7FDAB0093BF1C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		14DE9ECA29F7FDAB0093BF1C /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		14DE9ECB29F7FDAB0093BF1C /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		14DE9ECD29F7FDAB0093BF1C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		14DE9ECE29F7FDAB0093BF1C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		14DE9ED129F7FDAB0093BF1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14DE9ED329F7FDAC0093BF1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14DE9ED629F7FDAC0093BF1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14DE9ED829F7FDAC0093BF1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -361,6 +364,7 @@
 		148B244F2A063DC3009BFE2E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1496C96E2A08F924007D8CF6 /* Center */,
 				148B24502A063DFB009BFE2E /* User */,
 			);
 			path = Controller;
@@ -521,6 +525,17 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		1496C96E2A08F924007D8CF6 /* Center */ = {
+			isa = PBXGroup;
+			children = (
+				1496C96F2A08F924007D8CF6 /* XWUserCenterViewController.h */,
+				1496C9702A08F924007D8CF6 /* XWServiceViewController.m */,
+				1496C9712A08F924007D8CF6 /* XWUserCenterViewController.m */,
+				1496C9722A08F924007D8CF6 /* XWServiceViewController.h */,
+			);
+			path = Center;
+			sourceTree = "<group>";
+		};
 		14DE9EAD29F7FD910093BF1C = {
 			isa = PBXGroup;
 			children = (
@@ -557,11 +572,8 @@
 			children = (
 				14DE9EC729F7FDAB0093BF1C /* AppDelegate.h */,
 				14DE9EC829F7FDAB0093BF1C /* AppDelegate.m */,
-				14DE9ECA29F7FDAB0093BF1C /* SceneDelegate.h */,
-				14DE9ECB29F7FDAB0093BF1C /* SceneDelegate.m */,
 				14DE9ECD29F7FDAB0093BF1C /* ViewController.h */,
 				14DE9ECE29F7FDAB0093BF1C /* ViewController.m */,
-				14DE9ED029F7FDAB0093BF1C /* Main.storyboard */,
 				14DE9ED329F7FDAC0093BF1C /* Assets.xcassets */,
 				14DE9ED529F7FDAC0093BF1C /* LaunchScreen.storyboard */,
 				14DE9ED829F7FDAC0093BF1C /* Info.plist */,
@@ -712,6 +724,7 @@
 				148B24D72A06403A009BFE2E /* XWUserLoginView.h in Headers */,
 				148B24EC2A06526E009BFE2E /* XWTableViewCell.h in Headers */,
 				14DE9F9C29F7FFD00093BF1C /* XWViewController.h in Headers */,
+				1496C9732A08F924007D8CF6 /* XWUserCenterViewController.h in Headers */,
 				148B24692A063DFB009BFE2E /* XWUserLoginViewController.h in Headers */,
 				148B249A2A063ED7009BFE2E /* XWUserListTableViewCell.h in Headers */,
 				148B249F2A063ED7009BFE2E /* XWUserAgreementView.h in Headers */,
@@ -740,6 +753,7 @@
 				148B24D82A06403A009BFE2E /* XWMainView.h in Headers */,
 				148B24A42A063ED7009BFE2E /* XWSubmitButton.h in Headers */,
 				148725EE29F80DBA00C1ED33 /* XWBaseServer.h in Headers */,
+				1496C9762A08F924007D8CF6 /* XWServiceViewController.h in Headers */,
 				14DE9F9F29F7FFD00093BF1C /* XWModel.h in Headers */,
 				148B24AB2A063F1E009BFE2E /* XWProgressHUD.h in Headers */,
 				148B24F52A06598A009BFE2E /* XWDBHelper.h in Headers */,
@@ -858,7 +872,6 @@
 				14D095882A085C0800DDC68A /* XWSDK.xcassets in Resources */,
 				14DE9ED729F7FDAC0093BF1C /* LaunchScreen.storyboard in Resources */,
 				14DE9ED429F7FDAC0093BF1C /* Assets.xcassets in Resources */,
-				14DE9ED229F7FDAB0093BF1C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,6 +932,7 @@
 				148B24A12A063ED7009BFE2E /* XWImageButton.m in Sources */,
 				148B24A32A063ED7009BFE2E /* XWPaySectionView.m in Sources */,
 				148B246F2A063DFB009BFE2E /* XWCodeLoginViewController.m in Sources */,
+				1496C9752A08F924007D8CF6 /* XWUserCenterViewController.m in Sources */,
 				14DE9F9B29F7FFD00093BF1C /* XWViewModel.m in Sources */,
 				148B24992A063ED7009BFE2E /* XWTableViewCells.m in Sources */,
 				14DE9FA529F7FFE60093BF1C /* XWSDK.m in Sources */,
@@ -945,6 +959,7 @@
 				148B24DA2A06403A009BFE2E /* XWResetPassWordView.m in Sources */,
 				148B24ED2A06526E009BFE2E /* XWTableViewCell.m in Sources */,
 				148B24702A063DFB009BFE2E /* XWUpdatePassWordViewController.m in Sources */,
+				1496C9742A08F924007D8CF6 /* XWServiceViewController.m in Sources */,
 				148B24CD2A06403A009BFE2E /* XWUserLoginView.m in Sources */,
 				14DE9F9D29F7FFD00093BF1C /* XWViewController.m in Sources */,
 				148B24FF2A0665A9009BFE2E /* XWUIHelper.m in Sources */,
@@ -963,7 +978,6 @@
 				14DE9ECF29F7FDAB0093BF1C /* ViewController.m in Sources */,
 				14DE9EC929F7FDAB0093BF1C /* AppDelegate.m in Sources */,
 				14DE9EDA29F7FDAC0093BF1C /* main.m in Sources */,
-				14DE9ECC29F7FDAB0093BF1C /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,14 +992,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		14DE9ED029F7FDAB0093BF1C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				14DE9ED129F7FDAB0093BF1C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		14DE9ED529F7FDAC0093BF1C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1191,9 +1197,10 @@
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "需要获取您的相册权限用以保存账号密码";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1225,9 +1232,10 @@
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "需要获取您的相册权限用以保存账号密码";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

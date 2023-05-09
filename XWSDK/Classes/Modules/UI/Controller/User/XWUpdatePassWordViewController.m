@@ -5,8 +5,9 @@
 //
 
 #import "XWUpdatePassWordViewController.h"
-//#import "XWUserSystemManager.h"
-
+#import "XWSDK.h"
+#import "XWSDKViewModel.h"
+#import "XWHUD.h"
 
 @interface XWUpdatePassWordViewController ()
 
@@ -27,6 +28,7 @@
     [super viewDidLoad];
     WS(weakSelf);
     
+    id s = [XWSDK sharedInstance].currUser;
     
     [self.view addSubview:_updatePassWordView];
     [_updatePassWordView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -35,34 +37,30 @@
     }];
     
     
-//    [_updatePassWordView setBackButtonClickBlock:^{
-//        [weakSelf.navigationController popViewControllerAnimated:NO];
-//    }];
+    [_updatePassWordView setBackButtonClickBlock:^{
+        [weakSelf.navigationController popViewControllerAnimated:NO];
+    }];
 //    
-//    [_updatePassWordView setSubmitButtonClickBlock:^{
-//        [[UIApplication sharedApplication].keyWindow endEditing:YES]; 
-//        [weakSelf.updatePassWordView.submitButton startCircleAnimation];
-//        [weakSelf.updatePassWordView setUserInteractionEnabled:NO];
-//        [weakSelf.updatePassWordView.oldPasswordTextField resignFirstResponder];
-//        [weakSelf.updatePassWordView.nPasswordTextField resignFirstResponder];
-//        [weakSelf.updatePassWordView.repeatPasswordTextField resignFirstResponder];
-////        [XWUserSystemManager updatePassword:weakSelf.updatePassWordView.oldPasswordTextField.text
-////                                newPassword:weakSelf.updatePassWordView.nPasswordTextField.text
-////                                    success:^{
-////                                        [weakSelf.updatePassWordView.submitButton stopCircleAnimation];
-////                                        [weakSelf.updatePassWordView setUserInteractionEnabled:YES];
-////                                        [weakSelf closeView];
-////                                        [[XWSDK share] showFloatBtn];
-////                                        [XWHUD showOnlyText:[[UIApplication sharedApplication] keyWindow] text:@"修改密码成功"];
-////                                    } failure:^(int errcode, NSString *errorMessage) {
-////                                        [weakSelf.updatePassWordView.submitButton stopCircleAnimation];
-////                                        [weakSelf.updatePassWordView setUserInteractionEnabled:YES];
-////                                        [XWHUD showOnlyText:weakSelf.view text:errorMessage];
-////                                    }];
-//        
-//
-//    }];
-    
+    [_updatePassWordView setSubmitButtonClickBlock:^{
+        [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
+        [weakSelf.updatePassWordView.submitButton startCircleAnimation];
+        [weakSelf.updatePassWordView setUserInteractionEnabled:NO];
+        [weakSelf.updatePassWordView.oldPasswordTextField resignFirstResponder];
+        [weakSelf.updatePassWordView.nPasswordTextField resignFirstResponder];
+        [weakSelf.updatePassWordView.repeatPasswordTextField resignFirstResponder];
+        
+        [weakSelf.viewModel update:[XWSDK sharedInstance].currUser.userName password:weakSelf.updatePassWordView.oldPasswordTextField.text newPassword:weakSelf.updatePassWordView.nPasswordTextField.text completion:^{
+            [weakSelf.updatePassWordView.submitButton stopCircleAnimation];
+            [weakSelf.updatePassWordView setUserInteractionEnabled:YES];
+            [weakSelf closeView];
+            [[XWSDK sharedInstance] showFloatBtn];
+            [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"修改密码成功"];
+        } failure:^(NSString * _Nonnull errorMessage) {
+            [weakSelf.updatePassWordView.submitButton stopCircleAnimation];
+            [weakSelf.updatePassWordView setUserInteractionEnabled:YES];
+            [XWHUD showOnlyText:weakSelf.view text:errorMessage];
+        }];
+    }];
 }
 
 

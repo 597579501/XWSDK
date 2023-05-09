@@ -12,8 +12,8 @@
 - (void)hiddenKeyBroad
 {
     [self endEditing:YES];
-    [[UIApplication sharedApplication].keyWindow endEditing:YES];
-    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
+    [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
     if (self.bgClickClickBlock)
     {
         self.bgClickClickBlock();

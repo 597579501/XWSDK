@@ -56,4 +56,8 @@
 
 
 
+#define kAotuLogin      @"autoLogin"
+#define kLastUserInfo   @"lastUserInfo"
+
+
 #endif /* XWSDKHeader_h */

@@ -40,7 +40,7 @@
     UIWebView *callWebView = [[UIWebView alloc] init];
     NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", mobile]];
     [callWebView loadRequest:[NSURLRequest requestWithURL:telURL]];
-    [[[UIApplication sharedApplication] keyWindow] addSubview:callWebView];
+    [[[UIApplication sharedApplication] windows].firstObject addSubview:callWebView];
 }
 
 

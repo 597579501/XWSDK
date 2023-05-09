@@ -47,8 +47,7 @@ static CGFloat buttonMargin = 25;
         [_usernameDesLabel setTextColor:kTextColor];
         [self addSubview:_usernameDesLabel];
         
-//        NSString *username = [XWSDK sharedInstance].currUser.username;
-        NSString *username = @"123";
+        NSString *username = [XWSDK sharedInstance].currUser.userName;
         UILabel *usernameLabel = [UILabel new];
         [usernameLabel setText:username];
         [usernameLabel setFont:kFont(14)];

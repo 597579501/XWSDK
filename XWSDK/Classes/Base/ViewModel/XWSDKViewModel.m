@@ -10,6 +10,10 @@
 #import "XWGwDomainServer.h"
 #import "XWLogDomainServer.h"
 #import "XWConfModel.h"
+#import "XWUserLoginRecordModel.h"
+#import "XWDBHelper.h"
+#import "XWSDKHeader.h"
+#import "XWHelper.h"
 #import <YYKit/YYKit.h>
 
 
@@ -64,6 +68,21 @@
         NSString *userId = data[@"user_id"];
         if (completion && userId)
         {
+            
+            long currTime = [[NSDate date] timeIntervalSince1970] ;
+            XWUserLoginRecordModel *userLoginRecordModel = [XWUserLoginRecordModel new];
+            [userLoginRecordModel setLoginTime:currTime];
+            [userLoginRecordModel setUserId:userId];
+            [userLoginRecordModel setPassword:password];
+    //        if (userType == UserTypeByPhone) {
+    //            [userLoginRecordModel setUsername:phoneNumber];
+    //        }
+    //        else if (userType == UserTypeByNormal)
+    //        {
+    //            [userLoginRecordModel setUsername:userResponeModel.username];
+    //        }
+            
+            [self saveUserInformation:userLoginRecordModel user:nil isPostNotification:NO];
             completion(userId);
         }
     } failure:^(NSString *errorMessage) {
@@ -84,6 +103,21 @@
     }
     [XWGwDomainServer login:name password:password success:^(id data) {
         XWUserModel *userModel = [XWUserModel modelWithJSON:data];
+        long currTime = [[NSDate date] timeIntervalSince1970] ;
+        XWUserLoginRecordModel *userLoginRecordModel = [XWUserLoginRecordModel new];
+        [userLoginRecordModel setLoginTime:currTime];
+        [userLoginRecordModel setUserId:userModel.userId];
+        [userLoginRecordModel setUsername:name];
+        [userLoginRecordModel setPassword:password];
+//        if (userType == UserTypeByPhone) {
+//            [userLoginRecordModel setUsername:phoneNumber];
+//        }
+//        else if (userType == UserTypeByNormal)
+//        {
+//            [userLoginRecordModel setUsername:userResponeModel.username];
+//        }
+        
+        [self saveUserInformation:userLoginRecordModel user:userModel isPostNotification:YES];
         if (completion && userModel)
         {
             completion(userModel);
@@ -95,6 +129,45 @@
         }
     }];
 }
+
+
+- (void)bind:(NSString *)name password:(NSString *)password phone:(NSString *)phone code:(NSString *)code
+  completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure
+{
+    [XWGwDomainServer bind:name password:password phone:phone code:code success:^(id  _Nullable data) {
+        XWUserModel *userModel = [XWUserModel modelWithJSON:data];
+        if (completion && userModel)
+        {
+            completion(userModel);
+        }
+    } failure:^(NSString * _Nullable errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
+- (void)unBind:(NSString *)name newPassword:(NSString *)newPassword code:(NSString *)code
+    completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
+{
+    [XWGwDomainServer unBind:name newPassword:newPassword code:code success:^(id  _Nullable data) {
+        XWUserModel *userModel = [XWUserModel modelWithJSON:data];
+        if (completion && userModel)
+        {
+            completion(userModel);
+        }
+    } failure:^(NSString * _Nullable errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
+
+
+
 
 - (void)start:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure
 {
@@ -132,9 +205,51 @@
             failure(errorMessage);
         }
     }];
-    
-    
 }
+
+- (void)update:(NSString *)name password:(NSString *)password newPassword:(NSString *)newPassword completion:(void(^)(void))completion
+       failure:(void(^)(NSString *errorMessage))failure
+{
+    if (![self checkConf])
+    {
+        failure(@"未初始化SDK");
+        return;
+    }
+    [XWGwDomainServer update:name password:password newPassword:newPassword success:^(id  _Nullable data) {
+        if (completion)
+        {
+            completion();
+        }
+    } failure:^(NSString * _Nullable errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
+- (void)resetPassword:(NSString *)phone code:(NSString *)code newPassword:(NSString *)newPassword completion:(void(^)(void))completion
+              failure:(void(^)(NSString *errorMessage))failure
+{
+    if (![self checkConf])
+    {
+        failure(@"未初始化SDK");
+        return;
+    }
+    [XWGwDomainServer resetPassword:phone newPassword:newPassword code:code success:^(id  _Nullable data) {
+        if (completion)
+        {
+            completion();
+        }
+    } failure:^(NSString * _Nullable errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
+
 
 
 - (void)open:(XWOrderModel *)order
@@ -162,6 +277,39 @@
     }];
 }
 
+- (void)saveUserInformation:(XWUserLoginRecordModel *)userLoginRecordModel  user:(XWUserModel* )user isPostNotification:(BOOL)isPost
+{
+    [[XWDBHelper sharedDBHelper] deleteUser:userLoginRecordModel.username];
+    [[XWDBHelper sharedDBHelper] addUser:userLoginRecordModel];
+    
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kLastUserInfo];
+    [[NSUserDefaults standardUserDefaults] setObject:@YES forKey:kAotuLogin];
+    
+    NSString *userString = [XWHelper tripleDES:[userLoginRecordModel modelToJSONString] encryptOrDecrypt:kCCEncrypt];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:userString forKey:kLastUserInfo];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+    
+    if (isPost)
+    {
+        NSNotification *notification = [NSNotification notificationWithName:@"InfoNotification" object:user userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+    }
+}
+
+- (XWUserLoginRecordModel *)getUserInformation
+{
+    NSString *modelString = [[NSUserDefaults standardUserDefaults] objectForKey:kLastUserInfo];
+    if (modelString)
+    {
+        modelString = [XWHelper tripleDES:modelString encryptOrDecrypt:kCCDecrypt];
+        XWUserLoginRecordModel *user = [XWUserLoginRecordModel modelWithJSON:modelString];
+        return user;
+    }
+    return nil;
+}
 
 
 - (BOOL)checkConf

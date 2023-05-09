@@ -24,14 +24,14 @@
     }];
     
     [_resetPassWordView setSubmitButtonClickBlock:^{
-        [[UIApplication sharedApplication].keyWindow endEditing:YES]; 
+        [[UIApplication sharedApplication].windows.firstObject endEditing:YES]; 
         [weakSelf.resetPassWordView setUserInteractionEnabled:NO];
         [weakSelf.resetPassWordView.passwordTextField resignFirstResponder];
 //        [XWUserSystemManager resetPassword:weakSelf.phoneNumber code:weakSelf.code newPassword:weakSelf.resetPassWordView.passwordTextField.text success:^{
 //            [weakSelf.resetPassWordView.submitButton stopCircleAnimation];
 //            [weakSelf.resetPassWordView setUserInteractionEnabled:YES];
 //            [weakSelf closeView];
-//            [XWHUD showOnlyText:[[UIApplication sharedApplication] keyWindow] text:@"重置密码成功"];
+//            [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject] text:@"重置密码成功"];
 //            [[XWSDK share] logoutAccount];
 //        } failure:^(int errcode, NSString *errorMessage) {
 //            [weakSelf.resetPassWordView.submitButton stopCircleAnimation];

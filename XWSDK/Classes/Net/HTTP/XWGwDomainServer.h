@@ -35,6 +35,23 @@ NS_ASSUME_NONNULL_BEGIN
                         success:(Success)success
                         failure:(Failure)failure;
 
++ (NSURLSessionDataTask *)update:(NSString *)name password:(NSString *)password newPassword:(NSString *)newPassword
+                        success:(Success)success
+                         failure:(Failure)failure;
+
++ (NSURLSessionDataTask *)resetPassword:(NSString *)phone newPassword:(NSString *)newPassword code:(NSString *)code
+                                success:(Success)success
+                                failure:(Failure)failure;
+
++ (NSURLSessionDataTask *)bind:(NSString *)name password:(NSString *)password phone:(NSString *)phone code:(NSString *)code
+                        success:(Success)success
+                       failure:(Failure)failure;
+
++ (NSURLSessionDataTask *)unBind:(NSString *)name newPassword:(NSString *)newPassword code:(NSString *)code
+                         success:(Success)success
+                         failure:(Failure)failure;
+
+
 + (NSURLSessionDataTask *)idAuth:(NSString *)userId idNumber:(NSString *)idNumber realName:(NSString *)realName
                         success:(Success)success
                          failure:(Failure)failure;

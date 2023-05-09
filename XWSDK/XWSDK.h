@@ -59,6 +59,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)login;
 
+- (void)logoutAccount;
+
+
+
 - (void)start:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
 
 - (void)alive:(XWRoleModel *)roleModel
@@ -69,7 +73,18 @@ NS_ASSUME_NONNULL_BEGIN
    completion:(void(^)(NSString *orderId, NSString *url))completion
      failure:(void(^)(NSString *errorMessage))failure;
 
+/**
+ *  展示浮动按钮
+ */
+- (void)showFloatBtn;
+
+/**
+ *  隐藏浮动按钮
+ */
+- (void)disFloatBtn;
+
 - (NSString *)version;
+
 
 @end
 

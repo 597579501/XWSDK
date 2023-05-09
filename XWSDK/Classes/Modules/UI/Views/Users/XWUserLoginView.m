@@ -60,6 +60,7 @@
         
         
         self.usernameTextField = [XWUsernameTextField new];
+        
         [self.usernameTextField setPlaceholder:@"请输入账号"];
         [self.usernameTextField showUserListButton];
         [self.usernameTextField.rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -67,6 +68,7 @@
         [self addSubview:_usernameTextField];
         
         self.passwordTextField = [XWPasswordTextField new];
+        
         [self addSubview:self.passwordTextField];
         
 //        _autoLoginAgreementView = [[XWAgreementView alloc] initWithText:@"自动登录"];

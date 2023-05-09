@@ -55,7 +55,7 @@
     
     
     [_userRegisterView setSubmitButtonClickBlock:^{
-        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
         [weakSelf.userRegisterView.usernameTextField resignFirstResponder];
         [weakSelf.userRegisterView.passwordTextField resignFirstResponder];
         [weakSelf.userRegisterView setUserInteractionEnabled:NO];
@@ -88,7 +88,7 @@
     }];
     
     [_userRegisterView setPhoneButtonClickBlock:^{
-        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
         XWPhoneLoginViewController *phoneLoginViewController = [XWPhoneLoginViewController new];
         [phoneLoginViewController setCodeType:XWRegisterCode];
         [weakSelf.navigationController pushViewController:phoneLoginViewController animated:NO];
@@ -146,7 +146,7 @@
     }else{
         msg = @"保存账号信息成功" ;
     }
-    [XWHUD showOnlyText:[[UIApplication sharedApplication] keyWindow] text:msg];
+    [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:msg];
 }
 
 
