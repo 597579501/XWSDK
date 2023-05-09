@@ -91,19 +91,6 @@
     else if (indexPath.row == 1)
     {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        [[XWSDK sharedInstance] reg:@"xwtest5" password:@"xwtest1" code:@"" completion:^(NSString * _Nonnull userId) {
-            self.userId = userId;
-            cell.detailTextLabel.text = userId;
-            [tableView reloadData];
-        } failure:^(NSString * _Nonnull errorMessage) {
-            cell.detailTextLabel.text = errorMessage;
-            [tableView reloadData];
-        }];
-        
-    }
-    else if (indexPath.row == 2)
-    {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [[XWSDK sharedInstance] login];
 //        [[XWSDK sharedInstance] login:@"xwtest5" password:@"xwtest1" completion:^(XWUserModel * _Nonnull userModel) {
 //            self.userId = userModel.userId;
@@ -115,7 +102,7 @@
 //        }];
         
     }
-    else if (indexPath.row == 3)
+    else if (indexPath.row == 2)
     {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [[XWSDK sharedInstance] start:^(XWUserModel * _Nonnull userModel) {
@@ -127,7 +114,7 @@
             [tableView reloadData];
         }];
     }
-    else if (indexPath.row == 4)
+    else if (indexPath.row == 3)
     {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
@@ -147,7 +134,7 @@
             [tableView reloadData];
         }];
     }
-    else if (indexPath.row == 5)
+    else if (indexPath.row == 4)
     {
         
     }
@@ -195,7 +182,7 @@
 {
     if (!_dataArray)
     {
-        _dataArray = @[@"初始化", @"注册", @"登录", @"激活上报", @"角色上报", @"用户中心",@"请求支付"];
+        _dataArray = @[@"初始化", @"登录", @"激活上报", @"角色上报", @"用户中心", @"请求支付"];
     }
     return _dataArray;;
 }

@@ -58,7 +58,7 @@
         [weakSelf.codeLoginView.passwordTextField resignFirstResponder];
         XWProgressHUD *hud = [XWHUD showHUD:weakSelf.view];
         
-        [weakSelf.viewModel sendCode:weakSelf.phone name:weakSelf.phone codeType:weakSelf.codeType completion:^{
+        [weakSelf.viewModel sendCode:weakSelf.phone name:[XWSDK sharedInstance].currUser.userName codeType:weakSelf.codeType completion:^{
             [weakSelf.codeLoginView codeLabelCountDown:[NSNumber numberWithInt:59]];
             [XWHUD hideHUD:hud];
             [XWHUD showOnlyText:weakSelf.view text:@"获取验证码成功"];
@@ -123,7 +123,7 @@
         }
         else if (weakSelf.codeType == XWBindCode)
         {
-            [weakSelf.viewModel bind:weakSelf.phone newPassword:@"" code:weakSelf.codeLoginView.codeTextField.text completion:^(XWUserModel * _Nonnull userModel) {
+            [weakSelf.viewModel bind:[XWSDK sharedInstance].currUser.userName password:weakSelf.codeLoginView.passwordTextField.text phone:weakSelf.phone code:weakSelf.codeLoginView.codeTextField.text completion:^(XWUserModel * _Nonnull userModel) {
                 [weakSelf.codeLoginView.submitButton stopCircleAnimation];
                 [weakSelf.codeLoginView setUserInteractionEnabled:YES];
                 [weakSelf closeView];

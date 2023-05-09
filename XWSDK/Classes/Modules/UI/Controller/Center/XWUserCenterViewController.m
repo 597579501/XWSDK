@@ -35,18 +35,20 @@
     
     WS(weakSelf)
     
-//    [DHUserSystemManager getUserCenterInfo:^(DHUserResponeModel *userResponeModel) {
-//        _userResponeModel = userResponeModel;
-//        NSLog(@"----------pring---log--%@",_userResponeModel.serviceMobile);
-//        NSLog(@"----------pring---log--%@",_userResponeModel.qqServiceGroup);
-//        NSLog(@"----------pring---log--%@",_userResponeModel.qqPlayerGroup);
-//        NSLog(@"----------pring---log--%@",_userResponeModel);
-//
-//        [weakSelf.userCenterView setPhone:userResponeModel.phoneNumber];
-//
-//    } failure:^(int errcode, NSString *errorMessage) {
-//
-//    }];
+    self.viewModel
+    
+    [DHUserSystemManager getUserCenterInfo:^(DHUserResponeModel *userResponeModel) {
+        _userResponeModel = userResponeModel;
+        NSLog(@"----------pring---log--%@",_userResponeModel.serviceMobile);
+        NSLog(@"----------pring---log--%@",_userResponeModel.qqServiceGroup);
+        NSLog(@"----------pring---log--%@",_userResponeModel.qqPlayerGroup);
+        NSLog(@"----------pring---log--%@",_userResponeModel);
+
+        [weakSelf.userCenterView setPhone:userResponeModel.phoneNumber];
+
+    } failure:^(int errcode, NSString *errorMessage) {
+
+    }];
     
 }
 

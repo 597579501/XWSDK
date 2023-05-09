@@ -29,6 +29,7 @@ static XWSDK *_instance = nil;
 @property (nonatomic, strong) XWCommonModel *commonModel;
 @property (nonatomic, strong) XWFloatWindow *floatWindow;
 @property (nonatomic, assign) BOOL          canShowController;
+@property (nonatomic, strong) XWUserModel *currUser;
 @end
 
 @implementation XWSDK
@@ -58,35 +59,7 @@ static XWSDK *_instance = nil;
     }];
 }
 
-- (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure
-{
-    [self.sdkViewModel reg:name password:password code:code completion:^(NSString * _Nonnull userId) {
-        if(completion)
-        {
-            completion(userId);
-        }
-    } failure:^(NSString * _Nonnull errorMessage) {
-        if (failure)
-        {
-            failure(errorMessage);
-        }
-    }];
-}
 
-- (void)login:(NSString *)name password:(NSString *)password completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure
-{
-    [self.sdkViewModel login:name password:password completion:^(XWUserModel *userModel) {
-        if(completion)
-        {
-            completion(userModel);
-        }
-    } failure:^(NSString * _Nonnull errorMessage) {
-        if (failure)
-        {
-            failure(errorMessage);
-        }
-    }];
-}
 
 
 
@@ -116,7 +89,7 @@ static XWSDK *_instance = nil;
   
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAotuLogin];
     [self.floatWindow dissmissWindow];
-    _currUser = nil;
+    _instance.currUser = nil;
     if (callBack) {
         callBack();
     }
@@ -157,7 +130,7 @@ static XWSDK *_instance = nil;
         [[[autoLoginViewController autoLoginView] cancelButton] setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             isLogin = false;
             [autoLoginViewController closeView];
-            self -> _currUser = nil;
+            _instance.currUser = nil;
 //            _role = nil;
             [self.floatWindow dissmissWindow];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAotuLogin];
@@ -316,7 +289,7 @@ static XWSDK *_instance = nil;
  */
 - (void)userCenter{
     
-    if (_currUser != nil)
+    if (_instance.currUser != nil)
     {
         [self.floatWindow dissmissWindow];
         
@@ -327,7 +300,7 @@ static XWSDK *_instance = nil;
         [rootcontroller addChildViewController:navigationController];
         [rootcontroller.view addSubview:navigationController.view];
         [userCenterViewController setCloseButtonClickBlock:^{
-            if (_currUser != nil)
+            if (_instance.currUser != nil)
             {
                 [self.floatWindow showWindow];
             }
@@ -346,7 +319,7 @@ static XWSDK *_instance = nil;
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLogin"];
     XWUserModel *user = (XWUserModel *)notification.object;
     [self.floatWindow showWindow];
-    _currUser = user;
+    _instance.currUser = user;
     if (_loginCallBack) {
         //        if (lSS == MKLSBL) {
         //            [reyun setLoginWithAccountID:user.userId andGender:o andage:@"" andServerId:@"" andlevel:0 andRole:@""];

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XWSDKViewModel : XWViewModel
 
+
 @property (nonatomic, strong) NSString *appKey;
 
 
@@ -28,7 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)login:(NSString *)name password:(NSString *)password completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
 
-- (void)bind:(NSString *)name newPassword:(NSString *)newPassword code:(NSString *)code
+- (void)update:(NSString *)name password:(NSString *)password newPassword:(NSString *)newPassword completion:(void(^)(void))completion
+       failure:(void(^)(NSString *errorMessage))failure;
+
+- (void)bind:(NSString *)name password:(NSString *)password phone:(NSString *)phone code:(NSString *)code
   completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
 
 - (void)unBind:(NSString *)name newPassword:(NSString *)newPassword code:(NSString *)code
