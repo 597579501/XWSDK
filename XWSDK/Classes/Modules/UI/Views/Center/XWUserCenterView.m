@@ -87,7 +87,11 @@ static CGFloat buttonMargin = 25;
         [_bindButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_bindButton setTitleColor:UIColorHex(0x464646) forState:UIControlStateHighlighted];
         [[_bindButton titleLabel] setFont:kTextFont];
-        [_bindButton setTitle:@"绑定密保" forState:UIControlStateNormal];
+        
+        XWUserModel *user = [XWSDK sharedInstance].currUser;
+        NSString *text = user.isBindphone ? @"解除密保" : @"绑定密保";
+        
+        [_bindButton setTitle:text forState:UIControlStateNormal];
 //        [_bindButton.layer setBorderWidth:0.5];
 //        [_bindButton.layer setBorderColor:kLineViewColor.CGColor];
 //        [_bindButton.layer setBorderColor:[UIColor orangeColor].CGColor];

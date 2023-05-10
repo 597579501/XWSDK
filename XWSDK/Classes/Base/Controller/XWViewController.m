@@ -8,8 +8,7 @@
 #import "XWViewController.h"
 #import <YYKit/YYKit.h>
 
-@interface XWViewController ()
-//<YYKeyboard>
+@interface XWViewController () <YYTextKeyboardObserver>
 {
     UIButton *_bgButton;
     UIView *_bgView;

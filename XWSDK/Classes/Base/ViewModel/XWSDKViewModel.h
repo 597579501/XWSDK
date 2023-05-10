@@ -35,8 +35,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)bind:(NSString *)name password:(NSString *)password phone:(NSString *)phone code:(NSString *)code
   completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
 
-- (void)unBind:(NSString *)name newPassword:(NSString *)newPassword code:(NSString *)code
+- (void)unBind:(NSString *)name password:(NSString *)password phone:(NSString *)phone code:(NSString *)code
     completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
+
+- (void)resetPassword:(NSString *)phone code:(NSString *)code newPassword:(NSString *)newPassword completion:(void(^)(void))completion
+              failure:(void(^)(NSString *errorMessage))failure;
 
 - (void)start:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
 

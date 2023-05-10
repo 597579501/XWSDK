@@ -13,7 +13,7 @@ typedef NS_ENUM(NSInteger, XWCodeType) {
     XWRegisterCode,
     XWResetCode,
     XWBindCode,
-    XWUnbindCode
+    XWUnBindCode
 };
 
 #endif /* XWSDKEnumHeader_h */

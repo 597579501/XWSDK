@@ -47,8 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
                         success:(Success)success
                        failure:(Failure)failure;
 
-+ (NSURLSessionDataTask *)unBind:(NSString *)name newPassword:(NSString *)newPassword code:(NSString *)code
-                         success:(Success)success
++ (NSURLSessionDataTask *)unBind:(NSString *)name password:(NSString *)password phone:(NSString *)phone code:(NSString *)code
+                        success:(Success)success
                          failure:(Failure)failure;
 
 

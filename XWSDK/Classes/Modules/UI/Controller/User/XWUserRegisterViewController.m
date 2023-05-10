@@ -74,17 +74,6 @@
             [weakSelf.userRegisterView setUserInteractionEnabled:YES];
             [XWHUD showOnlyText:weakSelf.view text:errorMessage];
         }];
-        
-//        [XWUserSystemManager registerUser:weakSelf.userRegisterView.usernameTextField.text
-//                                 passWord:weakSelf.userRegisterView.passwordTextField.text
-//                              phoneNumber:@""
-//                               verifyCode:@""
-//                                     type:UserTypeByNormal
-//                                  success:^(XWUserResponeModel *userResponeModel) {
-
-//                                  } failure:^(int errcode, NSString *errorMessage) {
-
-//                                  }];
     }];
     
     [_userRegisterView setPhoneButtonClickBlock:^{

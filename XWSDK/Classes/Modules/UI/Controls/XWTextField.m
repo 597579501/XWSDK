@@ -288,9 +288,9 @@
     {
         return YES;
     }
-    else if (textField.text.length >= 6)
+    else if (textField.text.length >= 5)
     {
-        textField.text = [textField.text substringToIndex:6];
+        textField.text = [textField.text substringToIndex:5];
         return NO;
     }
     return [XWHelper validateNumber:string];

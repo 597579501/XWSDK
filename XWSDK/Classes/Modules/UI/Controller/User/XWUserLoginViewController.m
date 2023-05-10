@@ -66,7 +66,7 @@
     [_userLoginView setForgetLabelClickBlock:^{
         [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
         XWPhoneLoginViewController *phoneLoginViewController = [XWPhoneLoginViewController new];
-        [phoneLoginViewController setCodeType:XWRegisterCode];
+        [phoneLoginViewController setCodeType:XWResetCode];
         [weakSelf.navigationController pushViewController:phoneLoginViewController animated:NO];
     
         
@@ -93,10 +93,6 @@
             [weakSelf.userLoginView setUserInteractionEnabled:YES];
             [XWHUD showOnlyText:weakSelf.view text:errorMessage];
         }];
-        
-        
-        
-        
     }];
     
     
@@ -134,12 +130,7 @@
 //    }];
     
     
-    //todo ceshi
-//    _userLoginView.usernameTextField.text = @"xwtest5";
-//    _userLoginView.passwordTextField.text = @"xwtest1";
     
-    _userLoginView.usernameTextField.text = @"A999999";
-    _userLoginView.passwordTextField.text = @"123123";
     
 }
 

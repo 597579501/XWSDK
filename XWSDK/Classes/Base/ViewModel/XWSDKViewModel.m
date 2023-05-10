@@ -71,6 +71,7 @@
             
             long currTime = [[NSDate date] timeIntervalSince1970] ;
             XWUserLoginRecordModel *userLoginRecordModel = [XWUserLoginRecordModel new];
+            [userLoginRecordModel setUsername:name];
             [userLoginRecordModel setLoginTime:currTime];
             [userLoginRecordModel setUserId:userId];
             [userLoginRecordModel setPassword:password];
@@ -135,7 +136,9 @@
   completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure
 {
     [XWGwDomainServer bind:name password:password phone:phone code:code success:^(id  _Nullable data) {
+        
         XWUserModel *userModel = [XWUserModel modelWithJSON:data];
+        
         if (completion && userModel)
         {
             completion(userModel);
@@ -148,10 +151,10 @@
     }];
 }
 
-- (void)unBind:(NSString *)name newPassword:(NSString *)newPassword code:(NSString *)code
-    completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
+- (void)unBind:(NSString *)name password:(NSString *)password phone:(NSString *)phone code:(NSString *)code
+    completion:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure
 {
-    [XWGwDomainServer unBind:name newPassword:newPassword code:code success:^(id  _Nullable data) {
+    [XWGwDomainServer unBind:name password:password phone:phone code:code success:^(id  _Nullable data) {
         XWUserModel *userModel = [XWUserModel modelWithJSON:data];
         if (completion && userModel)
         {

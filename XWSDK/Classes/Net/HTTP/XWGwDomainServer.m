@@ -71,7 +71,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
     {
         typeString = @"bind_phone";
     }
-    else if (codeType == XWUnbindCode)
+    else if (codeType == XWUnBindCode)
     {
         typeString = @"unbind_phone";
     }
@@ -170,7 +170,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
                              @"code" : code,
                              @"name" : phone,
                              @"data" : signNewPassword,
-                             @"notoken" : @""
+                             @"token" : @"notoken"
     };
     [commonDictionary addEntriesFromDictionary:params];
     NSString *signString = [self signWithParams:commonDictionary];
@@ -204,22 +204,22 @@ NSString *const XWOpenUrl = @"pay/open.php";
 }
 
 
-+ (NSURLSessionDataTask *)unBind:(NSString *)name newPassword:(NSString *)newPassword code:(NSString *)code
++ (NSURLSessionDataTask *)unBind:(NSString *)name password:(NSString *)password phone:(NSString *)phone code:(NSString *)code
                         success:(Success)success
                         failure:(Failure)failure
 {
     NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWUpdateUrl];
-    NSString *signNewPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", newPassword]];
+    NSString *signPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", password]];
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
     NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
     
-//    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
+    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
     NSDictionary *params = @{@"type" : @"unbind_phone",
                              @"code" : code,
                              @"name" : name,
-                             @"data" : signNewPassword,
-                             @"notoken" : @""
+                             @"data" : phone,
+                             @"token" : token
     };
     [commonDictionary addEntriesFromDictionary:params];
     NSString *signString = [self signWithParams:commonDictionary];

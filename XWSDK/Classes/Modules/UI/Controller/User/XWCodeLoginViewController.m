@@ -36,9 +36,6 @@
     [super viewDidLoad];
     WS(weakSelf);
     
-    // todo ceshi
-    
-    
     [self.navigationController setNavigationBarHidden:YES];
     
     [self.view addSubview:_codeLoginView];
@@ -90,36 +87,21 @@
                 [weakSelf.codeLoginView setUserInteractionEnabled:YES];
                 [XWHUD showOnlyText:weakSelf.view text:errorMessage];
             }];
-            
-//            [XWUserSystemManager registerUser:@""
-//                                     passWord:weakSelf.codeLoginView.passwordTextField.text
-//                                  phoneNumber:weakSelf.phone
-//                                   verifyCode:weakSelf.codeLoginView.codeTextField.text
-//                                         type:UserTypeByPhone
-//                                      success:^(XWUserResponeModel *userResponeModel) {
-
-//                                      } failure:^(int errcode, NSString *errorMessage) {
-//
-//            }];
         }
         else if (weakSelf.codeType == XWResetCode)
         {
-//            [weakSelf.viewModel up]
-            
-//            [XWUserSystemManager verifyCode:weakSelf.codeLoginView.codeTextField.text phoneNumber:weakSelf.phone method:XW_RESETPASSWORDEVERIFY_METHOD success:^(NSString *resetToken) {
-//                [weakSelf.codeLoginView.submitButton stopCircleAnimation];
-//                [weakSelf.codeLoginView setUserInteractionEnabled:YES];
-//
-//                XWResetPassWordViewController *resetPassWordViewController = [XWResetPassWordViewController new];
-//                [resetPassWordViewController setCode:weakSelf.codeLoginView.codeTextField.text];
-//                [resetPassWordViewController setPhoneNumber:weakSelf.phone];
-//                [weakSelf.navigationController pushViewController:resetPassWordViewController animated:NO];
-//
-//            } failure:^(int errcode, NSString *errorMessage) {
-//                [weakSelf.codeLoginView.submitButton stopCircleAnimation];
-//                [weakSelf.codeLoginView setUserInteractionEnabled:YES];
-//                [XWHUD showOnlyText:weakSelf.view text:errorMessage];
-//            }];
+            [weakSelf.viewModel resetPassword:weakSelf.phone code:weakSelf.codeLoginView.codeTextField.text newPassword:weakSelf.codeLoginView.passwordTextField.text completion:^{
+
+                [weakSelf.codeLoginView.submitButton stopCircleAnimation];
+                [weakSelf.codeLoginView setUserInteractionEnabled:YES];
+                [weakSelf closeView];
+                [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"重置密码成功"];
+                [[XWSDK sharedInstance] logoutAccount];
+            } failure:^(NSString * _Nonnull errorMessage) {
+                [weakSelf.codeLoginView.submitButton stopCircleAnimation];
+                [weakSelf.codeLoginView setUserInteractionEnabled:YES];
+                [XWHUD showOnlyText:weakSelf.view text:errorMessage];
+            }];
         }
         else if (weakSelf.codeType == XWBindCode)
         {
@@ -128,13 +110,28 @@
                 [weakSelf.codeLoginView setUserInteractionEnabled:YES];
                 [weakSelf closeView];
                 [[XWSDK sharedInstance] showFloatBtn];
+                [XWSDK sharedInstance].currUser.isBindphone = YES;
                 [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"绑定成功"];
             } failure:^(NSString * _Nonnull errorMessage) {
                 [weakSelf.codeLoginView.submitButton stopCircleAnimation];
                 [weakSelf.codeLoginView setUserInteractionEnabled:YES];
                 [XWHUD showOnlyText:weakSelf.view text:errorMessage];
             }];
-
+        }
+        else if (weakSelf.codeType == XWUnBindCode)
+        {
+            [weakSelf.viewModel unBind:[XWSDK sharedInstance].currUser.userName password:weakSelf.codeLoginView.passwordTextField.text phone:weakSelf.phone code:weakSelf.codeLoginView.codeTextField.text completion:^(XWUserModel * _Nonnull userModel) {
+                [weakSelf.codeLoginView.submitButton stopCircleAnimation];
+                [weakSelf.codeLoginView setUserInteractionEnabled:YES];
+                [weakSelf closeView];
+                [[XWSDK sharedInstance] showFloatBtn];
+                [XWSDK sharedInstance].currUser.isBindphone = NO;
+                [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"解绑成功"];
+            } failure:^(NSString * _Nonnull errorMessage) {
+                [weakSelf.codeLoginView.submitButton stopCircleAnimation];
+                [weakSelf.codeLoginView setUserInteractionEnabled:YES];
+                [XWHUD showOnlyText:weakSelf.view text:errorMessage];
+            }];
         }
     }];
 }

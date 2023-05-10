@@ -28,7 +28,7 @@
     [super viewDidLoad];
     WS(weakSelf);
     
-    id s = [XWSDK sharedInstance].currUser;
+    
     
     [self.view addSubview:_updatePassWordView];
     [_updatePassWordView mas_updateConstraints:^(MASConstraintMaker *make) {

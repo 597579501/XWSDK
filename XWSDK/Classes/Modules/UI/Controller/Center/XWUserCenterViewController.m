@@ -35,20 +35,20 @@
     
     WS(weakSelf)
     
-    self.viewModel
     
-    [DHUserSystemManager getUserCenterInfo:^(DHUserResponeModel *userResponeModel) {
-        _userResponeModel = userResponeModel;
-        NSLog(@"----------pring---log--%@",_userResponeModel.serviceMobile);
-        NSLog(@"----------pring---log--%@",_userResponeModel.qqServiceGroup);
-        NSLog(@"----------pring---log--%@",_userResponeModel.qqPlayerGroup);
-        NSLog(@"----------pring---log--%@",_userResponeModel);
-
-        [weakSelf.userCenterView setPhone:userResponeModel.phoneNumber];
-
-    } failure:^(int errcode, NSString *errorMessage) {
-
-    }];
+    
+//    [DHUserSystemManager getUserCenterInfo:^(DHUserResponeModel *userResponeModel) {
+//        _userResponeModel = userResponeModel;
+//        NSLog(@"----------pring---log--%@",_userResponeModel.serviceMobile);
+//        NSLog(@"----------pring---log--%@",_userResponeModel.qqServiceGroup);
+//        NSLog(@"----------pring---log--%@",_userResponeModel.qqPlayerGroup);
+//        NSLog(@"----------pring---log--%@",_userResponeModel);
+//
+//        [weakSelf.userCenterView setPhone:userResponeModel.phoneNumber];
+//
+//    } failure:^(int errcode, NSString *errorMessage) {
+//
+//    }];
     
 }
 
@@ -74,9 +74,12 @@
     }];
     
     [[_userCenterView bindButton] setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        if (_userModel.userPhone.length == 11)
+        
+        if ([XWSDK sharedInstance].currUser.isBindphone)
         {
-            [XWUIHelper showAlertView:nil message:@"已绑定手机" cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            XWPhoneLoginViewController *phoneLoginViewController = [XWPhoneLoginViewController new];
+            [phoneLoginViewController setCodeType:XWUnBindCode];
+            [weakSelf.navigationController pushViewController:phoneLoginViewController animated:NO];
         }
         else
         {
@@ -87,8 +90,8 @@
     }];
     
     [[_userCenterView serviceButton] setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-//        DHServiceViewController *serviceViewController = [[XWServiceViewController alloc] initWithMobile:_userResponeModel.serviceMobile qqServiceGroup:_userResponeModel.qqServiceGroup qqPlayerGroup:_userResponeModel.qqPlayerGroup];
-//        [weakSelf.navigationController pushViewController:serviceViewController animated:NO];
+        XWServiceViewController *serviceViewController = [[XWServiceViewController alloc] initWithMobile:@"" qqServiceGroup:@"" qqPlayerGroup:@""];
+        [weakSelf.navigationController pushViewController:serviceViewController animated:NO];
     }];
     
     [[_userCenterView logoutButton] setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {

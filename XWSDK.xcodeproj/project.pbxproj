@@ -529,8 +529,8 @@
 			isa = PBXGroup;
 			children = (
 				1496C96F2A08F924007D8CF6 /* XWUserCenterViewController.h */,
-				1496C9702A08F924007D8CF6 /* XWServiceViewController.m */,
 				1496C9712A08F924007D8CF6 /* XWUserCenterViewController.m */,
+				1496C9702A08F924007D8CF6 /* XWServiceViewController.m */,
 				1496C9722A08F924007D8CF6 /* XWServiceViewController.h */,
 			);
 			path = Center;
