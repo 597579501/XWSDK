@@ -136,10 +136,6 @@
     }
     else if (indexPath.row == 4)
     {
-        
-    }
-    else
-    {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
         XWOrderModel *order = [[XWOrderModel alloc] init];
@@ -150,9 +146,9 @@
         order.serverName = @"serverName1";
         order.roleLevel = @"188";
         
-        order.money = @"1";
+        order.money = @"0.01";
         order.appData = @"appdata";
-        order.appOrderId = @"orderid101";
+        order.appOrderId = @"orderid121";
         order.desc = @"desc";
         order.payType = @"5";
         
@@ -163,6 +159,10 @@
             cell.detailTextLabel.text = errorMessage;
             [tableView reloadData];
         }];
+    }
+    else
+    {
+        
     }
     
     

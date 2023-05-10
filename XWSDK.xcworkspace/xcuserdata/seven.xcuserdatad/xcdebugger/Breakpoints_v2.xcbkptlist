@@ -87,48 +87,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8042A6C9-477D-47D9-B3E1-8539E3919063"
+            uuid = "3C1DC2C7-F77B-44F9-AA42-C394E717424C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XWSDK/Classes/Modules/UI/Views/Center/XWUserCenterView.m"
+            filePath = "XWSDK/Classes/Modules/UI/Controller/Center/XWWebViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "-init"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "27346CB8-CA90-436D-98A4-8ED42240696B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XWSDK/Classes/Net/HTTP/XWGwDomainServer.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "+resetPassword:newPassword:code:success:failure:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "50F76E14-F5E9-4A21-80DB-FAACE68376BE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XWSDK/XWSDK.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "-loginSucessCallBack:"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
+            landmarkName = "-loadWebPage"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

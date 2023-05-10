@@ -253,15 +253,15 @@ NSString *const XWOpenUrl = @"pay/open.php";
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
     NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
-    NSDictionary *params = @{@"user_id" : order.userId,
-                             @"server_id" : order.serverId,
-                             @"role_id" : order.roleId,
-                             @"role_level" : order.roleLevel,
-                             @"money" : order.money,
-                             @"app_data" : order.appData,
-                             @"app_order_id" : order.appOrderId,
+    NSDictionary *params = @{@"user_id" : [XWSDK sharedInstance].currUser.userId  ? [XWSDK sharedInstance].currUser.userId : @"",
+                             @"server_id" : order.serverId  ? order.serverId : @"",
+                             @"role_id" : order.roleId ? order.roleId : @"",
+                             @"role_level" : order.roleLevel ? order.roleLevel : @"",
+                             @"money" : order.money  ? order.money : @"",
+                             @"app_data" : order.appData ? order.appData : @"" ,
+                             @"app_order_id" : order.appOrderId ? order.appOrderId : @"",
                              @"pay_type" : order.payType,
-                             @"desc" : order.desc,
+                             @"desc" : order.desc ? order.desc : @"",
                              @"is_h5_pay" : @"1",
                              @"order_type" : @"1",
                              @"user_coupon_id" : @"0",

@@ -113,6 +113,8 @@
 		1496C9742A08F924007D8CF6 /* XWServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1496C9702A08F924007D8CF6 /* XWServiceViewController.m */; };
 		1496C9752A08F924007D8CF6 /* XWUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1496C9712A08F924007D8CF6 /* XWUserCenterViewController.m */; };
 		1496C9762A08F924007D8CF6 /* XWServiceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1496C9722A08F924007D8CF6 /* XWServiceViewController.h */; };
+		1496C9A12A0B9A7A007D8CF6 /* XWWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1496C99F2A0B9A7A007D8CF6 /* XWWebViewController.h */; };
+		1496C9A22A0B9A7A007D8CF6 /* XWWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1496C9A02A0B9A7A007D8CF6 /* XWWebViewController.m */; };
 		14A5A35E2A01F09300BC76A4 /* XWRoleModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A5A35C2A01F09300BC76A4 /* XWRoleModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A5A35F2A01F09300BC76A4 /* XWRoleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A5A35D2A01F09300BC76A4 /* XWRoleModel.m */; };
 		14A5A3622A020DB400BC76A4 /* XWOrderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A5A3602A020DB400BC76A4 /* XWOrderModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -273,6 +275,8 @@
 		1496C9702A08F924007D8CF6 /* XWServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWServiceViewController.m; sourceTree = "<group>"; };
 		1496C9712A08F924007D8CF6 /* XWUserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWUserCenterViewController.m; sourceTree = "<group>"; };
 		1496C9722A08F924007D8CF6 /* XWServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWServiceViewController.h; sourceTree = "<group>"; };
+		1496C99F2A0B9A7A007D8CF6 /* XWWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWWebViewController.h; sourceTree = "<group>"; };
+		1496C9A02A0B9A7A007D8CF6 /* XWWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWWebViewController.m; sourceTree = "<group>"; };
 		14A5A35C2A01F09300BC76A4 /* XWRoleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWRoleModel.h; sourceTree = "<group>"; };
 		14A5A35D2A01F09300BC76A4 /* XWRoleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWRoleModel.m; sourceTree = "<group>"; };
 		14A5A3602A020DB400BC76A4 /* XWOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWOrderModel.h; sourceTree = "<group>"; };
@@ -532,6 +536,8 @@
 				1496C9712A08F924007D8CF6 /* XWUserCenterViewController.m */,
 				1496C9702A08F924007D8CF6 /* XWServiceViewController.m */,
 				1496C9722A08F924007D8CF6 /* XWServiceViewController.h */,
+				1496C99F2A0B9A7A007D8CF6 /* XWWebViewController.h */,
+				1496C9A02A0B9A7A007D8CF6 /* XWWebViewController.m */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -751,6 +757,7 @@
 				141FCF6529FA66CF0075C50A /* XWCommonModel.h in Headers */,
 				148B24682A063DFB009BFE2E /* XWMainViewController.h in Headers */,
 				148B24D82A06403A009BFE2E /* XWMainView.h in Headers */,
+				1496C9A12A0B9A7A007D8CF6 /* XWWebViewController.h in Headers */,
 				148B24A42A063ED7009BFE2E /* XWSubmitButton.h in Headers */,
 				148725EE29F80DBA00C1ED33 /* XWBaseServer.h in Headers */,
 				1496C9762A08F924007D8CF6 /* XWServiceViewController.h in Headers */,
@@ -957,6 +964,7 @@
 				141FCF4829FA1E840075C50A /* XWGwDomainServer.m in Sources */,
 				148B24D42A06403A009BFE2E /* XWAutoLoginView.m in Sources */,
 				148B24DA2A06403A009BFE2E /* XWResetPassWordView.m in Sources */,
+				1496C9A22A0B9A7A007D8CF6 /* XWWebViewController.m in Sources */,
 				148B24ED2A06526E009BFE2E /* XWTableViewCell.m in Sources */,
 				148B24702A063DFB009BFE2E /* XWUpdatePassWordViewController.m in Sources */,
 				1496C9742A08F924007D8CF6 /* XWServiceViewController.m in Sources */,

@@ -19,6 +19,7 @@
 #import "XWUserLoginViewController.h"
 #import "XWUserCenterViewController.h"
 #import "XWUIHelper.h"
+#import "XWWebViewController.h"
 
 static XWSDK *_instance = nil;
 
@@ -241,10 +242,45 @@ static XWSDK *_instance = nil;
    completion:(void(^)(NSString *orderId, NSString *url))completion
       failure:(void(^)(NSString *errorMessage))failure
 {
+    WS(weakSelf);
+    XWProgressHUD *hud = [XWHUD showHUD:[[UIApplication sharedApplication] windows].firstObject];
+    
     [self.sdkViewModel open:order completion:^(NSString *orderId, NSString *url) {
-        if(completion)
+        if(url)
         {
-            completion(orderId, url);
+            
+            [XWHUD hideHUD:hud];
+            [weakSelf.floatWindow dissmissWindow];
+            UIViewController *rootcontroller = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
+            
+            XWWebViewController *webViewController = nil;
+            
+            webViewController = [[XWWebViewController alloc] initWithURL:url];
+            
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
+            [webViewController setIsPay:YES];
+            [webViewController setIsCanShowBack:NO];
+            
+            [rootcontroller presentViewController:navigationController animated:YES completion:^{
+                
+            }];
+            [webViewController setCloseButtonClickBlock:^{
+                [weakSelf.floatWindow showWindow];
+//                if (XWHSDK.dhColseBack) {
+//                    XWHSDK.dhColseBack();
+//                }
+            }];
+//            completion(orderId, url);
+
+        }
+        else
+        {
+            [XWHUD hideHUD:hud];
+            [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"获取订单失败"];
+            [weakSelf.floatWindow showWindow];
+//            if (SDHSDK.dhInfoCallBack) {
+//                SDHSDK.dhInfoCallBack(DHZCreateOrderFail);
+//            }
         }
     } failure:^(NSString * _Nonnull errorMessage) {
         if (failure)

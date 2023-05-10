@@ -15,7 +15,7 @@
 #define kTextFont kFont(14)
 #define kSectionFont kFont(13)
 
-
+#define kNavigationBarHeight          [[UIApplication sharedApplication] isStatusBarHidden] ? 44.f : 64.f
 #define UIColorHex(_hex_)   [UIColor colorWithHexString:((__bridge NSString *)CFSTR(#_hex_))]
 
 
