@@ -266,11 +266,57 @@
     }
     
     [XWGwDomainServer open:order success:^(id  _Nullable data) {
-        NSString *url = data[@"pay_url"];
         NSString *orderId = data[@"order_id"];
-        if (url && orderId)
+        if (order.openType == XWOpenWX || order.openType == XWOpenWX)
         {
-            completion(orderId, url);
+            NSString *url = data[@"pay_url"];
+            
+            if (url.length > 0 && orderId.length > 0 && completion)
+            {
+                completion(orderId, url);
+            }
+        }
+        else
+        {
+            NSString *productId = data[@"product_id"];
+            if (productId.length > 0 && orderId.length > 0 && completion)
+            {
+                completion(orderId, productId);
+            }
+            else
+            {
+                if (failure)
+                {
+                    failure(@"商品信息不存在");
+                }
+            }
+        }
+        
+    } failure:^(NSString * _Nullable errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
+- (void)check:(NSString *)orderId
+      receipt:(NSString *)receipt
+transactionId:(NSString *)transactionId
+   completion:(void(^)(NSString *orderId))completion
+      failure:(void(^)(NSString *errorMessage))failure
+{
+    if (![self checkConf])
+    {
+        failure(@"未初始化SDK");
+        return;
+    }
+    
+    [XWGwDomainServer check:orderId receipt:receipt transactionId:transactionId success:^(id  _Nullable data) {
+        NSString *orderId = data[@"order_id"];
+        if (completion && orderId)
+        {
+            completion(orderId);
         }
     } failure:^(NSString * _Nullable errorMessage) {
         if (failure)
@@ -279,6 +325,7 @@
         }
     }];
 }
+
 
 - (void)saveUserInformation:(XWUserLoginRecordModel *)userLoginRecordModel  user:(XWUserModel* )user isPostNotification:(BOOL)isPost
 {

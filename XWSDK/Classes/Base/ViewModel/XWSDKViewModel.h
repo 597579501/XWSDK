@@ -52,6 +52,12 @@ NS_ASSUME_NONNULL_BEGIN
    completion:(void(^)(NSString *orderId, NSString *url))completion
      failure:(void(^)(NSString *errorMessage))failure;
 
+- (void)check:(NSString *)orderId
+      receipt:(NSString *)receipt
+transactionId:(NSString *)transactionId
+   completion:(void(^)(NSString *orderId))completion
+      failure:(void(^)(NSString *errorMessage))failure;
+
 - (XWUserLoginRecordModel *)getUserInformation;
 
 @end

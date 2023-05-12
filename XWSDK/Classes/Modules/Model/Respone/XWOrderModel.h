@@ -8,6 +8,14 @@
 
 #import "XWRoleModel.h"
 
+
+typedef NS_ENUM(NSInteger, XWOpenType) {
+    XWOpenAli = 6,
+    XWOpenWX = 5,
+    XWOpenI = 30,
+};
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XWOrderModel : XWRoleModel
@@ -15,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong) NSString *money;
 @property (nonatomic ,strong) NSString *appOrderId;
 @property (nonatomic ,strong) NSString *appData;
-@property (nonatomic ,strong) NSString *payType;
+@property (nonatomic ,assign) XWOpenType openType;
 @property (nonatomic ,strong) NSString *desc;
 @property (nonatomic ,assign) BOOL is5P;
 @property (nonatomic ,assign) BOOL orderType;

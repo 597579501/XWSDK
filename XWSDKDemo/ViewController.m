@@ -77,16 +77,13 @@
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [[XWSDK sharedInstance] conf:@"11105" appKey:@"45f6202f5365130f8a500c4b770b42b7" completion:^{
             cell.detailTextLabel.text = @"init success";
-            [tableView reloadData];
+//            [tableView reloadData];
+            NSIndexPath *index = [NSIndexPath indexPathForRow:1 inSection:0];
+            [self tableView:self.tableView didSelectRowAtIndexPath:index];
         } failure:^(NSString * _Nonnull errorMessage) {
             cell.detailTextLabel.text = errorMessage;
             [tableView reloadData];
         }];
-//        [[XWSDK sharedInstance] conf:@"11105" appKey:@"45f6202f5365130f8a500c4b770b42b7" completion:^(NSString * _Nonnull userId) {
-//            
-//        } failure:^(NSString * _Nonnull errorMessage) {
-//            
-//        }];
     }
     else if (indexPath.row == 1)
     {
@@ -138,6 +135,13 @@
     {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
+        
+        int to = 1;
+        int from = 10000;
+        int rand =  from + (arc4random() % (to - from));
+        
+        
+        
         XWOrderModel *order = [[XWOrderModel alloc] init];
         order.roleId = @"1";
         order.roleName = @"测试";
@@ -146,11 +150,11 @@
         order.serverName = @"serverName1";
         order.roleLevel = @"188";
         
-        order.money = @"0.01";
+        order.money = @"1";
         order.appData = @"appdata";
-        order.appOrderId = @"orderid121";
+        order.appOrderId = [NSString stringWithFormat:@"orderid%d", rand];
         order.desc = @"desc";
-        order.payType = @"5";
+        order.openType = XWOpenI;
         
         [[XWSDK sharedInstance] open:order completion:^(NSString * _Nonnull orderId, NSString * _Nonnull url) {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"orderId %@", orderId ];

@@ -60,6 +60,14 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSURLSessionDataTask *)open:(XWOrderModel *)order
                         success:(Success)success
                        failure:(Failure)failure;
+
+
++ (NSURLSessionDataTask *)check:(NSString *)orderId
+                        receipt:(NSString *)receipt
+                  transactionId:(NSString *)transactionId
+                        success:(Success)success
+                        failure:(Failure)failure;
+
 @end
 
 NS_ASSUME_NONNULL_END

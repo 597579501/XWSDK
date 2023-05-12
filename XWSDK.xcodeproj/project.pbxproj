@@ -115,6 +115,11 @@
 		1496C9762A08F924007D8CF6 /* XWServiceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1496C9722A08F924007D8CF6 /* XWServiceViewController.h */; };
 		1496C9A12A0B9A7A007D8CF6 /* XWWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1496C99F2A0B9A7A007D8CF6 /* XWWebViewController.h */; };
 		1496C9A22A0B9A7A007D8CF6 /* XWWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1496C9A02A0B9A7A007D8CF6 /* XWWebViewController.m */; };
+		1496C9A92A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 1496C9A42A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.m */; };
+		1496C9AA2A0CE1E6007D8CF6 /* XWStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 1496C9A52A0CE1E6007D8CF6 /* XWStore.h */; };
+		1496C9AB2A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.h in Headers */ = {isa = PBXBuildFile; fileRef = 1496C9A62A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.h */; };
+		1496C9AC2A0CE1E6007D8CF6 /* XWStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1496C9A72A0CE1E6007D8CF6 /* XWStore.m */; };
+		1496C9AD2A0CE1E6007D8CF6 /* XWStore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 1496C9A82A0CE1E6007D8CF6 /* XWStore-Prefix.pch */; };
 		14A5A35E2A01F09300BC76A4 /* XWRoleModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A5A35C2A01F09300BC76A4 /* XWRoleModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A5A35F2A01F09300BC76A4 /* XWRoleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A5A35D2A01F09300BC76A4 /* XWRoleModel.m */; };
 		14A5A3622A020DB400BC76A4 /* XWOrderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A5A3602A020DB400BC76A4 /* XWOrderModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -277,6 +282,11 @@
 		1496C9722A08F924007D8CF6 /* XWServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWServiceViewController.h; sourceTree = "<group>"; };
 		1496C99F2A0B9A7A007D8CF6 /* XWWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWWebViewController.h; sourceTree = "<group>"; };
 		1496C9A02A0B9A7A007D8CF6 /* XWWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWWebViewController.m; sourceTree = "<group>"; };
+		1496C9A42A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWStoreKeychainPersistence.m; sourceTree = "<group>"; };
+		1496C9A52A0CE1E6007D8CF6 /* XWStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWStore.h; sourceTree = "<group>"; };
+		1496C9A62A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWStoreKeychainPersistence.h; sourceTree = "<group>"; };
+		1496C9A72A0CE1E6007D8CF6 /* XWStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWStore.m; sourceTree = "<group>"; };
+		1496C9A82A0CE1E6007D8CF6 /* XWStore-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XWStore-Prefix.pch"; sourceTree = "<group>"; };
 		14A5A35C2A01F09300BC76A4 /* XWRoleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWRoleModel.h; sourceTree = "<group>"; };
 		14A5A35D2A01F09300BC76A4 /* XWRoleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWRoleModel.m; sourceTree = "<group>"; };
 		14A5A3602A020DB400BC76A4 /* XWOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWOrderModel.h; sourceTree = "<group>"; };
@@ -443,8 +453,8 @@
 			children = (
 				148B24842A063ED7009BFE2E /* XWHUD.h */,
 				148B24722A063ED7009BFE2E /* XWHUD.m */,
-				148B24A82A063F1E009BFE2E /* XWProgressHUD.m */,
 				148B24A92A063F1E009BFE2E /* XWProgressHUD.h */,
+				148B24A82A063F1E009BFE2E /* XWProgressHUD.m */,
 			);
 			path = XWHUD;
 			sourceTree = "<group>";
@@ -540,6 +550,18 @@
 				1496C9A02A0B9A7A007D8CF6 /* XWWebViewController.m */,
 			);
 			path = Center;
+			sourceTree = "<group>";
+		};
+		1496C9A32A0CE1E6007D8CF6 /* XWStore */ = {
+			isa = PBXGroup;
+			children = (
+				1496C9A62A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.h */,
+				1496C9A42A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.m */,
+				1496C9A52A0CE1E6007D8CF6 /* XWStore.h */,
+				1496C9A72A0CE1E6007D8CF6 /* XWStore.m */,
+				1496C9A82A0CE1E6007D8CF6 /* XWStore-Prefix.pch */,
+			);
+			path = XWStore;
 			sourceTree = "<group>";
 		};
 		14DE9EAD29F7FD910093BF1C = {
@@ -672,6 +694,7 @@
 		14DE9FA629F800630093BF1C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1496C9A32A0CE1E6007D8CF6 /* XWStore */,
 				148B24EE2A0658EF009BFE2E /* Common */,
 				148B24482A062899009BFE2E /* UI */,
 				141FCF5629FA2BB60075C50A /* Model */,
@@ -734,6 +757,7 @@
 				148B24692A063DFB009BFE2E /* XWUserLoginViewController.h in Headers */,
 				148B249A2A063ED7009BFE2E /* XWUserListTableViewCell.h in Headers */,
 				148B249F2A063ED7009BFE2E /* XWUserAgreementView.h in Headers */,
+				1496C9AD2A0CE1E6007D8CF6 /* XWStore-Prefix.pch in Headers */,
 				148B24CF2A06403A009BFE2E /* XWResetPassWordView.h in Headers */,
 				141FCF6929FAD98C0075C50A /* XWUserModel.h in Headers */,
 				148B24972A063ED7009BFE2E /* XWOrderInfoViewCell.h in Headers */,
@@ -753,9 +777,11 @@
 				148B24D92A06403A009BFE2E /* XWPhoneLoginView.h in Headers */,
 				14A5A35E2A01F09300BC76A4 /* XWRoleModel.h in Headers */,
 				148B249E2A063ED7009BFE2E /* XWHUD.h in Headers */,
+				1496C9AB2A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.h in Headers */,
 				148B24F92A065B76009BFE2E /* XWGQOrderInfoModel.h in Headers */,
 				141FCF6529FA66CF0075C50A /* XWCommonModel.h in Headers */,
 				148B24682A063DFB009BFE2E /* XWMainViewController.h in Headers */,
+				1496C9AA2A0CE1E6007D8CF6 /* XWStore.h in Headers */,
 				148B24D82A06403A009BFE2E /* XWMainView.h in Headers */,
 				1496C9A12A0B9A7A007D8CF6 /* XWWebViewController.h in Headers */,
 				148B24A42A063ED7009BFE2E /* XWSubmitButton.h in Headers */,
@@ -946,6 +972,7 @@
 				148B244C2A0628B1009BFE2E /* XWFloatWindow.m in Sources */,
 				148B24932A063ED7009BFE2E /* XWSubmitButton.m in Sources */,
 				148B24F22A0658FB009BFE2E /* XWHelper.m in Sources */,
+				1496C9AC2A0CE1E6007D8CF6 /* XWStore.m in Sources */,
 				148B249B2A063ED7009BFE2E /* XWOrderInfoViewCell.m in Sources */,
 				148B24622A063DFB009BFE2E /* XWAutoLoginViewController.m in Sources */,
 				148B24D22A06403A009BFE2E /* XWCodeLoginView.m in Sources */,
@@ -954,6 +981,7 @@
 				148B24E22A0641E7009BFE2E /* XWMentLoadingHUD.m in Sources */,
 				148B24982A063ED7009BFE2E /* XWUserListTableViewCell.m in Sources */,
 				148B248D2A063ED7009BFE2E /* XWHUD.m in Sources */,
+				1496C9A92A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.m in Sources */,
 				14DE9FA329F7FFD00093BF1C /* XWView.m in Sources */,
 				14A5A35F2A01F09300BC76A4 /* XWRoleModel.m in Sources */,
 				148B24922A063ED7009BFE2E /* XWUserAgreementView.m in Sources */,
@@ -1215,7 +1243,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xwsdkdemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acajjk.dfgge.aadc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Wildcard;
@@ -1250,7 +1278,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xwsdkdemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acajjk.dfgge.aadc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = Wildcard;

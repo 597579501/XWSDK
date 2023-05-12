@@ -20,6 +20,7 @@
 #import "XWUserCenterViewController.h"
 #import "XWUIHelper.h"
 #import "XWWebViewController.h"
+#import "XWStore.h"
 
 static XWSDK *_instance = nil;
 
@@ -246,43 +247,161 @@ static XWSDK *_instance = nil;
     XWProgressHUD *hud = [XWHUD showHUD:[[UIApplication sharedApplication] windows].firstObject];
     
     [self.sdkViewModel open:order completion:^(NSString *orderId, NSString *url) {
-        if(url)
+        if (order.openType == XWOpenWX || order.openType == XWOpenWX)
         {
-            
-            [XWHUD hideHUD:hud];
-            [weakSelf.floatWindow dissmissWindow];
-            UIViewController *rootcontroller = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
-            
-            XWWebViewController *webViewController = nil;
-            
-            webViewController = [[XWWebViewController alloc] initWithURL:url];
-            
-            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
-            [webViewController setIsPay:YES];
-            [webViewController setIsCanShowBack:NO];
-            
-            [rootcontroller presentViewController:navigationController animated:YES completion:^{
+            if(url)
+            {
                 
-            }];
-            [webViewController setCloseButtonClickBlock:^{
-                [weakSelf.floatWindow showWindow];
-//                if (XWHSDK.dhColseBack) {
-//                    XWHSDK.dhColseBack();
-//                }
-            }];
-//            completion(orderId, url);
+                [XWHUD hideHUD:hud];
+                [weakSelf.floatWindow dissmissWindow];
+                UIViewController *rootcontroller = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
+                
+                XWWebViewController *webViewController = nil;
+                
+                webViewController = [[XWWebViewController alloc] initWithURL:url];
+                
+                UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
+                [webViewController setIsPay:YES];
+                [webViewController setIsCanShowBack:NO];
+                
+                [rootcontroller presentViewController:navigationController animated:YES completion:^{
+                    
+                }];
+                [webViewController setCloseButtonClickBlock:^{
+                    [weakSelf.floatWindow showWindow];
+    //                if (XWHSDK.dhColseBack) {
+    //                    XWHSDK.dhColseBack();
+    //                }
+                }];
+    //            completion(orderId, url);
 
+            }
+            else
+            {
+                [XWHUD hideHUD:hud];
+                [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"获取订单失败"];
+                [weakSelf.floatWindow showWindow];
+    //            if (SDHSDK.dhInfoCallBack) {
+    //                SDHSDK.dhInfoCallBack(DHZCreateOrderFail);
+    //            }
+            }
         }
         else
         {
-            [XWHUD hideHUD:hud];
-            [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"获取订单失败"];
-            [weakSelf.floatWindow showWindow];
-//            if (SDHSDK.dhInfoCallBack) {
-//                SDHSDK.dhInfoCallBack(DHZCreateOrderFail);
-//            }
+
+            NSString *productIdString = url;
+            NSSet *productsList = [NSSet setWithArray:@[productIdString]];
+            [[XWStore defaultStore] requestProducts:productsList success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
+                SKProduct *skProduct = nil;
+                if (products.count > 0)
+                {
+                    skProduct = products[0];
+                    NSLog(@"weewlocalizedDescription----%@",skProduct.localizedDescription);
+                    NSLog(@"weewlocalizedTitle----%@",skProduct.localizedTitle);
+                    NSLog(@"weewNSDecimalNumber----%@",skProduct.price);
+                    NSLog(@"weewproductIdentifier----%@",skProduct.productIdentifier);
+                    
+                    
+                    [[XWStore defaultStore] addPayment:productIdString success:^(SKPaymentTransaction *transaction) {
+                        NSString *transactionID = transaction.transactionIdentifier;
+                        NSLog(@"transactionIdentifier----%@",transaction.transactionIdentifier);
+                        //这里orderId为请求返回的sdkXXXXXXXX的不是CP传值进来的
+                        NSURL *url = [[NSBundle mainBundle] appStoreReceiptURL];
+                        NSData *receiptData = [NSData dataWithContentsOfURL:url];
+
+                        NSString *str1 = [receiptData base64EncodedStringWithOptions:0] ;
+                        NSString *encodeStr = [[receiptData base64EncodedStringWithOptions:0] stringByURLEncode];
+                        
+                        
+                        [weakSelf.sdkViewModel check:orderId receipt:encodeStr transactionId:transactionID completion:^(NSString * _Nonnull orderId) {
+                            [XWHUD hideHUD:hud];
+                            [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"支付成功"];
+                        } failure:^(NSString * _Nonnull errorMessage) {
+                            [XWHUD hideHUD:hud];
+                            [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:errorMessage];
+                        }];
+                        
+//                        NSMutableDictionary *requestContents = [NSMutableDictionary dictionaryWithObject:
+//                                                                [receiptData base64EncodedStringWithOptions:0]  forKey:@" "];
+////                        NSMutableDictionary *requestContents = [NSMutableDictionary dictionaryWithObject:encodeStr  forKey:@"receipt-data"];
+//                        NSError *error;
+//                        NSData *requestData = [NSJSONSerialization dataWithJSONObject:requestContents options:0 error:&error];
+//
+//                        NSString *kSandboxServer = @"https://sandbox.itunes.apple.com/verifyReceipt";
+                        
+                        
+//                        NSMutableURLRequest *storeRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kSandboxServer]];
+//                        [storeRequest setHTTPMethod:@"POST"];
+//                        [storeRequest setHTTPBody:requestData];
+//                        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+//
+//                        [[session dataTaskWithRequest:storeRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//                            NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+//                              NSLog(@"receiptjsonResponse:%@",jsonResponse);
+//                            NSInteger status = [jsonResponse[@"status"] integerValue];
+//                            NSLog(@"status - %d", status);
+////                          }
+//                        }] resume];
+//
+                        
+//                        NSURLSession *session = [NSURLSession sharedSession];
+//                        [session dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+////                            NSData *receiptData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:&error];
+//                            NSString *encodeStr = [data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+////                            NSString *encodeStr = [receiptData utf8String];
+//    //                        NSString *geiQianload = [NSString stringWithFormat:@"{\"receipt-data\" : \"%@\"}", encodeStr];
+//
+//                            [weakSelf.sdkViewModel check:orderId receipt:encodeStr completion:^(NSString * _Nonnull orderId) {
+//                                [XWHUD hideHUD:hud];
+//                                [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"支付成功"];
+//                            } failure:^(NSString * _Nonnull errorMessage) {
+//                                [XWHUD hideHUD:hud];
+//                                [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:errorMessage];
+//                            }];
+//                        }];
+                        
+                        
+                        
+//                        [CenterCoordinateForKeyedArchiver LuodFuIUxPAjzFdo:orderId transaction:transaction skProduct:skProduct success:^{
+//                            [DHHUD hideHUD:hud];
+//                            [DHHUD showOnlyText:[[UIApplication sharedApplication] keyWindow] text:FUCK_SUCCEED_MESSAGE];
+//                            if (SDHSDK.dhInfoCallBack) {
+//                                SDHSDK.dhInfoCallBack(DHZVerifyReceiptSucceed);
+//                            }
+//                        } failure:^(int errcode, NSString *errorMessage) {
+//                            [DHHUD hideHUD:hud];
+//                            [DHHUD showOnlyText:[[UIApplication sharedApplication] keyWindow] text:errorMessage];
+//                            if (SDHSDK.dhInfoCallBack) {
+//                                SDHSDK.dhInfoCallBack(DHZVerifyReceiptFail);
+//                            }
+//                        }];
+                    } failure:^(SKPaymentTransaction *transaction, NSError *error) {
+                        [XWHUD hideHUD:hud];
+                        [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:error.localizedDescription];
+//                        if (SDHSDK.dhInfoCallBack) {
+//                            SDHSDK.dhInfoCallBack(DHZURLFail);
+//                        }
+                    }];
+                }
+                else
+                {
+                    [XWHUD hideHUD:hud];
+                    [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"商品信息不存在"];
+//                    if (SDHSDK.dhInfoCallBack) {
+//                        SDHSDK.dhInfoCallBack(DHZDoesNotExistProduct);
+//                    }
+                }
+            } failure:^(NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [XWHUD hideHUD:hud];
+                    [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"未知错误"];
+                });
+            }];
         }
+        
     } failure:^(NSString * _Nonnull errorMessage) {
+        [XWHUD hideHUD:hud];
+        [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:errorMessage];
         if (failure)
         {
             failure(errorMessage);

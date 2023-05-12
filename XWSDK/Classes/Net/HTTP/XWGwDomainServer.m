@@ -16,6 +16,7 @@ NSString *const XWUpdateUrl = @"user/update.php";
 NSString *const XWSendCodeUrl = @"user/send_code.php";
 NSString *const XWIdAuthUrl = @"user/id_auth.php";
 NSString *const XWOpenUrl = @"pay/open.php";
+NSString *const XWCheckUrl = @"pay/ios/check.php";
 
 
 
@@ -260,7 +261,7 @@ NSString *const XWOpenUrl = @"pay/open.php";
                              @"money" : order.money  ? order.money : @"",
                              @"app_data" : order.appData ? order.appData : @"" ,
                              @"app_order_id" : order.appOrderId ? order.appOrderId : @"",
-                             @"pay_type" : order.payType,
+                             @"pay_type" : [NSString stringWithFormat:@"%ld", order.openType],
                              @"desc" : order.desc ? order.desc : @"",
                              @"is_h5_pay" : @"1",
                              @"order_type" : @"1",
@@ -272,6 +273,28 @@ NSString *const XWOpenUrl = @"pay/open.php";
     [commonDictionary setObject:signString forKey:@"sign"];
     return [[XWNetManager sharedInstance] getWithUrl:url parameters:commonDictionary success:success failure:failure];
 }
+
++ (NSURLSessionDataTask *)check:(NSString *)orderId
+                        receipt:(NSString *)receipt
+                  transactionId:(NSString *)transactionId
+                        success:(Success)success
+                        failure:(Failure)failure
+{
+    NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWCheckUrl];
+    
+    XWCommonModel *commonModel = [XWCommonModel sharedInstance];
+    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
+    NSDictionary *params = @{@"order_id" : orderId,
+                             @"receipt" : receipt,
+                             @"transactionId" : transactionId
+    };
+    [commonDictionary addEntriesFromDictionary:params];
+    NSString *signString = [self signWithParams:commonDictionary];
+    [commonDictionary setObject:signString forKey:@"sign"];
+    return [[XWNetManager sharedInstance] getWithUrl:url parameters:commonDictionary success:success failure:failure];
+}
+
+
 
 
 
