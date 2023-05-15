@@ -7,49 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CB9AA559-7B68-4229-90F1-71CAEC2C1412"
+            uuid = "52C70CF1-DEF0-4CEB-A608-278C1392F365"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XWSDK/XWSDK.m"
+            filePath = "XWSDK/Classes/Modules/UI/Controller/Center/XWWebViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
-            landmarkName = "-open:completion:failure:"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "CB9AA559-7B68-4229-90F1-71CAEC2C1412 - f205e494aaa0d50f"
+                  uuid = "52C70CF1-DEF0-4CEB-A608-278C1392F365 - 841fd5500aded9e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__33-[XWSDK open:completion:failure:]_block_invoke_2.53"
+                  symbolName = "-[XWWebViewController viewDidLoad]"
                   moduleName = "XWSDK"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/XWSDK.m"
+                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/Controller/Center/XWWebViewController.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "316"
-                  endingLineNumber = "316"
-                  offsetFromSymbolStart = "356">
+                  startingLineNumber = "214"
+                  endingLineNumber = "214"
+                  offsetFromSymbolStart = "4140">
                </Location>
                <Location
-                  uuid = "CB9AA559-7B68-4229-90F1-71CAEC2C1412 - f205e494aaa0d50f"
+                  uuid = "52C70CF1-DEF0-4CEB-A608-278C1392F365 - 841fd5500aded3b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__33-[XWSDK open:completion:failure:]_block_invoke_2.53"
+                  symbolName = "-[XWWebViewController viewDidLoad]"
                   moduleName = "XWSDK"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/XWSDK.m"
+                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/Controller/Center/XWWebViewController.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "316"
-                  endingLineNumber = "316"
-                  offsetFromSymbolStart = "360">
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "4208">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "360E5E71-9A9D-446F-AF02-FADB37E25B70"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "XWSDK/Classes/Modules/UI/Controller/Center/XWWebViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

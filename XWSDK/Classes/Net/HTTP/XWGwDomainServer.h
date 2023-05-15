@@ -61,6 +61,9 @@ NS_ASSUME_NONNULL_BEGIN
                         success:(Success)success
                        failure:(Failure)failure;
 
++ (NSURLSessionDataTask *)cashi:(XWOrderModel *)order
+                        success:(Success)success
+                        failure:(Failure)failure;
 
 + (NSURLSessionDataTask *)check:(NSString *)orderId
                         receipt:(NSString *)receipt

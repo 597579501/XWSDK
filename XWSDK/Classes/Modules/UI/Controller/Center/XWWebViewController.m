@@ -9,6 +9,8 @@
 #import "XWSDKHeader.h"
 #import "XWHelper.h"
 #import <WebKit/WebKit.h>
+#import "XWSDK.h"
+#import "XWBaseServer.h"
 
 const float WebViewCtrlInitialProgressValue           = 0.1f;
 const float WebViewCtrlInteractiveProgressValue       = 0.5f;
@@ -178,7 +180,49 @@ const float WebViewCtrlFinalProgressValue             = 0.9f;
     //    }];
     if (![XWHelper isBlankString:_url])
     {
-        [self loadWebPage];
+        if (self.isOpen)
+        {
+            XWCommonModel *commonModel = [XWCommonModel sharedInstance];
+            NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
+            NSDictionary *params = @{
+                @"money" : self.order.money ? self.order.money : @"",
+                
+                @"user_id" : [XWSDK sharedInstance].currUser.userId  ? [XWSDK sharedInstance].currUser.userId : @"",
+                @"server_id" : self.order.serverId  ? self.order.serverId : @"",
+                @"role_id" : self.order.roleId ? self.order.roleId : @"",
+                                     
+                @"role_level" : self.order.roleLevel ? self.order.roleLevel : @"",
+
+                @"app_data" : self.order.appData ? self.order.appData : @"" ,
+                @"app_order_id" : self.order.appOrderId ? self.order.appOrderId : @"",
+                @"desc" : self.order.desc ? self.order.desc : @"",
+                @"is_h5_pay" : @"1",
+                @"order_type" : @"1",
+                @"user_coupon_id" : @"0",
+                @"use_platform_currency" : @"0",
+            };
+            [commonDictionary addEntriesFromDictionary:params];
+            NSString *signString = [XWBaseServer signWithParams:commonDictionary];
+            [commonDictionary setObject:signString forKey:@"sign"];
+            
+            NSString *query = [commonDictionary modelToJSONString];
+            
+            
+//            NSString *urlString = [NSString stringWithFormat:@"http://gw_gzdky.niiwe.com/pay/cashier.php?%@",query];
+            NSString *urlString = @"http://gw_gzdky.niiwe.com/pay/cashier.php?app_data=appdata&app_id=11105&app_order_id=orderid1722662730&desc=desc&device=56F7AC5D-EDFA-463E-929A-FC1CCA06C734&is_h5_pay=1&money=1&order_type=1&role_id=1&role_level=188&server_id=server1&sign=cce7d1d1a33028f63a830a7a5c29c568&tag1=111050000001&tag2=11105&tag3=1&tag4=%20&time=1684162690&use_platform_currency=0&user_coupon_id=0&user_id=4b8ecab51be913c03dde16b06cf8b042&ver=1.0";
+        
+            
+            NSURL *url = [NSURL URLWithString:urlString];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+//            [request setHTTPMethod:@"GET"];
+            [_webView loadRequest:request];
+        }
+        else
+        {
+            [self loadWebPage];
+            
+        }
+        
     }
     else
     {

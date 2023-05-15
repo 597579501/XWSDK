@@ -256,7 +256,7 @@
 
 
 - (void)open:(XWOrderModel *)order
-   completion:(void(^)(NSString *orderId, NSString *url))completion
+   completion:(void(^)(NSString *state, NSString *orderId, NSString *url))completion
       failure:(void(^)(NSString *errorMessage))failure
 {
     if (![self checkConf])
@@ -266,22 +266,18 @@
     }
     
     [XWGwDomainServer open:order success:^(id  _Nullable data) {
+        NSString *state = data[@"state"];
         NSString *orderId = data[@"order_id"];
-        if (order.openType == XWOpenWX || order.openType == XWOpenWX)
+        if ([state isEqualToString:@"fail"])
         {
-            NSString *url = data[@"pay_url"];
-            
-            if (url.length > 0 && orderId.length > 0 && completion)
-            {
-                completion(orderId, url);
-            }
+            completion(state, @"", @"");
         }
         else
         {
             NSString *productId = data[@"product_id"];
             if (productId.length > 0 && orderId.length > 0 && completion)
             {
-                completion(orderId, productId);
+                completion(state, orderId, productId);
             }
             else
             {
@@ -292,6 +288,8 @@
             }
         }
         
+            
+        
     } failure:^(NSString * _Nullable errorMessage) {
         if (failure)
         {
@@ -299,6 +297,31 @@
         }
     }];
 }
+
+- (void)cashier:(XWOrderModel *)order
+   completion:(void(^)(NSString *orderId, NSString *url))completion
+      failure:(void(^)(NSString *errorMessage))failure
+{
+    if (![self checkConf])
+    {
+        failure(@"未初始化SDK");
+        return;
+    }
+    [XWGwDomainServer cashi:order success:^(id  _Nullable data) {
+        NSLog(@"s");
+        
+    } failure:^(NSString * _Nullable errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
+
+
+
+
 
 - (void)check:(NSString *)orderId
       receipt:(NSString *)receipt

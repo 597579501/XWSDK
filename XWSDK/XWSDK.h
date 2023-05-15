@@ -54,9 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(void))completion failure:(void(^)(NSString *errorMessage))failure;
 
-- (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure;
-
-
 - (void)login;
 
 - (void)logoutAccount;

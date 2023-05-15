@@ -29,7 +29,8 @@
     NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:0];
     
     [[XWSDK sharedInstance] setLoginCallBack:^(XWUserModel * _Nonnull user) {
-            
+        self.userId = user.userId;
+        NSLog(@"Demo user %@",user.userId);
     }];
     
     [self tableView:self.tableView didSelectRowAtIndexPath:index];
@@ -74,6 +75,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0)
     {
+        
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [[XWSDK sharedInstance] conf:@"11105" appKey:@"45f6202f5365130f8a500c4b770b42b7" completion:^{
             cell.detailTextLabel.text = @"init success";
@@ -99,19 +101,8 @@
 //        }];
         
     }
+    
     else if (indexPath.row == 2)
-    {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        [[XWSDK sharedInstance] start:^(XWUserModel * _Nonnull userModel) {
-            
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", userModel.userName , userModel.userId];
-            [tableView reloadData];
-        } failure:^(NSString * _Nonnull errorMessage) {
-            cell.detailTextLabel.text = errorMessage;
-            [tableView reloadData];
-        }];
-    }
-    else if (indexPath.row == 3)
     {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
@@ -125,6 +116,39 @@
         
         [[XWSDK sharedInstance] alive:roleModel completion:^(XWUserModel * _Nonnull userModel) {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", userModel.userName , userModel.userId];
+            [tableView reloadData];
+        } failure:^(NSString * _Nonnull errorMessage) {
+            cell.detailTextLabel.text = errorMessage;
+            [tableView reloadData];
+        }];
+    }
+    else if (indexPath.row == 3)
+    {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        
+        int to = 1;
+        int from = 10000;
+        int rand =  from + (arc4random() % (to - from));
+        
+        
+        
+        XWOrderModel *order = [[XWOrderModel alloc] init];
+        order.roleId = @"1";
+        order.roleName = @"测试";
+        order.userId = self.userId;
+        order.serverId = @"server1";
+        order.serverName = @"serverName1";
+        order.roleLevel = @"188";
+        
+        order.money = @"0.01";
+        order.appData = @"appdata";
+        order.appOrderId = [NSString stringWithFormat:@"orderid%d", rand];
+        order.desc = @"desc";
+        
+        
+        [[XWSDK sharedInstance] open:order completion:^(NSString * _Nonnull orderId, NSString * _Nonnull url) {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"orderId %@", orderId ];
             [tableView reloadData];
         } failure:^(NSString * _Nonnull errorMessage) {
             cell.detailTextLabel.text = errorMessage;
@@ -149,12 +173,11 @@
         order.serverId = @"server1";
         order.serverName = @"serverName1";
         order.roleLevel = @"188";
-        
         order.money = @"1";
         order.appData = @"appdata";
         order.appOrderId = [NSString stringWithFormat:@"orderid%d", rand];
         order.desc = @"desc";
-        order.openType = XWOpenI;
+        
         
         [[XWSDK sharedInstance] open:order completion:^(NSString * _Nonnull orderId, NSString * _Nonnull url) {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"orderId %@", orderId ];
@@ -164,6 +187,7 @@
             [tableView reloadData];
         }];
     }
+    
     else
     {
         
@@ -186,7 +210,7 @@
 {
     if (!_dataArray)
     {
-        _dataArray = @[@"初始化", @"登录", @"激活上报", @"角色上报", @"请求支付"];
+        _dataArray = @[@"初始化", @"登录", @"角色上报", @"0.01", @"1"];
     }
     return _dataArray;;
 }

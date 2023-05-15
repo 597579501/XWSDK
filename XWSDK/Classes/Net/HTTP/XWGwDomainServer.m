@@ -17,6 +17,8 @@ NSString *const XWSendCodeUrl = @"user/send_code.php";
 NSString *const XWIdAuthUrl = @"user/id_auth.php";
 NSString *const XWOpenUrl = @"pay/open.php";
 NSString *const XWCheckUrl = @"pay/ios/check.php";
+NSString *const XWCashiUrl = @"pay/cashier.php";
+
 
 
 
@@ -261,7 +263,35 @@ NSString *const XWCheckUrl = @"pay/ios/check.php";
                              @"money" : order.money  ? order.money : @"",
                              @"app_data" : order.appData ? order.appData : @"" ,
                              @"app_order_id" : order.appOrderId ? order.appOrderId : @"",
-                             @"pay_type" : [NSString stringWithFormat:@"%ld", order.openType],
+                             @"pay_type" : @"30",
+                             @"desc" : order.desc ? order.desc : @"",
+                             @"is_h5_pay" : @"1",
+                             @"order_type" : @"1",
+                             @"user_coupon_id" : @"0",
+                             @"use_platform_currency" : @"0",
+    };
+    [commonDictionary addEntriesFromDictionary:params];
+    NSString *signString = [self signWithParams:commonDictionary];
+    [commonDictionary setObject:signString forKey:@"sign"];
+    return [[XWNetManager sharedInstance] getWithUrl:url parameters:commonDictionary success:success failure:failure];
+}
+
++ (NSURLSessionDataTask *)cashi:(XWOrderModel *)order
+                        success:(Success)success
+                        failure:(Failure)failure
+{
+    NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWCashiUrl];
+    
+    XWCommonModel *commonModel = [XWCommonModel sharedInstance];
+    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
+    NSDictionary *params = @{@"user_id" : [XWSDK sharedInstance].currUser.userId  ? [XWSDK sharedInstance].currUser.userId : @"",
+                             @"server_id" : order.serverId  ? order.serverId : @"",
+                             @"role_id" : order.roleId ? order.roleId : @"",
+                             @"role_level" : order.roleLevel ? order.roleLevel : @"",
+                             @"money" : order.money  ? order.money : @"",
+                             @"app_data" : order.appData ? order.appData : @"" ,
+                             @"app_order_id" : order.appOrderId ? order.appOrderId : @"",
+//                             @"pay_type" : [NSString stringWithFormat:@"%ld", order.openType],
                              @"desc" : order.desc ? order.desc : @"",
                              @"is_h5_pay" : @"1",
                              @"order_type" : @"1",

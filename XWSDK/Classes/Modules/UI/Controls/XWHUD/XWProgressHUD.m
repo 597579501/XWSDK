@@ -56,9 +56,7 @@ static const CGFloat XWDefaultDetailsLabelFontSize = 12.f;
     XWProgressHUD *hud = [[self alloc] initWithView:view];
     hud.removeFromSuperViewOnHide = YES;
     [view addSubview:hud];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [hud showAnimated:animated];
-    });
+    [hud showAnimated:animated];
     
     return hud;
 }

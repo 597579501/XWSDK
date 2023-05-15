@@ -120,6 +120,10 @@
 		1496C9AB2A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.h in Headers */ = {isa = PBXBuildFile; fileRef = 1496C9A62A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.h */; };
 		1496C9AC2A0CE1E6007D8CF6 /* XWStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1496C9A72A0CE1E6007D8CF6 /* XWStore.m */; };
 		1496C9AD2A0CE1E6007D8CF6 /* XWStore-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 1496C9A82A0CE1E6007D8CF6 /* XWStore-Prefix.pch */; };
+		149899DD2A1237CC00E951AC /* XWIdAuthViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 149899DB2A1237CC00E951AC /* XWIdAuthViewController.h */; };
+		149899DE2A1237CC00E951AC /* XWIdAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149899DC2A1237CC00E951AC /* XWIdAuthViewController.m */; };
+		149899E12A12382A00E951AC /* XWIdAuthView.h in Headers */ = {isa = PBXBuildFile; fileRef = 149899DF2A12382A00E951AC /* XWIdAuthView.h */; };
+		149899E22A12382A00E951AC /* XWIdAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 149899E02A12382A00E951AC /* XWIdAuthView.m */; };
 		14A5A35E2A01F09300BC76A4 /* XWRoleModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A5A35C2A01F09300BC76A4 /* XWRoleModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A5A35F2A01F09300BC76A4 /* XWRoleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A5A35D2A01F09300BC76A4 /* XWRoleModel.m */; };
 		14A5A3622A020DB400BC76A4 /* XWOrderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A5A3602A020DB400BC76A4 /* XWOrderModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -287,6 +291,10 @@
 		1496C9A62A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWStoreKeychainPersistence.h; sourceTree = "<group>"; };
 		1496C9A72A0CE1E6007D8CF6 /* XWStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWStore.m; sourceTree = "<group>"; };
 		1496C9A82A0CE1E6007D8CF6 /* XWStore-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XWStore-Prefix.pch"; sourceTree = "<group>"; };
+		149899DB2A1237CC00E951AC /* XWIdAuthViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWIdAuthViewController.h; sourceTree = "<group>"; };
+		149899DC2A1237CC00E951AC /* XWIdAuthViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWIdAuthViewController.m; sourceTree = "<group>"; };
+		149899DF2A12382A00E951AC /* XWIdAuthView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWIdAuthView.h; sourceTree = "<group>"; };
+		149899E02A12382A00E951AC /* XWIdAuthView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWIdAuthView.m; sourceTree = "<group>"; };
 		14A5A35C2A01F09300BC76A4 /* XWRoleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWRoleModel.h; sourceTree = "<group>"; };
 		14A5A35D2A01F09300BC76A4 /* XWRoleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWRoleModel.m; sourceTree = "<group>"; };
 		14A5A3602A020DB400BC76A4 /* XWOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWOrderModel.h; sourceTree = "<group>"; };
@@ -403,6 +411,8 @@
 				148B24512A063DFB009BFE2E /* XWUserLoginViewController.m */,
 				148B24572A063DFB009BFE2E /* XWUserRegisterViewController.h */,
 				148B245E2A063DFB009BFE2E /* XWUserRegisterViewController.m */,
+				149899DB2A1237CC00E951AC /* XWIdAuthViewController.h */,
+				149899DC2A1237CC00E951AC /* XWIdAuthViewController.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -500,6 +510,8 @@
 				148B24B72A06403A009BFE2E /* XWUserLoginView.m */,
 				148B24B62A06403A009BFE2E /* XWUserRegisterView.h */,
 				148B24BF2A06403A009BFE2E /* XWUserRegisterView.m */,
+				149899DF2A12382A00E951AC /* XWIdAuthView.h */,
+				149899E02A12382A00E951AC /* XWIdAuthView.m */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -767,6 +779,7 @@
 				148B246B2A063DFB009BFE2E /* XWAutoLoginViewController.h in Headers */,
 				141FCF6129FA57440075C50A /* XWSDKViewModel.h in Headers */,
 				148B24A52A063ED7009BFE2E /* XWTextField.h in Headers */,
+				149899E12A12382A00E951AC /* XWIdAuthView.h in Headers */,
 				141FCF4729FA1E840075C50A /* XWGwDomainServer.h in Headers */,
 				148B24CA2A06403A009BFE2E /* XWUserListTableView.h in Headers */,
 				148B249C2A063ED7009BFE2E /* XWTableViewCells.h in Headers */,
@@ -804,6 +817,7 @@
 				148B24E12A0641E7009BFE2E /* XWMentLoadingHUD.h in Headers */,
 				148B24E02A0641E7009BFE2E /* XWMentSuccessHUD.h in Headers */,
 				14DE9FA229F7FFD00093BF1C /* XWView.h in Headers */,
+				149899DD2A1237CC00E951AC /* XWIdAuthViewController.h in Headers */,
 				148B24652A063DFB009BFE2E /* XWUpdatePassWordViewController.h in Headers */,
 				148B24C92A06403A009BFE2E /* XWAutoLoginView.h in Headers */,
 				14DE9F9929F7FFD00093BF1C /* XWViewModel.h in Headers */,
@@ -945,6 +959,7 @@
 				148B24F62A06598A009BFE2E /* XWDBHelper.m in Sources */,
 				148B24612A063DFB009BFE2E /* XWUserLoginViewController.m in Sources */,
 				141FCF5E29FA2D5D0075C50A /* XWHttpResponse.m in Sources */,
+				149899DE2A1237CC00E951AC /* XWIdAuthViewController.m in Sources */,
 				148B24FA2A065B76009BFE2E /* XWGQOrderInfoModel.m in Sources */,
 				148725EF29F80DBA00C1ED33 /* XWBaseServer.m in Sources */,
 				148B24632A063DFB009BFE2E /* XWPhoneLoginViewController.m in Sources */,
@@ -981,6 +996,7 @@
 				148B24E22A0641E7009BFE2E /* XWMentLoadingHUD.m in Sources */,
 				148B24982A063ED7009BFE2E /* XWUserListTableViewCell.m in Sources */,
 				148B248D2A063ED7009BFE2E /* XWHUD.m in Sources */,
+				149899E22A12382A00E951AC /* XWIdAuthView.m in Sources */,
 				1496C9A92A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.m in Sources */,
 				14DE9FA329F7FFD00093BF1C /* XWView.m in Sources */,
 				14A5A35F2A01F09300BC76A4 /* XWRoleModel.m in Sources */,

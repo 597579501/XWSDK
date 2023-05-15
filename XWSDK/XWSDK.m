@@ -68,17 +68,6 @@ static XWSDK *_instance = nil;
 - (void)login
 {
     [self loginSucessCallBack:_loginCallBack];
-//    [self.sdkViewModel login:name password:password completion:^(XWUserModel * _Nonnull userModel) {
-//        if(completion)
-//        {
-//            completion(userModel);
-//        }
-//    } failure:^(NSString * _Nonnull errorMessage) {
-//        if (failure)
-//        {
-//            failure(errorMessage);
-//        }
-//    }];
 }
 
 - (void)logoutAccount
@@ -204,6 +193,14 @@ static XWSDK *_instance = nil;
     }
 }
 
+- (void)showIdAuth:(XWUserModel *)user
+{
+    if (!user.isIdauth)
+    {
+        
+    }
+}
+
 
 - (void)start:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure
 {
@@ -246,49 +243,15 @@ static XWSDK *_instance = nil;
     WS(weakSelf);
     XWProgressHUD *hud = [XWHUD showHUD:[[UIApplication sharedApplication] windows].firstObject];
     
-    [self.sdkViewModel open:order completion:^(NSString *orderId, NSString *url) {
-        if (order.openType == XWOpenWX || order.openType == XWOpenWX)
+    [self.sdkViewModel cashier:order completion:^(NSString * _Nonnull orderId, NSString * _Nonnull url) {
+            
+    } failure:^(NSString * _Nonnull errorMessage) {
+        
+    }];
+    
+    [self.sdkViewModel open:order completion:^(NSString *state, NSString *orderId, NSString *url) {
+        if ([state isEqualToString:@"success"])
         {
-            if(url)
-            {
-                
-                [XWHUD hideHUD:hud];
-                [weakSelf.floatWindow dissmissWindow];
-                UIViewController *rootcontroller = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
-                
-                XWWebViewController *webViewController = nil;
-                
-                webViewController = [[XWWebViewController alloc] initWithURL:url];
-                
-                UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
-                [webViewController setIsPay:YES];
-                [webViewController setIsCanShowBack:NO];
-                
-                [rootcontroller presentViewController:navigationController animated:YES completion:^{
-                    
-                }];
-                [webViewController setCloseButtonClickBlock:^{
-                    [weakSelf.floatWindow showWindow];
-    //                if (XWHSDK.dhColseBack) {
-    //                    XWHSDK.dhColseBack();
-    //                }
-                }];
-    //            completion(orderId, url);
-
-            }
-            else
-            {
-                [XWHUD hideHUD:hud];
-                [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"获取订单失败"];
-                [weakSelf.floatWindow showWindow];
-    //            if (SDHSDK.dhInfoCallBack) {
-    //                SDHSDK.dhInfoCallBack(DHZCreateOrderFail);
-    //            }
-            }
-        }
-        else
-        {
-
             NSString *productIdString = url;
             NSSet *productsList = [NSSet setWithArray:@[productIdString]];
             [[XWStore defaultStore] requestProducts:productsList success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
@@ -308,11 +271,7 @@ static XWSDK *_instance = nil;
                         //这里orderId为请求返回的sdkXXXXXXXX的不是CP传值进来的
                         NSURL *url = [[NSBundle mainBundle] appStoreReceiptURL];
                         NSData *receiptData = [NSData dataWithContentsOfURL:url];
-
-                        NSString *str1 = [receiptData base64EncodedStringWithOptions:0] ;
-                        NSString *encodeStr = [[receiptData base64EncodedStringWithOptions:0] stringByURLEncode];
-                        
-                        
+                        NSString *encodeStr = [receiptData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
                         [weakSelf.sdkViewModel check:orderId receipt:encodeStr transactionId:transactionID completion:^(NSString * _Nonnull orderId) {
                             [XWHUD hideHUD:hud];
                             [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"支付成功"];
@@ -320,61 +279,6 @@ static XWSDK *_instance = nil;
                             [XWHUD hideHUD:hud];
                             [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:errorMessage];
                         }];
-                        
-//                        NSMutableDictionary *requestContents = [NSMutableDictionary dictionaryWithObject:
-//                                                                [receiptData base64EncodedStringWithOptions:0]  forKey:@" "];
-////                        NSMutableDictionary *requestContents = [NSMutableDictionary dictionaryWithObject:encodeStr  forKey:@"receipt-data"];
-//                        NSError *error;
-//                        NSData *requestData = [NSJSONSerialization dataWithJSONObject:requestContents options:0 error:&error];
-//
-//                        NSString *kSandboxServer = @"https://sandbox.itunes.apple.com/verifyReceipt";
-                        
-                        
-//                        NSMutableURLRequest *storeRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kSandboxServer]];
-//                        [storeRequest setHTTPMethod:@"POST"];
-//                        [storeRequest setHTTPBody:requestData];
-//                        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-//
-//                        [[session dataTaskWithRequest:storeRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//                            NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-//                              NSLog(@"receiptjsonResponse:%@",jsonResponse);
-//                            NSInteger status = [jsonResponse[@"status"] integerValue];
-//                            NSLog(@"status - %d", status);
-////                          }
-//                        }] resume];
-//
-                        
-//                        NSURLSession *session = [NSURLSession sharedSession];
-//                        [session dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-////                            NSData *receiptData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:&error];
-//                            NSString *encodeStr = [data base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
-////                            NSString *encodeStr = [receiptData utf8String];
-//    //                        NSString *geiQianload = [NSString stringWithFormat:@"{\"receipt-data\" : \"%@\"}", encodeStr];
-//
-//                            [weakSelf.sdkViewModel check:orderId receipt:encodeStr completion:^(NSString * _Nonnull orderId) {
-//                                [XWHUD hideHUD:hud];
-//                                [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"支付成功"];
-//                            } failure:^(NSString * _Nonnull errorMessage) {
-//                                [XWHUD hideHUD:hud];
-//                                [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:errorMessage];
-//                            }];
-//                        }];
-                        
-                        
-                        
-//                        [CenterCoordinateForKeyedArchiver LuodFuIUxPAjzFdo:orderId transaction:transaction skProduct:skProduct success:^{
-//                            [DHHUD hideHUD:hud];
-//                            [DHHUD showOnlyText:[[UIApplication sharedApplication] keyWindow] text:FUCK_SUCCEED_MESSAGE];
-//                            if (SDHSDK.dhInfoCallBack) {
-//                                SDHSDK.dhInfoCallBack(DHZVerifyReceiptSucceed);
-//                            }
-//                        } failure:^(int errcode, NSString *errorMessage) {
-//                            [DHHUD hideHUD:hud];
-//                            [DHHUD showOnlyText:[[UIApplication sharedApplication] keyWindow] text:errorMessage];
-//                            if (SDHSDK.dhInfoCallBack) {
-//                                SDHSDK.dhInfoCallBack(DHZVerifyReceiptFail);
-//                            }
-//                        }];
                     } failure:^(SKPaymentTransaction *transaction, NSError *error) {
                         [XWHUD hideHUD:hud];
                         [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:error.localizedDescription];
@@ -398,7 +302,69 @@ static XWSDK *_instance = nil;
                 });
             }];
         }
-        
+        else
+        {
+            
+            [XWHUD hideHUD:hud];
+            [weakSelf.floatWindow dissmissWindow];
+            UIViewController *rootcontroller = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
+            
+            XWWebViewController *webViewController = nil;
+            
+            webViewController = [[XWWebViewController alloc] initWithURL:@"http://gw_gzdky.niiwe.com/pay/cashier.php"];
+            [webViewController setOrder:order];
+            [webViewController setIsOpen:YES];
+            [webViewController setIsCanShowBack:NO];
+            
+            UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
+//            navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
+            [rootcontroller presentViewController:navigationController animated:YES completion:^{
+                
+            }];
+            [webViewController setCloseButtonClickBlock:^{
+                [weakSelf.floatWindow showWindow];
+//                if (XWHSDK.dhColseBack) {
+//                    XWHSDK.dhColseBack();
+//                }
+            }];
+            
+//            if(url)
+//            {
+//
+////                [XWHUD hideHUD:hud];
+////                [weakSelf.floatWindow dissmissWindow];
+////                UIViewController *rootcontroller = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
+////
+////                XWWebViewController *webViewController = nil;
+////
+////                webViewController = [[XWWebViewController alloc] initWithURL:url];
+////
+////                UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
+////                [webViewController setIsPay:YES];
+////                [webViewController setIsCanShowBack:NO];
+////
+////                [rootcontroller presentViewController:navigationController animated:YES completion:^{
+////
+////                }];
+////                [webViewController setCloseButtonClickBlock:^{
+////                    [weakSelf.floatWindow showWindow];
+////    //                if (XWHSDK.dhColseBack) {
+////    //                    XWHSDK.dhColseBack();
+////    //                }
+////                }];
+//    //            completion(orderId, url);
+//
+//            }
+//            else
+//            {
+//                [XWHUD hideHUD:hud];
+//                [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"获取订单失败"];
+//                [weakSelf.floatWindow showWindow];
+//    //            if (SDHSDK.dhInfoCallBack) {
+//    //                SDHSDK.dhInfoCallBack(DHZCreateOrderFail);
+//    //            }
+//            }
+        }
     } failure:^(NSString * _Nonnull errorMessage) {
         [XWHUD hideHUD:hud];
         [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:errorMessage];
@@ -475,6 +441,7 @@ static XWSDK *_instance = nil;
     XWUserModel *user = (XWUserModel *)notification.object;
     [self.floatWindow showWindow];
     _instance.currUser = user;
+    [self showIdAuth:user];
     if (_loginCallBack) {
         //        if (lSS == MKLSBL) {
         //            [reyun setLoginWithAccountID:user.userId andGender:o andage:@"" andServerId:@"" andlevel:0 andRole:@""];
@@ -485,6 +452,12 @@ static XWSDK *_instance = nil;
         //            [reyun setRegisterWithAccountID:user.userId andGender:o andage:@"" andServerId:@"" andAccountType:@"" andRole:@""];
         //            [TrackingIO setRegisterWithAccountID:user.userId];
         //        }
+        
+        [[XWSDK sharedInstance] start:^(XWUserModel * _Nonnull userModel) {
+            
+        } failure:^(NSString * _Nonnull errorMessage) {
+        }];
+        
         [self showFloatBtn];
         _loginCallBack(user);
     }

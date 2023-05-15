@@ -38,7 +38,7 @@ static XWCommonModel *_instance = nil;
 - (NSString *)tag1
 {
     ///5个0+1
-    return [NSString stringWithFormat:@"%@000001", self.appId];
+    return [NSString stringWithFormat:@"%@0000001", self.appId];
 }
 
 - (NSString *)tag2

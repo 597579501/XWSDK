@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong) NSString *money;
 @property (nonatomic ,strong) NSString *appOrderId;
 @property (nonatomic ,strong) NSString *appData;
-@property (nonatomic ,assign) XWOpenType openType;
 @property (nonatomic ,strong) NSString *desc;
 @property (nonatomic ,assign) BOOL is5P;
 @property (nonatomic ,assign) BOOL orderType;

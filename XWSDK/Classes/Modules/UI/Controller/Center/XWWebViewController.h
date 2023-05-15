@@ -6,19 +6,23 @@
 //
 
 #import "XWViewController.h"
+#import "XWOrderModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XWWebViewController : XWViewController
 
 
+@property (nonatomic, strong) XWOrderModel *order;
 @property (nonatomic, copy,   readonly) NSString *url;
+
+
 @property (nonatomic, copy,   readonly) NSString *html;
 @property (nonatomic, strong, readonly) UIButton *reloadButton;
 @property (nonatomic, strong, readonly) UIView   *bottomView;   //底部前进、后退按钮容器，默认隐藏
 
 @property (nonatomic, assign) BOOL  isForbidScale;//default is YES
-@property (nonatomic, assign) BOOL  isPay;//default is YES
+@property (nonatomic, assign) BOOL  isOpen;//default is YES
 
 @property (nonatomic, copy) NSString *webTitle;
 @property (nonatomic, copy) void (^WebViewControllerPopBlock)(void);

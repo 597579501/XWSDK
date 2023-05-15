@@ -195,7 +195,8 @@ NSInteger const XWHTTPServiceTimeoutInterval = 30;
     
     
     AFHTTPSessionManager *manager = [XWNetManager sharedInstance].manager;
-    NSString *urlI = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@""].invertedSet];
+//    NSString *urlI = [url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@""].invertedSet];
+    NSString *urlI = url;
     NSMutableDictionary *finalParams = [NSMutableDictionary dictionaryWithDictionary:params];
 //    finalParams[@"timestamp"] = [self getCurrentTime];
     // 请求参数加密 TODO

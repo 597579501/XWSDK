@@ -49,8 +49,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (void)open:(XWOrderModel *)order
-   completion:(void(^)(NSString *orderId, NSString *url))completion
+  completion:(void(^)(NSString *state, NSString *orderId, NSString *url))completion
      failure:(void(^)(NSString *errorMessage))failure;
+
+- (void)cashier:(XWOrderModel *)order
+   completion:(void(^)(NSString *orderId, NSString *url))completion
+        failure:(void(^)(NSString *errorMessage))failure;
 
 - (void)check:(NSString *)orderId
       receipt:(NSString *)receipt
