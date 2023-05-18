@@ -314,7 +314,7 @@ NSString *const XWCashiUrl = @"pay/cashier.php";
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
     NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
-    NSDictionary *params = @{@"order_id" : orderId,
+    NSDictionary *params = @{@"order_id" : orderId ? orderId : @"",
                              @"receipt" : receipt,
                              @"transactionId" : transactionId
     };

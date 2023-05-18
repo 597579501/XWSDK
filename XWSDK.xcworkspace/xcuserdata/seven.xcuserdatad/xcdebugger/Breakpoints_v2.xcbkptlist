@@ -7,47 +7,77 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "52C70CF1-DEF0-4CEB-A608-278C1392F365"
+            uuid = "A00F4276-B491-417E-B8FC-6B0D317770EF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "XWSDK/Classes/Modules/UI/Controller/Center/XWWebViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "802"
+            endingLineNumber = "802"
+            landmarkName = "-webView:decidePolicyForNavigationAction:decisionHandler:"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "52C70CF1-DEF0-4CEB-A608-278C1392F365 - 841fd5500aded9e"
+                  uuid = "A00F4276-B491-417E-B8FC-6B0D317770EF - 37edf9b90cd0637f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[XWWebViewController viewDidLoad]"
+                  symbolName = "-[XWWebViewController webView:decidePolicyForNavigationAction:decisionHandler:]"
                   moduleName = "XWSDK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/Controller/Center/XWWebViewController.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "214"
-                  endingLineNumber = "214"
-                  offsetFromSymbolStart = "4140">
+                  startingLineNumber = "802"
+                  endingLineNumber = "802"
+                  offsetFromSymbolStart = "476">
                </Location>
                <Location
-                  uuid = "52C70CF1-DEF0-4CEB-A608-278C1392F365 - 841fd5500aded3b"
+                  uuid = "A00F4276-B491-417E-B8FC-6B0D317770EF - 37edf9b90cd0637f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[XWWebViewController viewDidLoad]"
+                  symbolName = "-[XWWebViewController webView:decidePolicyForNavigationAction:decisionHandler:]"
                   moduleName = "XWSDK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/Controller/Center/XWWebViewController.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "217"
-                  endingLineNumber = "217"
-                  offsetFromSymbolStart = "4208">
+                  startingLineNumber = "802"
+                  endingLineNumber = "802"
+                  offsetFromSymbolStart = "436">
+               </Location>
+               <Location
+                  uuid = "A00F4276-B491-417E-B8FC-6B0D317770EF - 37edf9b90cd0637f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[XWWebViewController webView:decidePolicyForNavigationAction:decisionHandler:]"
+                  moduleName = "XWSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/Controller/Center/XWWebViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "802"
+                  endingLineNumber = "802"
+                  offsetFromSymbolStart = "440">
+               </Location>
+               <Location
+                  uuid = "A00F4276-B491-417E-B8FC-6B0D317770EF - 37edf9b90cd0637f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[XWWebViewController webView:decidePolicyForNavigationAction:decisionHandler:]"
+                  moduleName = "XWSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/Controller/Center/XWWebViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "802"
+                  endingLineNumber = "802"
+                  offsetFromSymbolStart = "420">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -55,16 +85,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "360E5E71-9A9D-446F-AF02-FADB37E25B70"
+            uuid = "986998F7-5593-4A3D-AE1B-7EFCEB2BBAF3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "XWSDK/Classes/Modules/UI/Controller/Center/XWWebViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "818"
+            endingLineNumber = "818"
+            landmarkName = "-webView:decidePolicyForNavigationAction:decisionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

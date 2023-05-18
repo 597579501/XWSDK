@@ -186,13 +186,10 @@ const float WebViewCtrlFinalProgressValue             = 0.9f;
             NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
             NSDictionary *params = @{
                 @"money" : self.order.money ? self.order.money : @"",
-                
                 @"user_id" : [XWSDK sharedInstance].currUser.userId  ? [XWSDK sharedInstance].currUser.userId : @"",
                 @"server_id" : self.order.serverId  ? self.order.serverId : @"",
                 @"role_id" : self.order.roleId ? self.order.roleId : @"",
-                                     
                 @"role_level" : self.order.roleLevel ? self.order.roleLevel : @"",
-
                 @"app_data" : self.order.appData ? self.order.appData : @"" ,
                 @"app_order_id" : self.order.appOrderId ? self.order.appOrderId : @"",
                 @"desc" : self.order.desc ? self.order.desc : @"",
@@ -205,17 +202,11 @@ const float WebViewCtrlFinalProgressValue             = 0.9f;
             NSString *signString = [XWBaseServer signWithParams:commonDictionary];
             [commonDictionary setObject:signString forKey:@"sign"];
             
-            NSString *query = [commonDictionary modelToJSONString];
-            
-            
-//            NSString *urlString = [NSString stringWithFormat:@"http://gw_gzdky.niiwe.com/pay/cashier.php?%@",query];
-            NSString *urlString = @"http://gw_gzdky.niiwe.com/pay/cashier.php?app_data=appdata&app_id=11105&app_order_id=orderid1722662730&desc=desc&device=56F7AC5D-EDFA-463E-929A-FC1CCA06C734&is_h5_pay=1&money=1&order_type=1&role_id=1&role_level=188&server_id=server1&sign=cce7d1d1a33028f63a830a7a5c29c568&tag1=111050000001&tag2=11105&tag3=1&tag4=%20&time=1684162690&use_platform_currency=0&user_coupon_id=0&user_id=4b8ecab51be913c03dde16b06cf8b042&ver=1.0";
-        
-            
+            NSString *query = [self queryStringWithDict:commonDictionary];
+            NSString *urlString = [NSString stringWithFormat:@"http://gw_gzdky.niiwe.com/pay/cashier.php?%@", query];
             NSURL *url = [NSURL URLWithString:urlString];
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-//            [request setHTTPMethod:@"GET"];
-            [_webView loadRequest:request];
+            [self.webView loadRequest:request];
         }
         else
         {
@@ -228,6 +219,10 @@ const float WebViewCtrlFinalProgressValue             = 0.9f;
     {
         [self loadWebPage:self.html];
     }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.webView reload];
+    });
     //    NSLog(@"%@",NSStringFromCGRect(self.webView.frame));
 }
 
@@ -429,13 +424,10 @@ const float WebViewCtrlFinalProgressValue             = 0.9f;
     
 }
 
--(NSMutableURLRequest *)setupUrlRequest{
+- (NSMutableURLRequest *)setupUrlRequest{
     NSURL *url = [NSURL URLWithString:_url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"gw_gzdky.niiwe.com" forHTTPHeaderField:@"Referer"];
-    //    [request setAllHTTPHeaderFields:SLSYControlCenter.commonHeaderField];
-//        [request addValue:LSYCachingURLMarkHeader forHTTPHeaderField:LSYCachingURLMarkHeader];
-    
+//    [request setValue:@"gw_gzdky.niiwe.com" forHTTPHeaderField:@"Referer"];
     return request;
     
 }
@@ -774,6 +766,108 @@ const float WebViewCtrlFinalProgressValue             = 0.9f;
 //    return NO;
 //}
 
+
+#pragma mark - # Delegate
+//MARK: WKNavigationDelegate
+// 开始加载页面
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    NSLog(@"didStartProvisionalNavigation");
+}
+
+// 开始返回页面内容
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
+    NSLog(@"didCommitNavigation");
+}
+
+// 加载完成
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    
+    NSLog(@"didFinishNavigation");
+}
+
+// 加载失败
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    NSLog(@"didFailProvisionalNavigation error %@", error.description);
+}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
+{
+    NSString *urlString = navigationAction.request.URL.absoluteString;
+    NSLog(@"decidePolicyForNavigationAction  %@", urlString);
+    BOOL isIt = [urlString rangeOfString:@"https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb"].location != NSNotFound;
+    BOOL isSet = [[navigationAction.request.allHTTPHeaderFields objectForKey:@"Referer"] isEqualToString:@"gw_gzdky.niiwe.com"];
+    if (isIt && !isSet)
+    {
+        
+        NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+        [req setValue:@"gw_gzdky.niiwe.com" forHTTPHeaderField:@"Referer"];
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [webView loadRequest:req];
+        });
+        
+
+        
+        
+        decisionHandler(WKNavigationActionPolicyCancel);
+    }
+    else
+    {
+        if ([navigationAction.request.URL.scheme isEqualToString:@"weixin"])
+        {
+            if ([[UIApplication sharedApplication] canOpenURL:navigationAction.request.URL])
+            {
+                [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{} completionHandler:^(BOOL success) {
+    
+                }];
+            }
+            decisionHandler(WKNavigationActionPolicyCancel);
+        }
+        else
+        {
+            decisionHandler(WKNavigationActionPolicyAllow);
+        }
+        
+    }
+    
+//    decisionHandler(WKNavigationActionPolicyAllow);
+    
+    
+}
+
+
+- (NSString *)queryStringWithDict:(NSDictionary *)dict {
+    // shareType=%@&mediaType=%@
+    NSMutableString *result = [NSMutableString string];
+    [dict enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *obj, BOOL *stop) {
+        if (key)
+        {
+            [result appendString:key];
+        }
+        [result appendString:@"="];
+        
+        if ([obj isKindOfClass:[NSNumber class]]) {
+            if ([obj description])
+            {
+                NSString *encodedString = [[obj description] stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"!@$^&%*+,;='\"`<>()[]{}\\| "] invertedSet]];
+                [result appendString:encodedString];
+            }
+        } else {
+            if (obj)
+            {
+                NSString *encodedString = [obj stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"!@$^&%*+,;='\"`<>()[]{}\\| "] invertedSet]];
+                [result appendString:encodedString];
+            }
+            
+        }
+        
+        [result appendString:@"&"];
+    }];
+    if (result.length > 0) {
+        return [result substringToIndex:result.length - 1];
+    }
+    return nil;
+}
 
 
 

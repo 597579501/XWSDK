@@ -95,41 +95,18 @@ NSString *const XWAliveUrl = @"user/alive.php";
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
     NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
 
-    NSDictionary *params = @{@"user_id" : roleModel.userId,
-                             @"server_id" : roleModel.serverId,
-                             @"server_name" : roleModel.serverName,
-                             @"role_id" : roleModel.roleId,
-                             @"role_name" : roleModel.roleName,
-                             @"role_level" : roleModel.roleLevel
+    NSDictionary *params = @{@"user_id" : roleModel.userId ? roleModel.userId : @"",
+                             @"server_id" : roleModel.serverId ? roleModel.serverId : @"",
+                             @"server_name" : roleModel.serverName ? roleModel.serverName : @"",
+                             @"role_id" : roleModel.roleId ? roleModel.roleId : @"",
+                             @"role_name" : roleModel.roleName ? roleModel.roleName : @"",
+                             @"role_level" : roleModel.roleLevel ? roleModel.roleLevel : @"",
     };
     [commonDictionary addEntriesFromDictionary:params];
     NSString *signString = [self signWithParams:commonDictionary];
     [commonDictionary setObject:signString forKey:@"sign"];
     return [[XWNetManager sharedInstance] getWithUrl:url parameters:commonDictionary success:success failure:failure];
 }
-//
-//
-//+ (NSURLSessionDataTask *)login:(NSString *)name password:(NSString *)password
-//                        success:(Success)success
-//                        failure:(Failure)failure
-//{
-//    NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWLoginUrl];
-//    NSString *signPassword = [self md5HexDigest:[NSString stringWithFormat:@"%@346c2844386d77463ae227063f2c2b9e", password]];
-//
-//    XWCommonModel *commonModel = [XWCommonModel sharedInstance];
-//    NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
-//
-//    NSString *token = [self md5HexDigest:[NSString stringWithFormat:@"%@%@%@%@",commonModel.appId, commonModel.appKey, signPassword, commonModel.time]];
-//    NSDictionary *params = @{@"name" : name,
-//                             @"token" : token
-//    };
-//    [commonDictionary addEntriesFromDictionary:params];
-//    NSString *signString = [self signWithParams:commonDictionary];
-//    [commonDictionary setObject:signString forKey:@"sign"];
-//    return [[XWNetManager sharedInstance] getWithUrl:url parameters:commonDictionary success:success failure:failure];
-//}
-//
-//@end
 
 
 @end

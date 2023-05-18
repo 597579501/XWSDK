@@ -144,7 +144,7 @@
         order.money = @"0.01";
         order.appData = @"appdata";
         order.appOrderId = [NSString stringWithFormat:@"orderid%d", rand];
-        order.desc = @"desc";
+        order.desc = [NSString stringWithFormat:@"de描述%d", rand];
         
         
         [[XWSDK sharedInstance] open:order completion:^(NSString * _Nonnull orderId, NSString * _Nonnull url) {
@@ -176,7 +176,7 @@
         order.money = @"1";
         order.appData = @"appdata";
         order.appOrderId = [NSString stringWithFormat:@"orderid%d", rand];
-        order.desc = @"desc";
+        order.desc = [NSString stringWithFormat:@"desc%d", rand];
         
         
         [[XWSDK sharedInstance] open:order completion:^(NSString * _Nonnull orderId, NSString * _Nonnull url) {
