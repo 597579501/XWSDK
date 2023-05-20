@@ -94,8 +94,8 @@ NSString *const XWAliveUrl = @"user/alive.php";
 
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
     NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
-
-    NSDictionary *params = @{@"user_id" : roleModel.userId ? roleModel.userId : @"",
+    NSString *userId = [XWSDK sharedInstance].currUser.userId;
+    NSDictionary *params = @{@"user_id" : userId ? userId : @"",
                              @"server_id" : roleModel.serverId ? roleModel.serverId : @"",
                              @"server_name" : roleModel.serverName ? roleModel.serverName : @"",
                              @"role_id" : roleModel.roleId ? roleModel.roleId : @"",

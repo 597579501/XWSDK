@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(XWConfModel *confModel))completion failure:(void(^)(NSString *errorMessage))failure;
 
+- (void)rand:(void(^)(NSString *username, NSString *password))completion failure:(void(^)(NSString *errorMessage))failure;
+
 - (void)sendCode:(NSString *)phone name:(NSString *)name codeType:(XWCodeType)codeType completion:(void(^)(void))completion failure:(void(^)(NSString *errorMessage))failure;
 
 - (void)reg:(NSString *)name password:(NSString *)password code:(NSString *)code completion:(void(^)(NSString *userId))completion failure:(void(^)(NSString *errorMessage))failure;

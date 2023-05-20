@@ -10,6 +10,7 @@
 
 
 NSString *const XWConfUrl = @"sdk/conf.php";
+NSString *const XWRandUrl = @"user/rand.php";
 NSString *const XWRegisterUrl = @"user/register.php";
 NSString *const XWLoginUrl = @"user/login.php";
 NSString *const XWUpdateUrl = @"user/update.php";
@@ -46,7 +47,12 @@ NSString *const XWCashiUrl = @"pay/cashier.php";
 }
 
 
-
++ (NSURLSessionDataTask *)rand:(Success)success 
+                       failure:(Failure)failure
+{
+    NSString *url = [[self hostUrl] stringByAppendingFormat:@"/%@", XWRandUrl];
+    return [[XWNetManager sharedInstance] getWithUrl:url parameters:nil success:success failure:failure];
+}
 
 + (NSURLSessionDataTask *)sendCode:(NSString *)phone
                               name:(NSString *)name
@@ -284,7 +290,8 @@ NSString *const XWCashiUrl = @"pay/cashier.php";
     
     XWCommonModel *commonModel = [XWCommonModel sharedInstance];
     NSMutableDictionary *commonDictionary = [commonModel modelToJSONObject];
-    NSDictionary *params = @{@"user_id" : [XWSDK sharedInstance].currUser.userId  ? [XWSDK sharedInstance].currUser.userId : @"",
+    NSString *userId = [XWSDK sharedInstance].currUser.userId;
+    NSDictionary *params = @{@"user_id" : userId ? userId : @"",
                              @"server_id" : order.serverId  ? order.serverId : @"",
                              @"role_id" : order.roleId ? order.roleId : @"",
                              @"role_level" : order.roleLevel ? order.roleLevel : @"",

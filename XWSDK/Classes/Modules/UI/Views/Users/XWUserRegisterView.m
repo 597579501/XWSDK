@@ -163,6 +163,12 @@
             }
         }];
         
+        [_userAgreementView setPrivacyLabelClickBlock:^{
+            if (weakSelf.privacyLabelClickBlock) {
+                weakSelf.privacyLabelClickBlock();
+            }
+        }];
+        
         [self setBgClickClickBlock:^{
             [weakSelf.usernameTextField resignFirstResponder];
             [weakSelf.passwordTextField resignFirstResponder];

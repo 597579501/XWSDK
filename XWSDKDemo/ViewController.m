@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, strong) NSString *userId;
 @end
 
 @implementation ViewController
@@ -29,8 +28,7 @@
     NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:0];
     
     [[XWSDK sharedInstance] setLoginCallBack:^(XWUserModel * _Nonnull user) {
-        self.userId = user.userId;
-        NSLog(@"Demo user %@",user.userId);
+        NSLog(@"user %@",user.userId);
     }];
     
     [self tableView:self.tableView didSelectRowAtIndexPath:index];
@@ -75,9 +73,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0)
     {
-        
+        [[XWSDK sharedInstance] version];
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [[XWSDK sharedInstance] conf:@"11105" appKey:@"45f6202f5365130f8a500c4b770b42b7" completion:^{
+            NSLog(@"init success");
             cell.detailTextLabel.text = @"init success";
 //            [tableView reloadData];
             NSIndexPath *index = [NSIndexPath indexPathForRow:1 inSection:0];
@@ -109,7 +108,6 @@
         XWRoleModel *roleModel = [[XWRoleModel alloc] init];
         roleModel.roleId = @"1";
         roleModel.roleName = @"测试";
-        roleModel.userId = self.userId;
         roleModel.serverId = @"server1";
         roleModel.serverName = @"serverName1";
         roleModel.roleLevel = @"188";
@@ -136,11 +134,9 @@
         XWOrderModel *order = [[XWOrderModel alloc] init];
         order.roleId = @"1";
         order.roleName = @"测试";
-        order.userId = self.userId;
         order.serverId = @"server1";
         order.serverName = @"serverName1";
         order.roleLevel = @"188";
-        
         order.money = @"0.01";
         order.appData = @"appdata";
         order.appOrderId = [NSString stringWithFormat:@"orderid%d", rand];
@@ -169,7 +165,6 @@
         XWOrderModel *order = [[XWOrderModel alloc] init];
         order.roleId = @"1";
         order.roleName = @"测试";
-        order.userId = self.userId;
         order.serverId = @"server1";
         order.serverName = @"serverName1";
         order.roleLevel = @"188";

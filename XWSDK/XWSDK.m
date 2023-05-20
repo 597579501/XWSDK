@@ -241,6 +241,7 @@ static XWSDK *_instance = nil;
       failure:(void(^)(NSString *errorMessage))failure
 {
     WS(weakSelf);
+    
     XWProgressHUD *hud = [XWHUD showHUD:[[UIApplication sharedApplication] windows].firstObject];
     
     [self.sdkViewModel cashier:order completion:^(NSString * _Nonnull orderId, NSString * _Nonnull url) {
@@ -317,7 +318,7 @@ static XWSDK *_instance = nil;
             [webViewController setIsCanShowBack:NO];
             
             UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
-//            navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
+            navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
             [rootcontroller presentViewController:navigationController animated:YES completion:^{
                 
             }];

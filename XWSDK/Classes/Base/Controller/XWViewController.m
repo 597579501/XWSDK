@@ -33,12 +33,17 @@
     [UIView animateWithDuration:0.3 animations:^{
         [_bgView setAlpha:0.0];
     }];
-    
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
+
+
 
 - (void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+      self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
 
 }
 
@@ -82,20 +87,20 @@
     self.navigationController.interactivePopGestureRecognizer.delegate = nil;
     
     if (self.isCanShowBack) {
-        UIBarButtonItem *backSpacerButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-        backSpacerButton.width = -18;
-        UIImage *backButtonNormalImage = [UIImage imageNamed:@"DH_SDK_BarItem_Back_Normal"];
-        UIImage *backButtonHighlightedImage = [UIImage imageNamed:@"DH_SDK_BarItem_Back_Highlighted"];
+//        UIBarButtonItem *backSpacerButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//        backSpacerButton.width = -10;
+        UIImage *backButtonNormalImage = [UIImage imageNamed:@"XW_SDK_BarItem_Back_Normal"];
+        UIImage *backButtonHighlightedImage = [UIImage imageNamed:@"XW_SDK_BarItem_Back_Highlighted"];
         backButtonHighlightedImage = [backButtonHighlightedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         
         UIButton *backButton = [UIButton new];
         [backButton addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
-        [backButton setFrame:CGRectMake(10, 0, 40, 40)];
+        [backButton setFrame:CGRectMake(0, 0, 40, 40)];
 
         [backButton setBackgroundImage:backButtonNormalImage forState:UIControlStateNormal];
         [backButton setBackgroundImage:backButtonHighlightedImage forState:UIControlStateHighlighted];
         UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-        [self.navigationItem setLeftBarButtonItems:@[backSpacerButton, backButtonItem]];
+        [self.navigationItem setLeftBarButtonItems:@[backButtonItem]];
     }
     
 //
@@ -103,8 +108,8 @@
     UIBarButtonItem *closeSpacerButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     closeSpacerButton.width = -10;
 
-    UIImage *closeButtonNormalImage = [UIImage imageNamed:@"DH_SDK_UserListDel"];
-    UIImage *closeButtonHighlightedImage = [UIImage imageNamed:@"DH_SDK_UserListDel"];
+    UIImage *closeButtonNormalImage = [UIImage imageNamed:@"XW_SDK_UserListDel"];
+    UIImage *closeButtonHighlightedImage = [UIImage imageNamed:@"XW_SDK_UserListDel"];
     closeButtonHighlightedImage = [closeButtonHighlightedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
 //
@@ -116,12 +121,7 @@
 //
     [closeButton mas_updateConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_lessThanOrEqualTo(40);
-
     }];
-    
-
-    
- 
     [closeButton setBackgroundImage:closeButtonNormalImage forState:UIControlStateNormal];
     [closeButton setBackgroundImage:closeButtonHighlightedImage forState:UIControlStateHighlighted];
     UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:closeButton];

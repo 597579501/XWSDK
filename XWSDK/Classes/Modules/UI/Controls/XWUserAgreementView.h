@@ -2,6 +2,7 @@
 
 typedef void (^checkClickBlock)(BOOL isCheck);
 typedef void (^labelClickBlock)(void);
+typedef void (^PrivacyLabelClickBlock)(void);
 
 @interface XWUserAgreementView : XWView
 {
@@ -13,7 +14,10 @@ typedef void (^labelClickBlock)(void);
 @property (nonatomic, assign) BOOL            isCheck;
 @property (nonatomic, copy) checkClickBlock checkClickBlock;
 @property (nonatomic, copy) labelClickBlock labelClickBlock;
-- (void)setCheckClickBlock:(checkClickBlock)checkClickBlock;
-- (void)setLabelClickBlock:(labelClickBlock)labelClickBlock;
+@property (nonatomic, copy) PrivacyLabelClickBlock privacyLabelClickBlock;
+
+
+//- (void)setCheckClickBlock:(checkClickBlock)checkClickBlock;
+//- (void)setLabelClickBlock:(labelClickBlock)labelClickBlock;
 
 @end

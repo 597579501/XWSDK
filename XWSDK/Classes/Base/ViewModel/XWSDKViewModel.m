@@ -37,6 +37,29 @@
     }];
 }
 
+- (void)rand:(void(^)(NSString *username, NSString *password))completion failure:(void(^)(NSString *errorMessage))failure
+{
+    if (![self checkConf])
+    {
+        failure(@"未初始化SDK");
+        return;
+    }
+    [XWGwDomainServer rand:^(id  _Nullable data) {
+        NSString *username = data[@"username"];
+        NSString *password = data[@"password"];
+        if (completion && password && username)
+        {
+            completion(username, password);
+        }
+    } failure:^(NSString * _Nullable errorMessage) {
+        if (failure)
+        {
+            failure(errorMessage);
+        }
+    }];
+}
+
+
 - (void)sendCode:(NSString *)phone name:(NSString *)name codeType:(XWCodeType)codeType completion:(void(^)(void))completion failure:(void(^)(NSString *errorMessage))failure
 {
     if (![self checkConf])
@@ -69,21 +92,28 @@
         if (completion && userId)
         {
             
-            long currTime = [[NSDate date] timeIntervalSince1970] ;
-            XWUserLoginRecordModel *userLoginRecordModel = [XWUserLoginRecordModel new];
-            [userLoginRecordModel setUsername:name];
-            [userLoginRecordModel setLoginTime:currTime];
-            [userLoginRecordModel setUserId:userId];
-            [userLoginRecordModel setPassword:password];
-    //        if (userType == UserTypeByPhone) {
-    //            [userLoginRecordModel setUsername:phoneNumber];
-    //        }
-    //        else if (userType == UserTypeByNormal)
-    //        {
-    //            [userLoginRecordModel setUsername:userResponeModel.username];
-    //        }
+//            long currTime = [[NSDate date] timeIntervalSince1970] ;
+//            XWUserLoginRecordModel *userLoginRecordModel = [XWUserLoginRecordModel new];
+//            [userLoginRecordModel setUsername:name];
+//            [userLoginRecordModel setLoginTime:currTime];
+//            [userLoginRecordModel setUserId:userId];
+//            [userLoginRecordModel setPassword:password];
+//    //        if (userType == UserTypeByPhone) {
+//    //            [userLoginRecordModel setUsername:phoneNumber];
+//    //        }
+//    //        else if (userType == UserTypeByNormal)
+//    //        {
+//    //            [userLoginRecordModel setUsername:userResponeModel.username];
+//    //        }
+//
+//            [self saveUserInformation:userLoginRecordModel user:nil isPostNotification:NO];
             
-            [self saveUserInformation:userLoginRecordModel user:nil isPostNotification:NO];
+            [self login:name password:password completion:^(XWUserModel * _Nonnull userModel) {
+                            
+            } failure:^(NSString * _Nonnull errorMessage) {
+                
+            }];
+            
             completion(userId);
         }
     } failure:^(NSString *errorMessage) {

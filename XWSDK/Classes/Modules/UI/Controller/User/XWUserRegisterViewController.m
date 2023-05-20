@@ -5,17 +5,18 @@
 //
 
 #import "XWUserRegisterViewController.h"
-//#import "XWWebViewController.h"
+#import "XWWebViewController.h"
 #import "XWUserRegisterView.h"
 //#import "XWUserSystemManager.h"
 #import "XWHelper.h"
 #import "XWPhoneLoginViewController.h"
+#import "XWSDK.h"
 
 @interface XWUserRegisterViewController ()
 {
     
 }
-
+@property (nonatomic, strong) XWUserRegisterView *userRegisterView;
 @end
 
 @implementation XWUserRegisterViewController
@@ -25,7 +26,7 @@
 {
     self = [super init];
     if (self) {
-        _userRegisterView = [XWUserRegisterView new];
+        
     }
     return self;
 }
@@ -42,19 +43,20 @@
     WS(weakSelf);
     
     
-    [self.view addSubview:_userRegisterView];
-    [_userRegisterView mas_updateConstraints:^(MASConstraintMaker *make) {
+    
+    [self.view addSubview:self.userRegisterView];
+    [self.userRegisterView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(weakSelf.view.mas_centerX);
         make.centerY.mas_equalTo(weakSelf.view.mas_centerY);
     }];
     
     
-    [_userRegisterView setBackButtonClickBlock:^{
+    [self.userRegisterView setBackButtonClickBlock:^{
         [weakSelf.navigationController popViewControllerAnimated:NO];
     }];
     
     
-    [_userRegisterView setSubmitButtonClickBlock:^{
+    [self.userRegisterView setSubmitButtonClickBlock:^{
         [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
         [weakSelf.userRegisterView.usernameTextField resignFirstResponder];
         [weakSelf.userRegisterView.passwordTextField resignFirstResponder];
@@ -76,16 +78,35 @@
         }];
     }];
     
-    [_userRegisterView setPhoneButtonClickBlock:^{
+    [self.userRegisterView setPhoneButtonClickBlock:^{
         [[UIApplication sharedApplication].windows.firstObject endEditing:YES];
         XWPhoneLoginViewController *phoneLoginViewController = [XWPhoneLoginViewController new];
         [phoneLoginViewController setCodeType:XWRegisterCode];
         [weakSelf.navigationController pushViewController:phoneLoginViewController animated:NO];
     }];
     
-    [_userRegisterView setLabelClickBlock:^{
-//        XWWebViewController *webViewController = [[XWWebViewController alloc] initWithURL:XW_USERAGREEMEN_ADDRESS webTitle:@"用户协议"];
-//        [weakSelf.navigationController pushViewController:webViewController animated:YES];
+    [self.userRegisterView setLabelClickBlock:^{
+        NSString *XW_USERAGREEMEN_ADDRESS = [NSString stringWithFormat:@"http://agreement.gzdky.dakongy.com/protocal.html?corp=%@", [XWCommonModel sharedInstance].appId];
+        XWWebViewController *webViewController = [[XWWebViewController alloc] initWithURL:XW_USERAGREEMEN_ADDRESS webTitle:@"用户协议"];
+        [weakSelf.navigationController pushViewController:webViewController animated:YES];
+    }];
+    
+    [self.userRegisterView setPrivacyLabelClickBlock:^{
+        NSString *privacyUrl = [NSString stringWithFormat:@"http://agreement.gzdky.dakongy.com/privacy_230428.html?corp=%@", [XWCommonModel sharedInstance].appId];
+        XWWebViewController *webViewController = [[XWWebViewController alloc] initWithURL:privacyUrl webTitle:@"隐私协议"];
+        [weakSelf.navigationController pushViewController:webViewController animated:YES];
+    }];
+    
+    
+    
+    XWProgressHUD *hud = [XWHUD showHUD:weakSelf.view];
+    [XWHUD showHUD:hud];
+    [self.viewModel rand:^(NSString * _Nonnull username, NSString * _Nonnull password) {
+        self.userRegisterView.usernameTextField.text = username;
+        self.userRegisterView.passwordTextField.text = password;
+        [XWHUD hideHUD:hud];
+    } failure:^(NSString * _Nonnull errorMessage) {
+        [XWHUD showOnlyText:weakSelf.view text:errorMessage];
     }];
 }
 
@@ -138,5 +159,14 @@
     [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:msg];
 }
 
+
+- (XWUserRegisterView *)userRegisterView
+{
+    if (!_userRegisterView)
+    {
+        _userRegisterView = [[XWUserRegisterView alloc] init];
+    }
+    return _userRegisterView;
+}
 
 @end

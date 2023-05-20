@@ -10,7 +10,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XWRoleModel : NSObject
-@property (nonatomic ,strong) NSString *userId;
 @property (nonatomic ,strong) NSString *serverId;
 @property (nonatomic ,strong) NSString *serverName;
 @property (nonatomic ,strong) NSString *roleId;

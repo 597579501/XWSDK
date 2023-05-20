@@ -4,7 +4,7 @@
 #import "LineView.h"
 #import "XWImageButton.h"
 #import "XWUserListTableView.h"
-#import "XWAgreementView.h"
+//#import "XWAgreementView.h"
 
 typedef void (^forgetLabelClickBlock)(void);
 typedef void (^registerButtonClickBlock)(void);
@@ -17,7 +17,7 @@ typedef void (^headTapBlock)(void);
 @interface XWUserLoginView : XWView<UITableViewDelegate, UITableViewDataSource>
 {
     NSUInteger _count;
-    XWAgreementView *_autoLoginAgreementView;
+//    XWAgreementView *_autoLoginAgreementView;
     YYLabel *_forgetLabel;
 }
 

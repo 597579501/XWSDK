@@ -44,7 +44,6 @@
 		148B246F2A063DFB009BFE2E /* XWCodeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B245F2A063DFB009BFE2E /* XWCodeLoginViewController.m */; };
 		148B24702A063DFB009BFE2E /* XWUpdatePassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B24602A063DFB009BFE2E /* XWUpdatePassWordViewController.m */; };
 		148B248D2A063ED7009BFE2E /* XWHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B24722A063ED7009BFE2E /* XWHUD.m */; };
-		148B248E2A063ED7009BFE2E /* XWPayButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B24732A063ED7009BFE2E /* XWPayButton.h */; };
 		148B248F2A063ED7009BFE2E /* XWAgreementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B24742A063ED7009BFE2E /* XWAgreementView.m */; };
 		148B24902A063ED7009BFE2E /* XWImageButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B24752A063ED7009BFE2E /* XWImageButton.h */; };
 		148B24912A063ED7009BFE2E /* LineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B24762A063ED7009BFE2E /* LineView.m */; };
@@ -52,20 +51,17 @@
 		148B24932A063ED7009BFE2E /* XWSubmitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B24782A063ED7009BFE2E /* XWSubmitButton.m */; };
 		148B24942A063ED7009BFE2E /* XWNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B24792A063ED7009BFE2E /* XWNavigationBar.m */; };
 		148B24952A063ED7009BFE2E /* XWTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B247A2A063ED7009BFE2E /* XWTextField.m */; };
-		148B24962A063ED7009BFE2E /* XWPaySectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B247B2A063ED7009BFE2E /* XWPaySectionView.h */; };
 		148B24972A063ED7009BFE2E /* XWOrderInfoViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B247D2A063ED7009BFE2E /* XWOrderInfoViewCell.h */; };
 		148B24982A063ED7009BFE2E /* XWUserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B247E2A063ED7009BFE2E /* XWUserListTableViewCell.m */; };
 		148B24992A063ED7009BFE2E /* XWTableViewCells.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B247F2A063ED7009BFE2E /* XWTableViewCells.m */; };
 		148B249A2A063ED7009BFE2E /* XWUserListTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B24802A063ED7009BFE2E /* XWUserListTableViewCell.h */; };
 		148B249B2A063ED7009BFE2E /* XWOrderInfoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B24812A063ED7009BFE2E /* XWOrderInfoViewCell.m */; };
 		148B249C2A063ED7009BFE2E /* XWTableViewCells.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B24822A063ED7009BFE2E /* XWTableViewCells.h */; };
-		148B249D2A063ED7009BFE2E /* XWPayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B24832A063ED7009BFE2E /* XWPayButton.m */; };
 		148B249E2A063ED7009BFE2E /* XWHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B24842A063ED7009BFE2E /* XWHUD.h */; };
 		148B249F2A063ED7009BFE2E /* XWUserAgreementView.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B24852A063ED7009BFE2E /* XWUserAgreementView.h */; };
 		148B24A02A063ED7009BFE2E /* LineView.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B24862A063ED7009BFE2E /* LineView.h */; };
 		148B24A12A063ED7009BFE2E /* XWImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B24872A063ED7009BFE2E /* XWImageButton.m */; };
 		148B24A22A063ED7009BFE2E /* XWAgreementView.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B24882A063ED7009BFE2E /* XWAgreementView.h */; };
-		148B24A32A063ED7009BFE2E /* XWPaySectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 148B24892A063ED7009BFE2E /* XWPaySectionView.m */; };
 		148B24A42A063ED7009BFE2E /* XWSubmitButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B248A2A063ED7009BFE2E /* XWSubmitButton.h */; };
 		148B24A52A063ED7009BFE2E /* XWTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B248B2A063ED7009BFE2E /* XWTextField.h */; };
 		148B24A62A063ED7009BFE2E /* XWNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 148B248C2A063ED7009BFE2E /* XWNavigationBar.h */; };
@@ -214,7 +210,6 @@
 		148B245F2A063DFB009BFE2E /* XWCodeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWCodeLoginViewController.m; sourceTree = "<group>"; };
 		148B24602A063DFB009BFE2E /* XWUpdatePassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWUpdatePassWordViewController.m; sourceTree = "<group>"; };
 		148B24722A063ED7009BFE2E /* XWHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWHUD.m; sourceTree = "<group>"; };
-		148B24732A063ED7009BFE2E /* XWPayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWPayButton.h; sourceTree = "<group>"; };
 		148B24742A063ED7009BFE2E /* XWAgreementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWAgreementView.m; sourceTree = "<group>"; };
 		148B24752A063ED7009BFE2E /* XWImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWImageButton.h; sourceTree = "<group>"; };
 		148B24762A063ED7009BFE2E /* LineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineView.m; sourceTree = "<group>"; };
@@ -222,20 +217,17 @@
 		148B24782A063ED7009BFE2E /* XWSubmitButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWSubmitButton.m; sourceTree = "<group>"; };
 		148B24792A063ED7009BFE2E /* XWNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWNavigationBar.m; sourceTree = "<group>"; };
 		148B247A2A063ED7009BFE2E /* XWTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWTextField.m; sourceTree = "<group>"; };
-		148B247B2A063ED7009BFE2E /* XWPaySectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWPaySectionView.h; sourceTree = "<group>"; };
 		148B247D2A063ED7009BFE2E /* XWOrderInfoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWOrderInfoViewCell.h; sourceTree = "<group>"; };
 		148B247E2A063ED7009BFE2E /* XWUserListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWUserListTableViewCell.m; sourceTree = "<group>"; };
 		148B247F2A063ED7009BFE2E /* XWTableViewCells.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWTableViewCells.m; sourceTree = "<group>"; };
 		148B24802A063ED7009BFE2E /* XWUserListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWUserListTableViewCell.h; sourceTree = "<group>"; };
 		148B24812A063ED7009BFE2E /* XWOrderInfoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWOrderInfoViewCell.m; sourceTree = "<group>"; };
 		148B24822A063ED7009BFE2E /* XWTableViewCells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWTableViewCells.h; sourceTree = "<group>"; };
-		148B24832A063ED7009BFE2E /* XWPayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWPayButton.m; sourceTree = "<group>"; };
 		148B24842A063ED7009BFE2E /* XWHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWHUD.h; sourceTree = "<group>"; };
 		148B24852A063ED7009BFE2E /* XWUserAgreementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWUserAgreementView.h; sourceTree = "<group>"; };
 		148B24862A063ED7009BFE2E /* LineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineView.h; sourceTree = "<group>"; };
 		148B24872A063ED7009BFE2E /* XWImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWImageButton.m; sourceTree = "<group>"; };
 		148B24882A063ED7009BFE2E /* XWAgreementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWAgreementView.h; sourceTree = "<group>"; };
-		148B24892A063ED7009BFE2E /* XWPaySectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XWPaySectionView.m; sourceTree = "<group>"; };
 		148B248A2A063ED7009BFE2E /* XWSubmitButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWSubmitButton.h; sourceTree = "<group>"; };
 		148B248B2A063ED7009BFE2E /* XWTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWTextField.h; sourceTree = "<group>"; };
 		148B248C2A063ED7009BFE2E /* XWNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XWNavigationBar.h; sourceTree = "<group>"; };
@@ -431,10 +423,6 @@
 				148B24872A063ED7009BFE2E /* XWImageButton.m */,
 				148B248C2A063ED7009BFE2E /* XWNavigationBar.h */,
 				148B24792A063ED7009BFE2E /* XWNavigationBar.m */,
-				148B24732A063ED7009BFE2E /* XWPayButton.h */,
-				148B24832A063ED7009BFE2E /* XWPayButton.m */,
-				148B247B2A063ED7009BFE2E /* XWPaySectionView.h */,
-				148B24892A063ED7009BFE2E /* XWPaySectionView.m */,
 				148B248A2A063ED7009BFE2E /* XWSubmitButton.h */,
 				148B24782A063ED7009BFE2E /* XWSubmitButton.m */,
 				148B248B2A063ED7009BFE2E /* XWTextField.h */,
@@ -482,8 +470,8 @@
 			isa = PBXGroup;
 			children = (
 				148B24AE2A06403A009BFE2E /* XWServiceView.m */,
-				148B24AF2A06403A009BFE2E /* XWUserCenterView.h */,
 				148B24B02A06403A009BFE2E /* XWServiceView.h */,
+				148B24AF2A06403A009BFE2E /* XWUserCenterView.h */,
 				148B24B12A06403A009BFE2E /* XWUserCenterView.m */,
 			);
 			path = Center;
@@ -783,7 +771,6 @@
 				141FCF4729FA1E840075C50A /* XWGwDomainServer.h in Headers */,
 				148B24CA2A06403A009BFE2E /* XWUserListTableView.h in Headers */,
 				148B249C2A063ED7009BFE2E /* XWTableViewCells.h in Headers */,
-				148B24962A063ED7009BFE2E /* XWPaySectionView.h in Headers */,
 				148B246A2A063DFB009BFE2E /* XWPhoneLoginViewController.h in Headers */,
 				148B24CC2A06403A009BFE2E /* XWUserRegisterView.h in Headers */,
 				148B24672A063DFB009BFE2E /* XWUserRegisterViewController.h in Headers */,
@@ -822,7 +809,6 @@
 				148B24C92A06403A009BFE2E /* XWAutoLoginView.h in Headers */,
 				14DE9F9929F7FFD00093BF1C /* XWViewModel.h in Headers */,
 				141FCF4B29FA1EA50075C50A /* XWLogDomainServer.h in Headers */,
-				148B248E2A063ED7009BFE2E /* XWPayButton.h in Headers */,
 				148B24F12A0658FB009BFE2E /* XWHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -965,7 +951,6 @@
 				148B24632A063DFB009BFE2E /* XWPhoneLoginViewController.m in Sources */,
 				148B24CE2A06403A009BFE2E /* XWUpdatePassWordView.m in Sources */,
 				141FCF6A29FAD98C0075C50A /* XWUserModel.m in Sources */,
-				148B249D2A063ED7009BFE2E /* XWPayButton.m in Sources */,
 				148B24D02A06403A009BFE2E /* XWPhoneLoginView.m in Sources */,
 				141FCF4C29FA1EA50075C50A /* XWLogDomainServer.m in Sources */,
 				14DE9FAC29F800FB0093BF1C /* XWNetManager.m in Sources */,
@@ -978,7 +963,6 @@
 				141FCF6629FA66CF0075C50A /* XWCommonModel.m in Sources */,
 				148B248F2A063ED7009BFE2E /* XWAgreementView.m in Sources */,
 				148B24A12A063ED7009BFE2E /* XWImageButton.m in Sources */,
-				148B24A32A063ED7009BFE2E /* XWPaySectionView.m in Sources */,
 				148B246F2A063DFB009BFE2E /* XWCodeLoginViewController.m in Sources */,
 				1496C9752A08F924007D8CF6 /* XWUserCenterViewController.m in Sources */,
 				14DE9F9B29F7FFD00093BF1C /* XWViewModel.m in Sources */,

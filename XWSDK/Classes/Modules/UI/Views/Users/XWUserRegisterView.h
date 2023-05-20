@@ -27,6 +27,7 @@ typedef void (^PhoneButtonClickBlock)(void);
 @property (nonatomic, strong, readonly) XWSubmitButton *phoneButton;
 @property (nonatomic, copy, readonly) labelClickBlock labelClickBlock;
 @property (nonatomic, copy) PhoneButtonClickBlock phoneButtonClickBlock;
+@property (nonatomic, copy) PrivacyLabelClickBlock privacyLabelClickBlock;
 
 
 - (void)updateRotationView:(UIInterfaceOrientation)orientation animate:(BOOL)animated duration:(NSTimeInterval)duration;

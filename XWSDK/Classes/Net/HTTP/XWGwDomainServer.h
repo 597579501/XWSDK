@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
                        failure:(Failure)failure;
 
 
++ (NSURLSessionDataTask *)rand:(Success)success    
+                       failure:(Failure)failure;
+
 + (NSURLSessionDataTask *)sendCode:(NSString *)phone
                               name:(NSString *)name
                           codeType:(XWCodeType)codeType
