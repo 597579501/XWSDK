@@ -109,6 +109,7 @@
                                                              && ([[password stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 6)
                                                              && weakSelf.userRegisterView.userAgreementView.isCheck)];
     } failure:^(NSString * _Nonnull errorMessage) {
+        [XWHUD hideHUD:hud];
         [XWHUD showOnlyText:weakSelf.view text:errorMessage];
     }];
 }

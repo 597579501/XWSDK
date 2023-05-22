@@ -71,33 +71,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4A296113-3BE2-44ED-B9E6-AC30B2747887"
+            uuid = "7F6E2D24-A898-4514-9CB5-3A45F7C04EAB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XWSDK/Classes/Modules/UI/Controls/XWUserAgreementView.m"
+            filePath = "XWSDK/Classes/Modules/UI/Controller/User/XWUserRegisterViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "-init"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C6250AC8-9E33-4B65-A3A6-10BD1ED82A07"
+            uuid = "5C2B0FC1-595A-4EFF-B62F-18D6CF7EE665"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XWSDK/Classes/Modules/UI/Controls/XWUserAgreementView.m"
+            filePath = "XWSDK/Classes/Modules/UI/Controller/User/XWUserRegisterViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-init"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5C2B0FC1-595A-4EFF-B62F-18D6CF7EE665 - 9c0594a170a076e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[XWUserRegisterViewController viewDidLoad]"
+                  moduleName = "XWSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/Controller/User/XWUserRegisterViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "928">
+               </Location>
+               <Location
+                  uuid = "5C2B0FC1-595A-4EFF-B62F-18D6CF7EE665 - aa6075009f0ca1e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__43-[XWUserRegisterViewController viewDidLoad]_block_invoke.32"
+                  moduleName = "XWSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/Controller/User/XWUserRegisterViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
