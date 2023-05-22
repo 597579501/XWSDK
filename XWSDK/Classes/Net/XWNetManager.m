@@ -10,6 +10,12 @@
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import <YYKit/YYKit.h>
 
+#if DEBUG
+#define NSLog(...) NSLog(@"%@", [NSString stringWithFormat:__VA_ARGS__]);
+#else
+#define NSLog(...)
+#endif
+
 
 NSInteger const XWHTTPServiceTimeoutInterval = 30;
 

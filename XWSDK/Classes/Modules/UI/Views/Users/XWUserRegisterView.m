@@ -178,6 +178,8 @@
         UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
         [self updateRotationView:orientation animate:NO duration:0];
         
+        
+        
     }
     return self;
 }

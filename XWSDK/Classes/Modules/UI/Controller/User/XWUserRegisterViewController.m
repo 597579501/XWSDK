@@ -102,9 +102,12 @@
     XWProgressHUD *hud = [XWHUD showHUD:weakSelf.view];
     [XWHUD showHUD:hud];
     [self.viewModel rand:^(NSString * _Nonnull username, NSString * _Nonnull password) {
-        self.userRegisterView.usernameTextField.text = username;
-        self.userRegisterView.passwordTextField.text = password;
+        weakSelf.userRegisterView.usernameTextField.text = username;
+        weakSelf.userRegisterView.passwordTextField.text = password;
         [XWHUD hideHUD:hud];
+        [[[weakSelf userRegisterView] submitButton] setEnabled:(([[username stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 6)
+                                                             && ([[password stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 6)
+                                                             && weakSelf.userRegisterView.userAgreementView.isCheck)];
     } failure:^(NSString * _Nonnull errorMessage) {
         [XWHUD showOnlyText:weakSelf.view text:errorMessage];
     }];

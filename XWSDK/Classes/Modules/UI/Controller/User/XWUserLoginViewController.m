@@ -14,6 +14,7 @@
 #import "XWDBHelper.h"
 #import "XWSDK.h"
 #import "XWSDKEnumHeader.h"
+#import "XWWebViewController.h"
 
 
 @interface XWUserLoginViewController ()
@@ -68,9 +69,22 @@
         XWPhoneLoginViewController *phoneLoginViewController = [XWPhoneLoginViewController new];
         [phoneLoginViewController setCodeType:XWResetCode];
         [weakSelf.navigationController pushViewController:phoneLoginViewController animated:NO];
-    
-        
     }];
+    
+    
+    [self.userLoginView.userAgreementView setLabelClickBlock:^{
+        NSString *XW_USERAGREEMEN_ADDRESS = [NSString stringWithFormat:@"http://agreement.gzdky.dakongy.com/protocal.html?corp=%@", [XWCommonModel sharedInstance].appId];
+        XWWebViewController *webViewController = [[XWWebViewController alloc] initWithURL:XW_USERAGREEMEN_ADDRESS webTitle:@"用户协议"];
+        [weakSelf.navigationController pushViewController:webViewController animated:YES];
+    }];
+    
+    [self.userLoginView.userAgreementView setPrivacyLabelClickBlock:^{
+        NSString *privacyUrl = [NSString stringWithFormat:@"http://agreement.gzdky.dakongy.com/privacy_230428.html?corp=%@", [XWCommonModel sharedInstance].appId];
+        XWWebViewController *webViewController = [[XWWebViewController alloc] initWithURL:privacyUrl webTitle:@"隐私协议"];
+        [weakSelf.navigationController pushViewController:webViewController animated:YES];
+    }];
+    
+    
     
     [_userLoginView setSubmitButtonClickBlock:^{
         
@@ -118,7 +132,10 @@
     NSString *username = userLoginRecordModel.username;
     NSString *password = userLoginRecordModel.password;
     [[[weakSelf userLoginView] submitButton] setEnabled:(([[username stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 6)
-                                                         && ([[password stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 6))];
+                                                         && ([[password stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 6)
+                                                         && weakSelf.userLoginView.userAgreementView.isCheck)];
+    
+
 
     //点击放大
     [_userLoginView showView];

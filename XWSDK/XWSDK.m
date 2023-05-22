@@ -22,9 +22,12 @@
 #import "XWWebViewController.h"
 #import "XWStore.h"
 
+
+
+
 static XWSDK *_instance = nil;
 
-//
+
 @interface XWSDK ()
 
 @property (nonatomic, strong) XWSDKViewModel *sdkViewModel;
@@ -307,7 +310,7 @@ static XWSDK *_instance = nil;
         {
             
             [XWHUD hideHUD:hud];
-            [weakSelf.floatWindow dissmissWindow];
+//            [weakSelf.floatWindow dissmissWindow];
             UIViewController *rootcontroller = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
             
             XWWebViewController *webViewController = nil;

@@ -31,6 +31,11 @@
         NSLog(@"user %@",user.userId);
     }];
     
+    
+    [[XWSDK sharedInstance] setLogoutCallBack:^{
+        NSLog(@"setLogoutCallBack");
+    }];
+    
     [self tableView:self.tableView didSelectRowAtIndexPath:index];
 }
 

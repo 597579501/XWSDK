@@ -33,7 +33,12 @@ __attribute__((constructor)) static void Inject(void) {
     if (self)
     {
         WS(weakSelf);
-        _isCheck = NO;
+        
+   
+    
+        
+        
+        
 
         self.checkButton = [UIButton new];
         [self.checkButton setBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
@@ -48,7 +53,18 @@ __attribute__((constructor)) static void Inject(void) {
             }
         }];
 
-        [self.checkButton setImage:[UIImage imageNamed:@"XW_SDK_Checkbox"] forState:UIControlStateNormal];
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:kFristOpen])
+        {
+            _isCheck = YES;
+            [self.checkButton setImage:[UIImage imageNamed:@"XW_SDK_CheckboxYes"] forState:UIControlStateNormal];
+        }
+        else
+        {
+            _isCheck = NO;
+            [self.checkButton setImage:[UIImage imageNamed:@"XW_SDK_Checkbox"] forState:UIControlStateNormal];
+        }
+        
+        
         [self addSubview:self.checkButton];
 
         NSString *allString = @"我同意《用户协议》和《隐私协议》";

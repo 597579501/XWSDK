@@ -17,12 +17,12 @@ typedef void (^PhoneButtonClickBlock)(void);
 
 @interface XWUserRegisterView : XWView
 {
-    XWUserAgreementView *_userAgreementView;
     UIImageView *_topView;
 }
 
 @property (nonatomic, strong, readonly) XWUsernameTextField *usernameTextField;
 @property (nonatomic, strong, readonly) XWPasswordTextField *passwordTextField;
+@property (nonatomic, strong) XWUserAgreementView *userAgreementView;;
 @property (nonatomic, strong, readonly) XWSubmitButton *submitButton;
 @property (nonatomic, strong, readonly) XWSubmitButton *phoneButton;
 @property (nonatomic, copy, readonly) labelClickBlock labelClickBlock;

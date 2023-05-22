@@ -58,6 +58,7 @@
 
 #define kAotuLogin      @"autoLogin"
 #define kLastUserInfo   @"lastUserInfo"
+#define kFristOpen   @"kFristOpen"
 
 
 #endif /* XWSDKHeader_h */

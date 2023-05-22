@@ -151,6 +151,7 @@
         [self saveUserInformation:userLoginRecordModel user:userModel isPostNotification:YES];
         if (completion && userModel)
         {
+            [[NSUserDefaults standardUserDefaults] setObject:@YES forKey:kFristOpen];
             completion(userModel);
         }
     } failure:^(NSString *errorMessage) {

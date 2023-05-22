@@ -59,7 +59,6 @@
     
     [self.navigationController setNavigationBarHidden:YES];
     [self.view setBackgroundColor:UIColorHexAlpha(0x0808080, 0.2)];
-//    [self.view setBackgroundColor:[UIColor redColor]];
 
     [self.view addSubview:_userCenterView];
     

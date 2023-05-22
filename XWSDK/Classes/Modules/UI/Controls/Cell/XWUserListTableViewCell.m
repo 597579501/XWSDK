@@ -18,9 +18,11 @@
     {
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         
+        
+        
         _userImageView = [UIImageView new];
         [_userImageView setImage:kImage(@"XW_SDK_Username")];
-        [self addSubview:_userImageView];
+        [self.contentView addSubview:_userImageView];
         
         _userNameLabel = [UILabel new];
         [_userNameLabel setFont:kTextFont];
@@ -33,8 +35,9 @@
         [self.contentView addSubview:_delButton];
         
         _lineView = [LineView new];
+        _lineView.hidden = YES;
         [_lineView setStyle:LineHorizontaStyle];
-        [self addSubview:_lineView];
+        [self.contentView addSubview:_lineView];
         
         [_userImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.contentView.mas_centerY);
@@ -59,7 +62,7 @@
         
         
         [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(-1);
+            make.bottom.mas_equalTo(0);
             make.left.mas_equalTo(0);
             make.right.mas_equalTo(0);
             make.height.mas_equalTo(1);

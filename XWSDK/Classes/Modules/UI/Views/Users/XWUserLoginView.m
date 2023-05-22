@@ -73,7 +73,14 @@
         
 //        _autoLoginAgreementView = [[XWAgreementView alloc] initWithText:@"自动登录"];
 //        [self addSubview:_autoLoginAgreementView];
-//
+        
+        _userAgreementView = [XWUserAgreementView new];
+        [self addSubview:_userAgreementView];
+        
+        [_userAgreementView setCheckClickBlock:^(BOOL isCheck) {
+            [weakSelf textChanged];
+        }];
+
         
         NSMutableAttributedString *forgetText = [NSMutableAttributedString new];
         NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:@"忘记密码"];
@@ -113,6 +120,7 @@
         [self addSubview:_registerButton];
 
         _userListTableView = [XWUserListTableView new];
+        [_userListTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         [_userListTableView setHidden:YES];
         [_userListTableView setDataSource:self];
         [_userListTableView setDelegate:self];
@@ -143,9 +151,19 @@
 //            make.centerY.mas_equalTo(lineView.mas_centerY);
 //        }];
     
+        
+        
+        
+        [_userAgreementView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(weakSelf.passwordTextField.mas_bottom).offset(10);
+            make.height.mas_equalTo(25);
+            make.left.mas_equalTo(weakSelf.passwordTextField.mas_left);
+        }];
+        
+        
         [forgetLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(weakSelf.passwordTextField.mas_right);
-            make.top.mas_equalTo(weakSelf.passwordTextField.mas_bottom).offset(10);
+            make.top.mas_equalTo(_userAgreementView.mas_bottom).offset(10);
             make.width.mas_equalTo(60);
             make.height.mas_equalTo(30);
         }];
@@ -200,6 +218,7 @@
         
     }];
     
+    
     [_submitButton setEnabled:!_userListTableView.hidden];
     [_registerButton setEnabled:!_userListTableView.hidden];
     [_userListTableView setHidden:!_userListTableView.hidden];
@@ -208,12 +227,16 @@
 
 - (void)textChanged
 {
+    
     NSString *username = [_usernameTextField text];
     NSString *password = [_passwordTextField text];
     [_submitButton setEnabled:(([[username stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 6)
-                               && ([[password stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 6))];
+                               && ([[password stringByReplacingOccurrencesOfString:@" " withString:@""] length] >= 6)
+                               && _userAgreementView.isCheck)];
     
 }
+
+
 
 #pragma mark 关闭登录窗
 
@@ -302,13 +325,20 @@
 //            make.height.mas_equalTo(30);
 //        }];
         
-        [_forgetLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(weakSelf.passwordTextField.mas_right);
-             make.top.mas_equalTo(weakSelf.passwordTextField.mas_bottom).with.offset(10);
-            make.height.mas_equalTo(30);
+        [_userAgreementView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(weakSelf.passwordTextField.mas_bottom).offset(10);
+            make.height.mas_equalTo(25);
+            make.left.mas_equalTo(weakSelf.passwordTextField.mas_left);
         }];
         
         
+        [_forgetLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(weakSelf.passwordTextField.mas_right);
+            make.top.mas_equalTo(_userAgreementView.mas_bottom).offset(10);
+            make.width.mas_equalTo(60);
+            make.height.mas_equalTo(30);
+        }];
+
         [_submitButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(weakSelf.mas_width).multipliedBy(0.43);
             make.height.mas_equalTo(weakSelf.usernameTextField.mas_height);
@@ -370,9 +400,23 @@
 //            make.height.mas_equalTo(30);
 //        }];
         
+//        [_forgetLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.right.mas_equalTo(weakSelf.passwordTextField.mas_right);
+//            make.top.mas_equalTo(weakSelf.passwordTextField.mas_bottom).with.offset(10);
+//            make.height.mas_equalTo(30);
+//        }];
+        
+        [_userAgreementView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(weakSelf.passwordTextField.mas_bottom).offset(10);
+            make.height.mas_equalTo(25);
+            make.left.mas_equalTo(weakSelf.passwordTextField.mas_left);
+        }];
+        
+        
         [_forgetLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(weakSelf.passwordTextField.mas_right);
-            make.top.mas_equalTo(weakSelf.passwordTextField.mas_bottom).with.offset(10);
+            make.top.mas_equalTo(_userAgreementView.mas_bottom).offset(10);
+            make.width.mas_equalTo(60);
             make.height.mas_equalTo(30);
         }];
         
@@ -501,7 +545,14 @@
     [_usernameTextField setText:userLoginRecordModel.username];
     [_passwordTextField setText:userLoginRecordModel.password];
     [_userListTableView setHidden:YES];
-    [_submitButton setEnabled:YES];
+    if (_userAgreementView.isCheck)
+    {
+        [_submitButton setEnabled:YES];
+    }
+    else
+    {
+        [_submitButton setEnabled:NO];
+    }
     [_registerButton setEnabled:YES];
 }
 

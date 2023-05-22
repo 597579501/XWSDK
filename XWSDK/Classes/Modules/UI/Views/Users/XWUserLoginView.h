@@ -5,6 +5,7 @@
 #import "XWImageButton.h"
 #import "XWUserListTableView.h"
 //#import "XWAgreementView.h"
+#import "XWUserAgreementView.h"
 
 typedef void (^forgetLabelClickBlock)(void);
 typedef void (^registerButtonClickBlock)(void);
@@ -19,6 +20,7 @@ typedef void (^headTapBlock)(void);
     NSUInteger _count;
 //    XWAgreementView *_autoLoginAgreementView;
     YYLabel *_forgetLabel;
+    
 }
 
 - (instancetype)initWithUserCount:(NSUInteger)count;
@@ -28,6 +30,8 @@ typedef void (^headTapBlock)(void);
 @property (nonatomic, strong) XWUsernameTextField *usernameTextField;
 @property (nonatomic, strong) XWPasswordTextField *passwordTextField;
 @property (nonatomic, strong) XWUserListTableView *userListTableView;
+@property (nonatomic, strong) XWUserAgreementView *userAgreementView;;
+
 @property (nonatomic, strong) XWSubmitButton *submitButton;
 @property (nonatomic, strong) XWSubmitButton *registerButton;
 @property (nonatomic, copy) forgetLabelClickBlock forgetLabelClickBlock;

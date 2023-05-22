@@ -12,6 +12,12 @@
 #import "XWSDK.h"
 #import "XWBaseServer.h"
 
+#if DEBUG
+#define NSLog(...) NSLog(@"%@", [NSString stringWithFormat:__VA_ARGS__]);
+#else
+#define NSLog(...)
+#endif
+
 const float WebViewCtrlInitialProgressValue           = 0.1f;
 const float WebViewCtrlInteractiveProgressValue       = 0.5f;
 const float WebViewCtrlFinalProgressValue             = 0.9f;

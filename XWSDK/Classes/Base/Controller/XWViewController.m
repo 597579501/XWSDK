@@ -7,6 +7,7 @@
 
 #import "XWViewController.h"
 #import <YYKit/YYKit.h>
+#import "XWWebViewController.h"
 
 @interface XWViewController () <YYTextKeyboardObserver>
 {
@@ -114,6 +115,7 @@
 
 //
     UIButton *closeButton = [UIButton new];
+    [closeButton setTag:10];
     [closeButton addTarget:self action:@selector(closeButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [closeButton setFrame:CGRectMake(10, 0, 40, 40)];
 //
@@ -178,22 +180,21 @@
 {
 
     //todo
-//    if ([self isKindOfClass:[DHWebViewController class]])
-//    {
-//        DHWebViewController *webViewController = (DHWebViewController *)self;
-//        if (webViewController.isPay)
-//        {
-//            [self.navigationController dismissViewControllerAnimated:YES completion:^{
-//                
-//            }];
-//        }
-//        else
-//        {
-//            [self.navigationController.view removeFromSuperview];
-//            [self.navigationController removeFromParentViewController];
-//        }
-//    }
-//    else
+    if ([self isKindOfClass:[XWWebViewController class]])
+    {
+        XWWebViewController *webViewController = (XWWebViewController *)self;
+        if (webViewController.isOpen)
+        {
+            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                
+            }];
+        }
+        else
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+    else
     {
         [self.navigationController.view removeFromSuperview];
         [self.navigationController removeFromParentViewController];

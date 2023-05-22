@@ -170,6 +170,10 @@ __attribute__((constructor)) static void Inject(void) {
     [self setTitle:title forState:UIControlStateNormal];
 }
 
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+}
 
 
 - (void)dealloc
