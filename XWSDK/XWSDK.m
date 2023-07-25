@@ -59,8 +59,15 @@ static XWSDK *_instance = nil;
         NSMutableArray *menuNameArray = [[NSMutableArray alloc] initWithObjects:@"修改密码", @"绑定手机", @"注销", nil];
         NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:menuNameArray forKeys:imageArray];
         [self initWindow:dictionary];
+        if (completion)
+        {
+            completion();
+        }
     } failure:^(NSString * _Nonnull errorMessage) {
-        
+        if (failure)
+        {
+            failure(errorMessage);
+        }
     }];
 }
 
@@ -482,7 +489,7 @@ static XWSDK *_instance = nil;
 
 - (NSString *)version
 {
-    return @"1.0.0";
+    return @"1.0.1";
 }
 
 

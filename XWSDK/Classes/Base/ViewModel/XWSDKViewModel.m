@@ -21,15 +21,19 @@
 
 - (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(XWConfModel *confModel))completion failure:(void(^)(NSString *errorMessage))failure
 {
+    NSLog(@"conf %@", appId);
     [XWCommonModel sharedInstance].appId = appId;
     [XWCommonModel sharedInstance].appKey = appKey;
     [XWGwDomainServer conf:^(id data) {
+        NSLog(@"conf success ");
         XWConfModel *confModel = [XWConfModel modelWithJSON:data];
         if (completion && confModel)
         {
+            NSLog(@"conf success confModel");
             completion(confModel);
         }
     } failure:^(NSString *errorMessage) {
+        NSLog(@"conf failure errorMessage %@", errorMessage);
         if (failure)
         {
             failure(errorMessage);
