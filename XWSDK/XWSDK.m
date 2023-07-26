@@ -254,11 +254,11 @@ static XWSDK *_instance = nil;
     
     XWProgressHUD *hud = [XWHUD showHUD:[[UIApplication sharedApplication] windows].firstObject];
     
-    [self.sdkViewModel cashier:order completion:^(NSString * _Nonnull orderId, NSString * _Nonnull url) {
-            
-    } failure:^(NSString * _Nonnull errorMessage) {
-        
-    }];
+//    [self.sdkViewModel cashier:order completion:^(NSString * _Nonnull orderId, NSString * _Nonnull url) {
+//
+//    } failure:^(NSString * _Nonnull errorMessage) {
+//
+//    }];
     
     [self.sdkViewModel open:order completion:^(NSString *state, NSString *orderId, NSString *url) {
         if ([state isEqualToString:@"success"])

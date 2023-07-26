@@ -7,65 +7,113 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "46A9CC77-22ED-4F43-958F-B8E7DE418ED0"
+            uuid = "07912E11-4E92-41E4-9CF3-5A85A683D010"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XWSDKDemo/ViewController.m"
+            filePath = "XWSDK/Classes/Modules/UI/XWFloatWindow.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "614"
+            endingLineNumber = "614"
+            landmarkName = "-orientChange:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "440E3FBE-4105-4D68-B6A9-6F0065B42CD9"
+            uuid = "4A8D293E-7BFB-4632-ADFD-AA0702F3E912"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XWSDKDemo/ViewController.m"
+            filePath = "XWSDK/Classes/Modules/UI/XWFloatWindow.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "624"
+            endingLineNumber = "624"
+            landmarkName = "-orientChange:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4A8D293E-7BFB-4632-ADFD-AA0702F3E912 - e5cf3b642efbc9a4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[XWFloatWindow orientChange:]"
+                  moduleName = "XWSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/XWFloatWindow.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "624"
+                  endingLineNumber = "624"
+                  offsetFromSymbolStart = "484">
+               </Location>
+               <Location
+                  uuid = "4A8D293E-7BFB-4632-ADFD-AA0702F3E912 - e5cf3b642efbc9a4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[XWFloatWindow orientChange:]"
+                  moduleName = "XWSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/XWFloatWindow.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "624"
+                  endingLineNumber = "624"
+                  offsetFromSymbolStart = "432">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C8A3A1E5-B59A-4988-A5AF-CDA273C581CC"
+            uuid = "276C5EF9-BE35-4FB7-B8AE-A8D7D3553CC5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "XWSDK/XWSDK.m"
+            filePath = "XWSDK/Classes/Modules/UI/XWFloatWindow.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-conf:appKey:completion:failure:"
+            startingLineNumber = "609"
+            endingLineNumber = "609"
+            landmarkName = "-orientChange:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4BBE14C4-9BBE-4B18-BC90-8C309B42D504"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "XWSDK/XWSDK.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "-conf:appKey:completion:failure:"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "276C5EF9-BE35-4FB7-B8AE-A8D7D3553CC5 - e5cf3b642efbc7d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[XWFloatWindow orientChange:]"
+                  moduleName = "XWSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/XWFloatWindow.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "610"
+                  endingLineNumber = "610"
+                  offsetFromSymbolStart = "272">
+               </Location>
+               <Location
+                  uuid = "276C5EF9-BE35-4FB7-B8AE-A8D7D3553CC5 - e5cf3b642efbc7d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[XWFloatWindow orientChange:]"
+                  moduleName = "XWSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/XWFloatWindow.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "610"
+                  endingLineNumber = "610"
+                  offsetFromSymbolStart = "268">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

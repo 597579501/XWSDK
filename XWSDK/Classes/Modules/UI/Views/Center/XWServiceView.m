@@ -23,9 +23,9 @@
         [self setBackgroundColor:[UIColor whiteColor]];
         [self.layer setCornerRadius:8];
         
-        if (!mobile || [mobile isEqualToString:@""]) mobile = @"9527";
-        if (!qqServiceGroup || [qqServiceGroup isEqualToString:@""]) qqServiceGroup = @"89757";
-        if (!qqPlayerGroup || [qqPlayerGroup isEqualToString:@""]) qqPlayerGroup = @"12831245";
+        if (!mobile || [mobile isEqualToString:@""]) mobile = @"ikungrgr";
+        if (!qqServiceGroup || [qqServiceGroup isEqualToString:@""]) qqServiceGroup = @"BBLIN666888";
+        if (!qqPlayerGroup || [qqPlayerGroup isEqualToString:@""]) qqPlayerGroup = @"sakegege";
         
         UIImage *backButtonNormalImage = [UIImage imageNamed:@"XW_SDK_BarItem_Back_Normal"];
         UIImage *backButtonHighlightedImage = [UIImage imageNamed:@"XW_SDK_BarItem_Back_Highlighted"];
@@ -39,7 +39,7 @@
 //        [self addSubview:logoImageView];
         
         UILabel *mobileDesLabel = [UILabel new];
-        [mobileDesLabel setText:@"客服电话："];
+        [mobileDesLabel setText:@"微信客服1："];
         [mobileDesLabel setFont:kFont(14)];
         [mobileDesLabel setTextColor:kTextColor];
         [self addSubview:mobileDesLabel];
@@ -47,7 +47,7 @@
         NSMutableAttributedString *mobileAttributedString = [[NSMutableAttributedString alloc] initWithString:mobile];
         mobileAttributedString.font = kTextFont;
         mobileAttributedString.underlineColor = UIColorHex(0x6EB5E4);
-        [mobileAttributedString setUnderlineStyle:NSUnderlineStyleSingle range:NSMakeRange(0, mobile.length)];
+//        [mobileAttributedString setUnderlineStyle:NSUnderlineStyleSingle range:NSMakeRange(0, mobile.length)];
         [mobileAttributedString setTextHighlightRange:NSMakeRange(0, mobile.length)
                                                 color:UIColorHex(0x6EB5E4)
                                       backgroundColor:[UIColor colorWithWhite:0.000 alpha:0.220]
@@ -64,7 +64,7 @@
         
         
         UILabel *qqServiceDesLabel = [UILabel new];
-        [qqServiceDesLabel setText:@"客服  QQ："];
+        [qqServiceDesLabel setText:@"微信客服2："];
         [qqServiceDesLabel setFont:kFont(14)];
         [qqServiceDesLabel setTextColor:kTextColor];
         [self addSubview:qqServiceDesLabel];
@@ -72,7 +72,7 @@
         NSMutableAttributedString *qqServiceAttributedString = [[NSMutableAttributedString alloc] initWithString:qqServiceGroup];
         qqServiceAttributedString.font = kTextFont;
         qqServiceAttributedString.underlineColor = UIColorHex(0x6EB5E4);
-        [qqServiceAttributedString setUnderlineStyle:NSUnderlineStyleSingle range:NSMakeRange(0, qqServiceGroup.length)];
+//        [qqServiceAttributedString setUnderlineStyle:NSUnderlineStyleSingle range:NSMakeRange(0, qqServiceGroup.length)];
         [qqServiceAttributedString setTextHighlightRange:NSMakeRange(0, qqServiceGroup.length)
                                                 color:UIColorHex(0x6EB5E4)
                                       backgroundColor:[UIColor colorWithWhite:0.000 alpha:0.220]
@@ -89,15 +89,15 @@
         
         
         UILabel *qqPlayerDesLabel = [UILabel new];
-        [qqPlayerDesLabel setText:@"玩家QQ群："];
-        [qqPlayerDesLabel setFont:kFont(13)];
+        [qqPlayerDesLabel setText:@"微信客服3："];
+        [qqPlayerDesLabel setFont:kFont(14)];
         [qqPlayerDesLabel setTextColor:kTextColor];
         [self addSubview:qqPlayerDesLabel];
         
         NSMutableAttributedString *qqPlayerAttributedString = [[NSMutableAttributedString alloc] initWithString:qqPlayerGroup];
         qqPlayerAttributedString.font = kTextFont;
         qqPlayerAttributedString.underlineColor = UIColorHex(0x6EB5E4);
-        [qqPlayerAttributedString setUnderlineStyle:NSUnderlineStyleSingle range:NSMakeRange(0, qqPlayerGroup.length)];
+//        [qqPlayerAttributedString setUnderlineStyle:NSUnderlineStyleSingle range:NSMakeRange(0, qqPlayerGroup.length)];
         [qqPlayerAttributedString setTextHighlightRange:NSMakeRange(0, qqPlayerGroup.length)
                                                    color:UIColorHex(0x6EB5E4)
                                          backgroundColor:[UIColor colorWithWhite:0.000 alpha:0.220]

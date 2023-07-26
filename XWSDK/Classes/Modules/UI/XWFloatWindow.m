@@ -589,7 +589,43 @@
     //旋转前要先改变frame，否则坐标有问题（临时办法）
 //    self.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.heigh - self.frame.origin.y - self.frame.size.height, self.frame.size.width,self.frame.size.height);
 //    self.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.heigh - self.frame.origin.y - self.frame.size.height, self.frame.size.width,self.frame.size.height);
-    self.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height / 2 - self.frame.size.height / 2 + self.frame.size.height, self.frame.size.width,self.frame.size.height);
+    
+    
+    id s = notification.object;
+    
+    Class UIApplicationClass = NSClassFromString(@"UIApplication");
+   if (!UIApplicationClass || ![UIApplicationClass respondsToSelector:@selector(sharedApplication)]) return;
+
+   UIApplication *application = [UIApplication performSelector:@selector(sharedApplication)];
+   UIInterfaceOrientation orientation = application.statusBarOrientation;
+   CGFloat radians = 0;
+   
+    
+    
+    
+    
+    
+    NSArray *array = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
+    
+   if (UIInterfaceOrientationIsLandscape(orientation)) {
+       if (orientation == UIInterfaceOrientationLandscapeRight)
+       {
+           CGFloat right = application.windows.firstObject.safeAreaInsets.right;
+           self.frame = CGRectMake(right, [[UIScreen mainScreen] bounds].size.height / 2 - self.frame.size.height / 2 + self.frame.size.height, self.frame.size.width,self.frame.size.height);
+       }
+       
+       else
+       {
+           CGFloat left = application.windows.firstObject.safeAreaInsets.left;
+           self.frame = CGRectMake(left, [[UIScreen mainScreen] bounds].size.height / 2 - self.frame.size.height / 2 + self.frame.size.height, self.frame.size.width,self.frame.size.height);
+       }
+   } else {
+//       UIInterfaceOrientationLandscapeLeft
+       self.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height / 2 - self.frame.size.height / 2 + self.frame.size.height, self.frame.size.width,self.frame.size.height);
+   }
+
+   
+    
     
     if (self.isShowTab) {
         [self click:nil];
