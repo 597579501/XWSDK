@@ -14,8 +14,8 @@
             filePath = "XWSDK/Classes/Modules/UI/XWFloatWindow.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "614"
-            endingLineNumber = "614"
+            startingLineNumber = "632"
+            endingLineNumber = "632"
             landmarkName = "-orientChange:"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "XWSDK/Classes/Modules/UI/XWFloatWindow.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "624"
-            endingLineNumber = "624"
+            startingLineNumber = "644"
+            endingLineNumber = "644"
             landmarkName = "-orientChange:"
             landmarkType = "7">
             <Locations>
@@ -65,6 +65,21 @@
                   endingLineNumber = "624"
                   offsetFromSymbolStart = "432">
                </Location>
+               <Location
+                  uuid = "4A8D293E-7BFB-4632-ADFD-AA0702F3E912 - e5cf3b642efbc9e2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[XWFloatWindow orientChange:]"
+                  moduleName = "XWSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seven/Code/XWSDK/XWSDK/Classes/Modules/UI/XWFloatWindow.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "626"
+                  endingLineNumber = "626"
+                  offsetFromSymbolStart = "476">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -78,8 +93,8 @@
             filePath = "XWSDK/Classes/Modules/UI/XWFloatWindow.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "609"
-            endingLineNumber = "609"
+            startingLineNumber = "627"
+            endingLineNumber = "627"
             landmarkName = "-orientChange:"
             landmarkType = "7">
             <Locations>

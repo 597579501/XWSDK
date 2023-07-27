@@ -365,15 +365,33 @@
     [UIView animateWithDuration:0.5 animations:^{
         
         
-        CGFloat x = self.center.x < 20+WIDTH/2 ? 0 :  self.center.x > [[UIScreen mainScreen] bounds].size.width - 20 -WIDTH/2 ? [[UIScreen mainScreen] bounds].size.width : self.center.x;
-        CGFloat y = self.center.y < 40 + HEIGHT/2 ? 0 : self.center.y > [[UIScreen mainScreen] bounds].size.height - 40 - HEIGHT/2 ? [[UIScreen mainScreen] bounds].size.height : self.center.y;
+        CGFloat x = self.center.x < 20 + WIDTH / 2 ? 0 : self.center.x > [[UIScreen mainScreen] bounds].size.width - 20 -WIDTH/2 ? [[UIScreen mainScreen] bounds].size.width : self.center.x;
+        CGFloat y = self.center.y < 40 + HEIGHT / 2 ? 0 : self.center.y > [[UIScreen mainScreen] bounds].size.height - 40 - HEIGHT/2 ? [[UIScreen mainScreen] bounds].size.height : self.center.y;
         
         //        禁止停留在4个角
         if((x == 0 && y ==0) || (x == [[UIScreen mainScreen] bounds].size.width && y == 0) || (x == 0 && y == [[UIScreen mainScreen] bounds].size.height) || (x == [[UIScreen mainScreen] bounds].size.width && y == [[UIScreen mainScreen] bounds].size.height)){
             y = _lastPonit.y;
         }
         
-        _lastPonit = CGPointMake(x, y);
+        UIApplication *application = [UIApplication performSelector:@selector(sharedApplication)];
+        UIInterfaceOrientation orientation = application.statusBarOrientation;
+        if (UIInterfaceOrientationIsLandscape(orientation)) {
+            if (orientation == UIInterfaceOrientationLandscapeRight)
+            {
+                CGFloat right = application.windows.firstObject.safeAreaInsets.right;
+                _lastPonit = CGPointMake(right, y);
+            }
+            else
+            {
+                CGFloat left = application.windows.firstObject.safeAreaInsets.right;
+                _lastPonit = CGPointMake(x - left, y);
+            }
+        }
+        else
+        {
+            _lastPonit = CGPointMake(x, y);
+        }
+        
         self.center = _lastPonit;
         
         
@@ -612,12 +630,14 @@
        {
            CGFloat right = application.windows.firstObject.safeAreaInsets.right;
            self.frame = CGRectMake(right, [[UIScreen mainScreen] bounds].size.height / 2 - self.frame.size.height / 2 + self.frame.size.height, self.frame.size.width,self.frame.size.height);
+           NSLog(@"right %f",right);
        }
        
        else
        {
            CGFloat left = application.windows.firstObject.safeAreaInsets.left;
-           self.frame = CGRectMake(left, [[UIScreen mainScreen] bounds].size.height / 2 - self.frame.size.height / 2 + self.frame.size.height, self.frame.size.width,self.frame.size.height);
+           self.frame = CGRectMake(0, [[UIScreen mainScreen] bounds].size.height / 2 - self.frame.size.height / 2 + self.frame.size.height, self.frame.size.width,self.frame.size.height);
+           NSLog(@"left %f",left);
        }
    } else {
 //       UIInterfaceOrientationLandscapeLeft
