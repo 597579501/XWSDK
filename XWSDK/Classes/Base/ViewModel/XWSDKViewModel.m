@@ -226,7 +226,7 @@
 }
 
 - (void)alive:(XWRoleModel *)roleModel
-   completion:(void(^)(XWUserModel *userModel))completion
+   completion:(void(^)(void))completion
       failure:(void(^)(NSString *errorMessage))failure
 {
     if (![self checkConf])
@@ -236,7 +236,11 @@
     }
     
     [XWLogDomainServer alive:roleModel success:^(id  _Nullable data) {
-            
+        if (completion)
+        {
+            completion();
+        }
+        
     } failure:^(NSString * _Nullable errorMessage) {
         if (failure)
         {

@@ -27,7 +27,7 @@ NSString *const XWCashiUrl = @"pay/cashier.php";
 
 + (NSString *)hostUrl
 {
-    return @"http://gw_gzdky.niiwe.com";
+    return @"http://gw.gzsdk.dakongy.com";
 }
 
 + (NSURLSessionDataTask *)conf:(Success)success

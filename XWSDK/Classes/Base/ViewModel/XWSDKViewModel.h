@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)start:(void(^)(XWUserModel *userModel))completion failure:(void(^)(NSString *errorMessage))failure;
 
 - (void)alive:(XWRoleModel *)roleModel
-   completion:(void(^)(XWUserModel *userModel))completion
+   completion:(void(^)(void))completion
       failure:(void(^)(NSString *errorMessage))failure;
 
 

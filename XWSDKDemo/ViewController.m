@@ -111,14 +111,15 @@
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
         XWRoleModel *roleModel = [[XWRoleModel alloc] init];
-        roleModel.roleId = @"1";
-        roleModel.roleName = @"测试";
-        roleModel.serverId = @"server1";
-        roleModel.serverName = @"serverName1";
-        roleModel.roleLevel = @"188";
+        roleModel.roleId = @"48fb401641930ecbc06993b100fc40a5";
+        roleModel.roleName = @"H320300030";
+        roleModel.serverId = @"1";
+        roleModel.serverName = @"B1";
+        roleModel.roleLevel = @"4";
         
-        [[XWSDK sharedInstance] alive:roleModel completion:^(XWUserModel * _Nonnull userModel) {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", userModel.userName , userModel.userId];
+        
+        [[XWSDK sharedInstance] alive:roleModel completion:^{
+            cell.detailTextLabel.text = @"上报成功";
             [tableView reloadData];
         } failure:^(NSString * _Nonnull errorMessage) {
             cell.detailTextLabel.text = errorMessage;

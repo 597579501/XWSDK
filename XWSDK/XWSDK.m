@@ -23,7 +23,8 @@
 #import "XWStore.h"
 
 
-
+//#define SEND_HRATESECOND                    180
+#define SEND_HRATESECOND                    300
 
 static XWSDK *_instance = nil;
 
@@ -35,6 +36,9 @@ static XWSDK *_instance = nil;
 @property (nonatomic, strong) XWFloatWindow *floatWindow;
 @property (nonatomic, assign) BOOL          canShowController;
 @property (nonatomic, strong) XWUserModel *currUser;
+
+/// 用来定时器上报
+@property (nonatomic, strong) XWRoleModel *currRoleModel;
 @end
 
 @implementation XWSDK
@@ -49,7 +53,30 @@ static XWSDK *_instance = nil;
     return _instance;
 }
 
+- (void)countTimer
+{
+    NSTimer *sendHrateRequestTimer = [NSTimer scheduledTimerWithTimeInterval: SEND_HRATESECOND * 1
+                                                                      target: self
+                                                                    selector: @selector(liveTimer)
+                                                                    userInfo: nil
+                                                                     repeats: YES];
+    [sendHrateRequestTimer fire];
 
+       
+}
+
+- (void)liveTimer
+{
+    if (self.currRoleModel)
+    {
+        [self.sdkViewModel alive:self.currRoleModel completion:^{
+            
+        } failure:^(NSString * _Nonnull errorMessage) {
+            
+        }];
+        
+    }
+}
 
 - (void)conf:(NSString *)appId appKey:(NSString *)appKey completion:(void(^)(void))completion failure:(void(^)(NSString *errorMessage))failure
 {
@@ -69,6 +96,12 @@ static XWSDK *_instance = nil;
             failure(errorMessage);
         }
     }];
+    
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        [_instance countTimer];
+    });
+    
 }
 
 
@@ -228,13 +261,14 @@ static XWSDK *_instance = nil;
 }
 
 - (void)alive:(XWRoleModel *)roleModel
-   completion:(void(^)(XWUserModel *userModel))completion
+   completion:(void(^)(void))completion
       failure:(void(^)(NSString *errorMessage))failure
 {
-    [self.sdkViewModel alive:roleModel completion:^(XWUserModel * _Nonnull userModel) {
+    self.currRoleModel = roleModel;
+    [self.sdkViewModel alive:roleModel completion:^{
         if(completion)
         {
-            completion(userModel);
+            completion();
         }
     } failure:^(NSString * _Nonnull errorMessage) {
         if (failure)
@@ -242,7 +276,6 @@ static XWSDK *_instance = nil;
             failure(errorMessage);
         }
     }];
-
 }
 
 
@@ -322,7 +355,7 @@ static XWSDK *_instance = nil;
             
             XWWebViewController *webViewController = nil;
             
-            webViewController = [[XWWebViewController alloc] initWithURL:@"http://gw_gzdky.niiwe.com/pay/cashier.php"];
+            webViewController = [[XWWebViewController alloc] initWithURL:@"http://gw.gzsdk.dakongy.com/pay/cashier.php"];
             [webViewController setOrder:order];
             [webViewController setIsOpen:YES];
             [webViewController setIsCanShowBack:NO];

@@ -209,7 +209,7 @@ const float WebViewCtrlFinalProgressValue             = 0.9f;
             [commonDictionary setObject:signString forKey:@"sign"];
             
             NSString *query = [self queryStringWithDict:commonDictionary];
-            NSString *urlString = [NSString stringWithFormat:@"http://gw_gzdky.niiwe.com/pay/cashier.php?%@", query];
+            NSString *urlString = [NSString stringWithFormat:@"http://gw.gzsdk.dakongy.com/pay/cashier.php?%@", query];
             NSURL *url = [NSURL URLWithString:urlString];
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
             [self.webView loadRequest:request];
@@ -433,7 +433,7 @@ const float WebViewCtrlFinalProgressValue             = 0.9f;
 - (NSMutableURLRequest *)setupUrlRequest{
     NSURL *url = [NSURL URLWithString:_url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-//    [request setValue:@"gw_gzdky.niiwe.com" forHTTPHeaderField:@"Referer"];
+//    [request setValue:@"gw.gzsdk.dakongy.com" forHTTPHeaderField:@"Referer"];
     return request;
     
 }
@@ -801,12 +801,12 @@ const float WebViewCtrlFinalProgressValue             = 0.9f;
     NSString *urlString = navigationAction.request.URL.absoluteString;
     NSLog(@"decidePolicyForNavigationAction  %@", urlString);
     BOOL isIt = [urlString rangeOfString:@"https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb"].location != NSNotFound;
-    BOOL isSet = [[navigationAction.request.allHTTPHeaderFields objectForKey:@"Referer"] isEqualToString:@"gw_gzdky.niiwe.com"];
+    BOOL isSet = [[navigationAction.request.allHTTPHeaderFields objectForKey:@"Referer"] isEqualToString:@"gw.gzsdk.dakongy.com"];
     if (isIt && !isSet)
     {
         
         NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-        [req setValue:@"gw_gzdky.niiwe.com" forHTTPHeaderField:@"Referer"];
+        [req setValue:@"gw.gzsdk.dakongy.com" forHTTPHeaderField:@"Referer"];
 
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [webView loadRequest:req];
