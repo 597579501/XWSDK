@@ -21,6 +21,7 @@
 #import "XWUIHelper.h"
 #import "XWWebViewController.h"
 #import "XWStore.h"
+#import "FTfloatBall.h"
 
 
 //#define SEND_HRATESECOND                    180
@@ -33,7 +34,7 @@ static XWSDK *_instance = nil;
 
 @property (nonatomic, strong) XWSDKViewModel *sdkViewModel;
 @property (nonatomic, strong) XWCommonModel *commonModel;
-@property (nonatomic, strong) XWFloatWindow *floatWindow;
+@property (nonatomic, strong) FTfloatBall *floatBall;
 @property (nonatomic, assign) BOOL          canShowController;
 @property (nonatomic, strong) XWUserModel *currUser;
 
@@ -122,11 +123,14 @@ static XWSDK *_instance = nil;
     
   
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAotuLogin];
-    [self.floatWindow dissmissWindow];
+    [self.floatBall dissmissWindow];
+    
     _instance.currUser = nil;
     if (callBack) {
         callBack();
     }
+    [self login];
+    [XWHUD showOnlyText:[[UIApplication sharedApplication] windows].firstObject text:@"注销成功"];
 }
 
 - (void)loginSucessCallBack:(LoginSuccessBack)callBack{
@@ -166,7 +170,7 @@ static XWSDK *_instance = nil;
             [autoLoginViewController closeView];
             _instance.currUser = nil;
 //            _role = nil;
-            [self.floatWindow dissmissWindow];
+            [self.floatBall dissmissWindow];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAotuLogin];
             [[XWSDK sharedInstance] login];
         }];
@@ -366,7 +370,7 @@ static XWSDK *_instance = nil;
                 
             }];
             [webViewController setCloseButtonClickBlock:^{
-                [weakSelf.floatWindow showWindow];
+                [weakSelf.floatBall showWindow];
 //                if (XWHSDK.dhColseBack) {
 //                    XWHSDK.dhColseBack();
 //                }
@@ -432,18 +436,25 @@ static XWSDK *_instance = nil;
     UIGraphicsEndImageContext();
     UIColor *floatWindowBGcolor = [UIColor colorWithPatternImage:lastImage];
     
-    if (!_floatWindow)
+    if (!_floatBall)
     {
-        _floatWindow = [[XWFloatWindow alloc] initWithFrame:rect mainImageName:@"XW_SDK_FloatIcon"
-                                                  imagesAndTitle:dictionary
-                                                         bgcolor:floatWindowBGcolor
-                                                  animationColor:[UIColor clearColor]] ;
-        [_floatWindow dissmissWindow];
-        _floatWindow.clickBolcks = ^(NSInteger i){
+//        _floatWindow = [[FTfloatBall alloc] initWithFrame:rect mainImageName:@"XW_SDK_FloatIcon"
+//                                                  imagesAndTitle:dictionary
+//                                                         bgcolor:floatWindowBGcolor
+//                                                  animationColor:[UIColor clearColor]] ;
+        _floatBall = [FTfloatBall getFloatBall];
+        [_floatBall initWithFrame:CGRectMake(0, 200, 75, 75) baseImage:@"XW_SDK_FloatIcon"];
+        _floatBall.layer.cornerRadius = 75 / 2;
+        _floatBall.layer.borderWidth = 1;
+        _floatBall.layer.borderColor = [UIColor whiteColor].CGColor;
+        
+        [_floatBall dissmissWindow];
+        [_floatBall setClickBolcks:^{
             if (weakSelf.canShowController) {
                 [weakSelf userCenter];
             }
-        };
+        }];
+        [[[UIApplication sharedApplication] windows].firstObject addSubview:_floatBall];
     }
 }
 
@@ -456,7 +467,7 @@ static XWSDK *_instance = nil;
     
     if (_instance.currUser != nil)
     {
-        [self.floatWindow dissmissWindow];
+        [self.floatBall dissmissWindow];
         
         UIViewController *rootcontroller = [[[UIApplication sharedApplication] windows].firstObject rootViewController];
         XWUserCenterViewController *userCenterViewController = [XWUserCenterViewController new];
@@ -467,7 +478,7 @@ static XWSDK *_instance = nil;
         [userCenterViewController setCloseButtonClickBlock:^{
             if (_instance.currUser != nil)
             {
-                [self.floatWindow showWindow];
+                [self.floatBall showWindow];
             }
         }];
     }
@@ -483,7 +494,7 @@ static XWSDK *_instance = nil;
     //登陆成功过移除标识
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLogin"];
     XWUserModel *user = (XWUserModel *)notification.object;
-    [self.floatWindow showWindow];
+    [self.floatBall showWindow];
     _instance.currUser = user;
     [self showIdAuth:user];
     if (_loginCallBack) {
@@ -510,12 +521,12 @@ static XWSDK *_instance = nil;
 
 - (void)showFloatBtn
 {
-    [self.floatWindow showWindow];
+    [self.floatBall showWindow];
 }
 
 - (void)disFloatBtn
 {
-    [self.floatWindow dissmissWindow];
+    [self.floatBall dissmissWindow];
 }
 
 

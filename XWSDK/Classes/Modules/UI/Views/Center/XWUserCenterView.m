@@ -116,7 +116,7 @@ static CGFloat buttonMargin = 25;
         [_logoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_logoutButton setTitleColor:UIColorHex(0x464646) forState:UIControlStateHighlighted];
         [[_logoutButton titleLabel] setFont:kTextFont];
-        [_logoutButton setTitle:@"切换账号" forState:UIControlStateNormal];
+        [_logoutButton setTitle:@"注销登录" forState:UIControlStateNormal];
 //        [_logoutButton.layer setBorderWidth:0.5];
 //        [_logoutButton.layer setBorderColor:kLineViewColor.CGColor];
 //        [_logoutButton.layer setBorderColor:[UIColor orangeColor].CGColor];

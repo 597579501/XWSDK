@@ -124,6 +124,8 @@
 		14A5A35F2A01F09300BC76A4 /* XWRoleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A5A35D2A01F09300BC76A4 /* XWRoleModel.m */; };
 		14A5A3622A020DB400BC76A4 /* XWOrderModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A5A3602A020DB400BC76A4 /* XWOrderModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14A5A3632A020DB400BC76A4 /* XWOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A5A3612A020DB400BC76A4 /* XWOrderModel.m */; };
+		14C044BB2AAF218E00BD2B5D /* FTfloatBall.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C044B92AAF218D00BD2B5D /* FTfloatBall.m */; };
+		14C044BC2AAF218E00BD2B5D /* FTfloatBall.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C044BA2AAF218E00BD2B5D /* FTfloatBall.h */; };
 		14D095882A085C0800DDC68A /* XWSDK.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14D095872A085C0800DDC68A /* XWSDK.xcassets */; };
 		14DE9EBB29F7FD920093BF1C /* XWSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 14DE9EBA29F7FD920093BF1C /* XWSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14DE9EC929F7FDAB0093BF1C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DE9EC829F7FDAB0093BF1C /* AppDelegate.m */; };
@@ -291,6 +293,8 @@
 		14A5A35D2A01F09300BC76A4 /* XWRoleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWRoleModel.m; sourceTree = "<group>"; };
 		14A5A3602A020DB400BC76A4 /* XWOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWOrderModel.h; sourceTree = "<group>"; };
 		14A5A3612A020DB400BC76A4 /* XWOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XWOrderModel.m; sourceTree = "<group>"; };
+		14C044B92AAF218D00BD2B5D /* FTfloatBall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTfloatBall.m; sourceTree = "<group>"; };
+		14C044BA2AAF218E00BD2B5D /* FTfloatBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTfloatBall.h; sourceTree = "<group>"; };
 		14D095872A085C0800DDC68A /* XWSDK.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = XWSDK.xcassets; sourceTree = "<group>"; };
 		14DE9EB729F7FD920093BF1C /* XWSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XWSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14DE9EBA29F7FD920093BF1C /* XWSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XWSDK.h; sourceTree = "<group>"; };
@@ -371,6 +375,8 @@
 				148B244F2A063DC3009BFE2E /* Controller */,
 				148B24492A0628B1009BFE2E /* XWFloatWindow.h */,
 				148B244A2A0628B1009BFE2E /* XWFloatWindow.m */,
+				14C044BA2AAF218E00BD2B5D /* FTfloatBall.h */,
+				14C044B92AAF218D00BD2B5D /* FTfloatBall.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -807,6 +813,7 @@
 				149899DD2A1237CC00E951AC /* XWIdAuthViewController.h in Headers */,
 				148B24652A063DFB009BFE2E /* XWUpdatePassWordViewController.h in Headers */,
 				148B24C92A06403A009BFE2E /* XWAutoLoginView.h in Headers */,
+				14C044BC2AAF218E00BD2B5D /* FTfloatBall.h in Headers */,
 				14DE9F9929F7FFD00093BF1C /* XWViewModel.h in Headers */,
 				141FCF4B29FA1EA50075C50A /* XWLogDomainServer.h in Headers */,
 				148B24F12A0658FB009BFE2E /* XWHelper.h in Headers */,
@@ -983,6 +990,7 @@
 				149899E22A12382A00E951AC /* XWIdAuthView.m in Sources */,
 				1496C9A92A0CE1E6007D8CF6 /* XWStoreKeychainPersistence.m in Sources */,
 				14DE9FA329F7FFD00093BF1C /* XWView.m in Sources */,
+				14C044BB2AAF218E00BD2B5D /* FTfloatBall.m in Sources */,
 				14A5A35F2A01F09300BC76A4 /* XWRoleModel.m in Sources */,
 				148B24922A063ED7009BFE2E /* XWUserAgreementView.m in Sources */,
 				141FCF5529FA2B710075C50A /* XWConfModel.m in Sources */,
