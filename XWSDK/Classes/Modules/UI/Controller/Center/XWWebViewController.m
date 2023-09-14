@@ -209,7 +209,7 @@ const float WebViewCtrlFinalProgressValue             = 0.9f;
             [commonDictionary setObject:signString forKey:@"sign"];
             
             NSString *query = [self queryStringWithDict:commonDictionary];
-            NSString *urlString = [NSString stringWithFormat:@"http://gw.gzsdk.dakongy.com/pay/cashier.php?%@", query];
+            NSString *urlString = [NSString stringWithFormat:@"http://gw.gzdkysdk.noada.cn/pay/cashier.php?%@", query];
             NSURL *url = [NSURL URLWithString:urlString];
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
             [self.webView loadRequest:request];
@@ -799,32 +799,31 @@ const float WebViewCtrlFinalProgressValue             = 0.9f;
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     NSString *urlString = navigationAction.request.URL.absoluteString;
-    NSLog(@"decidePolicyForNavigationAction  %@", urlString);
-    BOOL isIt = [urlString rangeOfString:@"https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb"].location != NSNotFound;
-    BOOL isSet = [[navigationAction.request.allHTTPHeaderFields objectForKey:@"Referer"] isEqualToString:@"gw.gzsdk.dakongy.com"];
+    
+    BOOL isIt = [urlString rangeOfString:@"eb-bin/"].location != NSNotFound;
+    BOOL isSet = [[navigationAction.request.allHTTPHeaderFields objectForKey:@"Referer"] isEqualToString:@"gw.gzdkysdk.noada.cn://"];
     if (isIt && !isSet)
     {
-        
+//        NSLog(@"decidePolicyForNavigationAction1  %@", urlString);
         NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-        [req setValue:@"gw.gzsdk.dakongy.com" forHTTPHeaderField:@"Referer"];
-
+        [req setValue:@"gw.gzdkysdk.noada.cn://" forHTTPHeaderField:@"Referer"];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [webView loadRequest:req];
         });
-        
-
-        
-        
         decisionHandler(WKNavigationActionPolicyCancel);
     }
     else
     {
+        NSLog(@"decidePolicyForNavigationAction2  %@", urlString);
         if ([navigationAction.request.URL.scheme isEqualToString:@"weixin"])
         {
             if ([[UIApplication sharedApplication] canOpenURL:navigationAction.request.URL])
             {
                 [[UIApplication sharedApplication] openURL:navigationAction.request.URL options:@{} completionHandler:^(BOOL success) {
-    
+                    if (success)
+                    {
+                        [self closeButtonClick];
+                    }
                 }];
             }
             decisionHandler(WKNavigationActionPolicyCancel);
@@ -836,7 +835,7 @@ const float WebViewCtrlFinalProgressValue             = 0.9f;
         
     }
     
-//    decisionHandler(WKNavigationActionPolicyAllow);
+
     
     
 }

@@ -289,7 +289,7 @@ static XWSDK *_instance = nil;
 {
     WS(weakSelf);
     
-    XWProgressHUD *hud = [XWHUD showHUD:[[UIApplication sharedApplication] windows].firstObject];
+    __block XWProgressHUD *hud = [XWHUD showHUD:[[UIApplication sharedApplication] windows].firstObject];
     
 //    [self.sdkViewModel cashier:order completion:^(NSString * _Nonnull orderId, NSString * _Nonnull url) {
 //
@@ -359,7 +359,8 @@ static XWSDK *_instance = nil;
             
             XWWebViewController *webViewController = nil;
             
-            webViewController = [[XWWebViewController alloc] initWithURL:@"http://gw.gzsdk.dakongy.com/pay/cashier.php"];
+//            webViewController = [[XWWebViewController alloc] initWithURL:@"http://gw.gzsdk.dakongy.com/pay/cashier.php"];
+            webViewController = [[XWWebViewController alloc] initWithURL:@"http://gw.gzdkysdk.noada.cn/pay/cashier.php"];
             [webViewController setOrder:order];
             [webViewController setIsOpen:YES];
             [webViewController setIsCanShowBack:NO];
@@ -444,9 +445,9 @@ static XWSDK *_instance = nil;
 //                                                  animationColor:[UIColor clearColor]] ;
         _floatBall = [FTfloatBall getFloatBall];
         [_floatBall initWithFrame:CGRectMake(0, 200, 75, 75) baseImage:@"XW_SDK_FloatIcon"];
-        _floatBall.layer.cornerRadius = 75 / 2;
-        _floatBall.layer.borderWidth = 1;
-        _floatBall.layer.borderColor = [UIColor whiteColor].CGColor;
+        
+        
+//        _floatBall.layer.borderColor = [UIColor whiteColor].CGColor;
         
         [_floatBall dissmissWindow];
         [_floatBall setClickBolcks:^{
